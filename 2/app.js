@@ -246,7 +246,7 @@ function showFigureCard(d, x, y) {
   const money = d.totalCompensation ? `${formatMoney(d.totalCompensation)}元` : "资料未载明";
   const origin = d.originCoord?.label || d.origin || "资料未载明";
   const accident = d.accidentCoord?.label || d.accidentPlace || "资料未载明";
-  const grade = d.disabilityGrade || "未载明 / 不适用";
+  const grade = showGrade(d);
   card.innerHTML = `
     <div class="card-role">${TYPE_LABEL[d.type] || "当事人"}${d.representedByZhou ? " · 周立太代理" : ""}</div>
     <h3>${escapeHtml(d.name)}</h3>
@@ -372,13 +372,13 @@ function plotMapFigures(field, dotClass) {
   clusters.forEach(cluster => {
     const group = cluster.people;
     const base = cluster.base;
-    el("circle", { cx: base[0], cy: base[1], r: 10 + Math.min(9, group.length), class: dotClass }, chartLayer);
-    text(chartLayer, base[0], base[1] + 1, group.length, "map-count", "middle");
+    // 小点标记地区，不再放大圈、写人数
+    el("circle", { cx: base[0], cy: base[1], r: 4.5, class: dotClass }, chartLayer);
     const labels = Array.from(cluster.labels);
     let label = labels[0] || "";
     if (labels.some(v => /深圳|东莞|惠州/.test(v)) && labels.length > 1) label = "深圳及珠三角";
     else if (labels.some(v => /重庆/.test(v)) && labels.length > 1) label = "重庆地区";
-    if (group.length > 1) text(chartLayer, base[0] + 16, base[1] - 16, label, "map-label");
+    if (group.length > 1) text(chartLayer, base[0] + 14, base[1] - 16, label, "map-label");
     group.forEach((d, i) => {
       const pos = groupedMapPos(field, d, i, group.length, base);
       line(routeLayer, base[0], base[1], pos.x + 9, pos.y + 13, "", { stroke: "#9b917d", "stroke-width": 0.8, opacity: 0.42 });
@@ -401,7 +401,9 @@ function figureYear(d) {
 
 function primaryCategory(d) {
   for (const id of d.caseIds || []) {
-    const category = CASE_BY_ID.get(id)?.incidentCategory?.[0];
+    const cats = CASE_BY_ID.get(id)?.incidentCategory || [];
+    // “行政程序制度执行”是维权程序类别，不是事故机制，跳过
+    const category = cats.find(c => c !== "行政程序制度执行");
     if (category) return category;
   }
   if (/肺|职业病|矽肺|尘肺/.test(d.injury || "")) return "职业病长期暴露";
@@ -410,8 +412,29 @@ function primaryCategory(d) {
   return "资料未分类";
 }
 
+function isDeceased(d) {
+  return d.type === "died_worker" || (d.death && d.death.is_death);
+}
+
+/* 档案未写明伤残等级的伤者，按伤情做呈现层推断（不写入数据层，公开前仍须档案复核） */
+const GRADE_INFER = {
+  "person-zhang-lizhen": "1—2 级（高位截瘫，依伤情推断）"
+};
+
+function displayGrade(d) {
+  return d.disabilityGrade || GRADE_INFER[d.id] || "";
+}
+
+function showGrade(d) {
+  const parts = [];
+  if (displayGrade(d)) parts.push(displayGrade(d));
+  if (isDeceased(d)) parts.push("工亡");
+  return parts.join(" · ") || "未载明";
+}
+
 function gradeNumber(d) {
-  const raw = String(d.disabilityGrade || "");
+  // 括号内多为“地方标准/另一说”（如“五级（CS-0003记四级，两说）”），等级轴取主值
+  const raw = String(displayGrade(d) || "").replace(/[（(][^）)]*[)）]/g, "").trim();
   const map = { "一级": 1, "二级": 2, "三级": 3, "四级": 4, "五级": 5, "六级": 6, "七级": 7 };
   for (const [key, value] of Object.entries(map)) if (raw.includes(key)) return value;
   const range = raw.match(/(\d)\s*[—-]\s*(\d)/);
@@ -561,26 +584,33 @@ function renderMerge() {
 }
 
 function renderGradeAxis() {
-  header("伤残等级", "法律如何给身体排序", "一级最重，十级最轻；本数据集中 12 人有明确或区间等级，其余保留为“未载明”");
-  const columns = [1, 2, 3, 4, 5, 6, null];
-  const labels = ["一级", "二级", "三级", "四级", "五级", "六级", "未载明"];
-  const x0 = 360, dx = 92;
+  header("伤残等级", "法律如何给身体排序", "一级最重；工亡者单列“死亡”；档案未写明等级的伤者按伤情推断，仅信息不足者保留“未载明”");
+  const columns = [1, 2, 3, 4, 5, 6, "death", null];
+  const labels = ["一级", "二级", "三级", "四级", "五级", "六级", "死亡", "未载明"];
+  const x0 = 330, dx = 84;
   columns.forEach((grade, i) => {
     const x = x0 + i * dx;
-    rect(chartLayer, x - 8, 145, 74, 320, grade ? CATEGORY_COLORS[Math.min(grade - 1, 5)] : "#d8d0bf", "", { opacity: 0.16 });
+    const fill = grade === "death" ? "#1d2724" : (grade ? CATEGORY_COLORS[Math.min(grade - 1, 5)] : "#d8d0bf");
+    rect(chartLayer, x - 8, 145, 74, 320, fill, "", { opacity: 0.16 });
     text(chartLayer, x + 28, 170, labels[i], "category-label", "middle");
-    if (grade) text(chartLayer, x + 28, 188, grade === 1 ? "最重" : "", "chart-note", "middle");
+    if (typeof grade === "number") text(chartLayer, x + 28, 188, grade === 1 ? "最重" : "", "chart-note", "middle");
   });
-  const groups = columns.map(grade => FIGURES.filter(d => grade === null ? !gradeNumber(d) : gradeNumber(d) === grade));
+  const groups = columns.map(col => {
+    if (col === "death") return FIGURES.filter(d => isDeceased(d) && !gradeNumber(d));
+    if (col === null) return FIGURES.filter(d => !gradeNumber(d) && !isDeceased(d));
+    return FIGURES.filter(d => gradeNumber(d) === col);
+  });
   groups.forEach((group, col) => group.forEach((d, i) => {
     const x = x0 + col * dx + (i % 2) * 34;
-    const y = 215 + Math.floor(i / 2) * 72;
+    const y = 200 + Math.floor(i / 2) * 54;
     const node = figureEl(d.id);
-    if (col < 6) node.querySelectorAll(".garment").forEach(shape => shape.setAttribute("fill", CATEGORY_COLORS[col]));
-    setPose(d, { x, y, scale: 0.54, opacity: col === 6 ? 0.45 : 1 }, { delay: i * 15 });
+    if (col === "death") node.querySelectorAll(".garment").forEach(shape => shape.setAttribute("fill", "#1d2724"));
+    else if (typeof col === "number") node.querySelectorAll(".garment").forEach(shape => shape.setAttribute("fill", CATEGORY_COLORS[col - 1]));
+    setPose(d, { x, y, scale: 0.44, opacity: col === null ? 0.45 : 1 }, { delay: i * 15 });
   }));
-  text(chartLayer, 74, 250, "颜色越深，等级越重", "legend-item");
+  text(chartLayer, 74, 250, "颜色越深，等级越重；黑色为工亡", "legend-item");
   [1, 3, 6].forEach((n, i) => rect(chartLayer, 74 + i * 42, 270, 32, 16, CATEGORY_COLORS[n - 1]));
+  rect(chartLayer, 74 + 3 * 42, 270, 32, 16, "#1d2724");
 }
 
 function renderIncidentType() {

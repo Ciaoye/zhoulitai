@@ -79,14 +79,13 @@ const STORY_DATA = {
   },
   "incidentCategoryCounts": {
     "岗位突发疾病猝死": 7,
-    "职业病长期暴露": 7,
-    "机器卷入挤压截肢": 6,
-    "行政程序制度执行": 6,
-    "其他": 2,
-    "因工出差运输交通": 2,
     "上下班途中交通": 1,
+    "机器卷入挤压截肢": 6,
     "坠落坠物高处": 1,
+    "职业病长期暴露": 7,
+    "其他": 2,
     "坠海溺水": 1,
+    "因工出差运输交通": 2,
     "触电": 1
   },
   "figures": [
@@ -1895,7 +1894,6 @@ const STORY_DATA = {
       "representedByZhou": true,
       "workerCount": 7,
       "incidentCategory": [
-        "行政程序制度执行",
         "机器卷入挤压截肢"
       ],
       "origins": [],
@@ -2229,7 +2227,6 @@ const STORY_DATA = {
       "representedByZhou": true,
       "workerCount": 1,
       "incidentCategory": [
-        "行政程序制度执行",
         "职业病长期暴露"
       ],
       "origins": [
@@ -2318,7 +2315,6 @@ const STORY_DATA = {
       "representedByZhou": true,
       "workerCount": 1,
       "incidentCategory": [
-        "行政程序制度执行",
         "职业病长期暴露"
       ],
       "origins": [
@@ -2389,7 +2385,6 @@ const STORY_DATA = {
       "representedByZhou": true,
       "workerCount": 1,
       "incidentCategory": [
-        "行政程序制度执行",
         "岗位突发疾病猝死"
       ],
       "origins": [
@@ -2474,7 +2469,6 @@ const STORY_DATA = {
       "representedByZhou": true,
       "workerCount": 1,
       "incidentCategory": [
-        "行政程序制度执行",
         "职业病长期暴露"
       ],
       "origins": [
@@ -2517,7 +2511,6 @@ const STORY_DATA = {
       "representedByZhou": true,
       "workerCount": 1,
       "incidentCategory": [
-        "行政程序制度执行",
         "岗位突发疾病猝死"
       ],
       "origins": [
