@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="周立太数字档案馆 · 消费层站点导航：关系时间线、工伤故事与档案全貌">
+  <title>周立太档案馆 · 站点导航</title>
+  <style>
+    :root {
+      --bg: #141210;
+      --panel: #1d1a17;
+      --ink: #e8e2d8;
+      --muted: #9a9188;
+      --accent: #b85a4e;
+      --line: #33302b;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font: 15px/1.7 system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Serif SC", serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 56px 24px 40px; width: 100%; flex: 1; }
+    header { margin-bottom: 40px; }
+    .eyebrow {
+      font-size: 12px; letter-spacing: .22em; color: var(--muted);
+      text-transform: uppercase; margin-bottom: 14px;
+    }
+    h1 {
+      font-size: 34px; font-weight: 700; letter-spacing: .04em;
+      margin-bottom: 10px;
+    }
+    .deck { color: var(--muted); max-width: 640px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .card {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+      padding: 22px 22px 18px; text-decoration: none; color: inherit;
+      display: block; transition: border-color .18s ease, transform .18s ease;
+    }
+    .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .card .no { font-size: 12px; letter-spacing: .2em; color: var(--accent); font-weight: 600; }
+    .card h2 { font-size: 19px; margin: 8px 0 8px; }
+    .card p { font-size: 13.5px; color: var(--muted); }
+    .card .go { display: inline-block; margin-top: 12px; font-size: 13px; color: var(--accent); }
+    footer {
+      border-top: 1px solid var(--line); color: var(--muted);
+      font-size: 12.5px; padding-top: 18px; margin-top: 44px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">周立太数字档案馆 · 消费层</p>
+      <h1>从档案到叙事</h1>
+      <p class="deck">三个面向读者的站点，由同一套标准化档案生成：先看三十年间的案件与制度如何彼此承接，再听受伤者与死亡者留下的具体故事，最后进入完整的馆藏关系网络。</p>
+    </header>
+
+    <div class="grid">
+      <a class="card" href="1/">
+        <span class="no">01 · TIMELINE</span>
+        <h2>案件如何进入制度</h2>
+        <p>1996—2026 纵向关系时间线：案件、地方规则、公共事件与媒体叙事同图呈现，十二条斗争路径可单独追踪。</p>
+        <span class="go">打开时间线 →</span>
+      </a>
+      <a class="card" href="2/">
+        <span class="no">02 · STORIES</span>
+        <h2>失去之后</h2>
+        <p>滚动叙事页：33 个人、28 宗案件、22 年。工伤事故之后，他们开始了另一段漫长迁徙。</p>
+        <span class="go">阅读故事 →</span>
+      </a>
+      <a class="card" href="3/">
+        <span class="no">03 · ARCHIVE ATLAS</span>
+        <h2>档案全貌</h2>
+        <p>馆藏导航：关系网络、生平、案件、概念、地点地图、人物、机构与媒体报道八个板块总览。</p>
+        <span class="go">进入馆藏 →</span>
+      </a>
+    </div>
+
+    <footer>
+      <p>周立太数字档案馆 · 消费层公开预览 — 页面为内部原型整理；公开边界、隐私与权利状态以 Wiki 元数据为准。</p>
+    </footer>
+  </div>
+</body>
+</html>

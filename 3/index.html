@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="周立太档案馆的馆藏总览、案件索引与人物机构导航。">
+  <title>周立太档案馆 · 馆藏导航</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23B85A4E'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fff' font-family='serif'%3E周%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="gh-sites" aria-label="周立太档案馆站点导航" style="position:sticky;top:0;z-index:99999;display:flex;align-items:center;gap:18px;padding:7px 18px;background:rgba(22,22,22,.94);color:#ddd;font:12px/1.5 system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;box-shadow:0 1px 0 rgba(255,255,255,.08);">
+  <span style="color:#9a9a9a;letter-spacing:.08em;font-weight:600;">周立太档案馆</span>
+  <a href="../1/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">01 · 时间线</a>
+  <a href="../2/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">02 · 工伤故事</a>
+  <a href="../3/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">03 · 档案全貌</a>
+  <span style="margin-left:auto;color:#777;">GitHub Pages 部署</span>
+</nav>
+
+
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <div class="brand-block">
+      <span class="brand-seal" aria-hidden="true">周</span>
+      <a class="brand" href="#top" aria-label="回到首页">周立太档案馆</a>
+      <span class="edition">数字馆藏 · 导航</span>
+    </div>
+    <nav class="main-nav" aria-label="主要导航">
+      <a href="#overview">关系网络</a>
+      <a href="#biography">生平</a>
+      <a href="#cases">案件</a>
+      <a href="#structures">概念</a>
+      <a href="#locations">地点</a>
+      <a href="#people">人物</a>
+      <a href="#organizations">机构</a>
+      <a href="#media">媒体报道</a>
+    </nav>
+    <button class="search-trigger" id="search-trigger" type="button" aria-label="打开全馆检索">检索</button>
+  </header>
+
+  <div class="yaml-strip" aria-label="档案元信息">
+    <span>status: internal-preview</span>
+    <span>source: LLM-wiki</span>
+    <span>updated: 2026-08-08</span>
+  </div>
+
+  <div class="content-wrap">
+    <main id="main">
+    <section class="archive-intro" id="top">
+      <div class="intro-copy">
+        <p class="kicker">Archive atlas / 馆藏地图</p>
+        <h1>周立太档案馆</h1>
+        <p class="deck">从案件进入人物、机构与制度现场。这里汇总已经形成实质内容的档案页，可按类型浏览、检索，并查看页面之间的互联关系。</p>
+      </div>
+      <div class="intro-index" aria-label="页面说明">
+        <span>总索引</span>
+        <strong>INDEX</strong>
+        <small>卷宗 / 人物 / 机构 / 议题 / 媒体</small>
+      </div>
+    </section>
+
+    <section class="dashboard" id="overview" aria-labelledby="overview-title">
+      <div class="section-heading">
+        <div><span class="section-no">A</span><h2 id="overview-title">档案关系网络</h2></div>
+        <p>每个节点是一份档案页，连线表示页面正文中的明确互链</p>
+      </div>
+      <div class="metrics" id="metrics"></div>
+      <div class="source-detail" id="source-detail"></div>
+      <div class="collection-map">
+        <div class="map-title">
+          <span>RELATIONSHIP MAP</span>
+          <h3>馆藏全貌</h3>
+          <p>每个节点是一份档案页，连线表示页面正文中的明确互链。图内不显示文字，将鼠标停在节点上查看名称与连接数；可拖动画布平移、滚轮缩放、拖动节点重排，点击进入档案详情。默认显示全部节点且完整居中。</p>
+          <div class="network-controls" aria-label="关系网络视图控制">
+            <button type="button" id="net-zoom-in" aria-label="放大">＋</button>
+            <button type="button" id="net-zoom-out" aria-label="缩小">－</button>
+            <button type="button" id="net-reset" aria-label="重置视图">重置视图</button>
+          </div>
+          <div class="network-legend" id="network-legend" aria-label="关系网络类型图例"></div>
+          <div class="network-info" id="network-info">
+            <small>NETWORK NOTE</small>
+            <strong>将鼠标停在节点上</strong>
+            <p>查看它的类型、名称与连接数量；点击进入该档案及其相关页面。</p>
+          </div>
+        </div>
+        <div class="network-stage">
+          <svg id="network-svg" viewBox="0 0 1200 800" role="img" aria-label="档案页面关系网络"></svg>
+          <div class="network-tooltip" id="network-tooltip" role="status" aria-live="polite" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="biography-section" id="biography" aria-labelledby="biography-title">
+      <div class="section-heading">
+        <div><span class="section-no">B</span><h2 id="biography-title">周立太的生平</h2></div>
+        <p>不按年份罗列，以人生阶段进入档案</p>
+      </div>
+      <div class="bio-lead">
+        <p id="bio-summary"></p>
+        <a class="text-link" href="#/page/bio-zhou-litai">打开人物总页 <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="life-path" id="life-path"></div>
+    </section>
+
+    <section class="case-section" id="cases" aria-labelledby="cases-title">
+      <div class="section-heading inverse">
+        <div><span class="section-no">C</span><h2 id="cases-title">所有案件</h2></div>
+        <p>按案件性质编排 · 全部非占位案件</p>
+      </div>
+      <div class="filter-bar" id="case-filter" aria-label="案件类别筛选"></div>
+      <div class="case-register">
+        <div class="register-head"><span>卷号 / 案件名称</span><span>分类</span></div>
+        <div id="case-list"></div>
+      </div>
+    </section>
+
+    <section class="structure-section" id="structures" aria-labelledby="structures-title">
+      <div class="section-heading">
+        <div><span class="section-no">D</span><h2 id="structures-title">概念 · 议题 · 规范</h2></div>
+        <p>从档案中挑出已具实质的概念、议题与规范页，按专题索引、核心议题与法律政策分层呈现</p>
+      </div>
+      <div class="structure-body" id="structure-list"></div>
+    </section>
+
+    <section class="location-section" id="locations" aria-labelledby="locations-title">
+      <div class="section-heading">
+        <div><span class="section-no">E</span><h2 id="locations-title">地点地图</h2></div>
+        <p>把数十年的行动范围放回中国地理之中</p>
+      </div>
+      <div class="location-body">
+        <div class="atlas-head">
+          <div><span class="section-label">MAP / 01</span><h3>一个人的实践，连接了多大的中国</h3></div>
+          <p>中国轮廓为 1:110m 比例尺；点位按城市或县域近似落位，同地多条关系以独立色点展开。</p>
+        </div>
+        <div class="map-layout">
+          <div class="map-wrap">
+            <svg id="china-map" viewBox="0 0 1080 660" role="img" aria-label="LLM Wiki 地点地图"></svg>
+            <div class="map-note">西 ← 档案中的迁移、务工与诉讼路径 → 东</div>
+          </div>
+          <aside class="detail" id="loc-detail"></aside>
+        </div>
+        <div class="legend" id="loc-legend">
+          <button class="filter active" data-filter="all"><i class="dot all"></i>全部 <span id="loc-all-count"></span></button>
+          <button class="filter" data-filter="person"><i class="dot person"></i>人物</button>
+          <button class="filter" data-filter="organization"><i class="dot organization"></i>机构</button>
+          <button class="filter" data-filter="case"><i class="dot case"></i>案件</button>
+          <button class="filter" data-filter="event"><i class="dot event"></i>事件</button>
+          <button class="filter" data-filter="life"><i class="dot life"></i>生平 / 执业</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="people-section" id="people" aria-labelledby="people-title">
+      <div class="section-heading">
+        <div><span class="section-no">F</span><h2 id="people-title">关键人物</h2></div>
+        <p>与档案相关的人物页</p>
+      </div>
+      <div class="name-index" id="people-list"></div>
+    </section>
+
+    <section class="organization-section" id="organizations" aria-labelledby="org-title">
+      <div class="section-heading inverse">
+        <div><span class="section-no">G</span><h2 id="org-title">关键机构</h2></div>
+        <p>法院、政府部门、律所、媒体与研究机构</p>
+      </div>
+      <div class="org-index" id="organization-list"></div>
+    </section>
+
+    <section class="media-section" id="media" aria-labelledby="media-title">
+      <div class="section-heading">
+        <div><span class="section-no">H</span><h2 id="media-title">媒体报道</h2></div>
+        <p>报纸、电视与网络媒体对周立太及其案件的报道</p>
+      </div>
+      <div class="media-grid" id="media-list"></div>
+    </section>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>周立太档案馆 · 数字馆藏导航</p>
+    <p>本页是内部消费层原型；公开边界、隐私与权利状态仍以 Wiki 元数据为准。</p>
+  </footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="dialog-head">
+      <div><small>FULL ARCHIVE SEARCH</small><h2 id="search-title">全馆检索</h2></div>
+      <button class="icon-button" id="search-close" type="button" aria-label="关闭检索">×</button>
+    </div>
+    <label class="search-field">
+      <span>输入案件、人名、机构或议题</span>
+      <input id="search-input" type="search" autocomplete="off" placeholder="例如：工伤、深圳、伍锡梅">
+    </label>
+    <p class="search-count" id="search-count"></p>
+    <div class="search-results" id="search-results"></div>
+  </dialog>
+
+  <aside class="record-drawer" id="record-drawer" aria-live="polite" aria-hidden="true">
+    <button class="drawer-scrim" id="drawer-scrim" type="button" aria-label="关闭档案详情"></button>
+    <article class="record-sheet">
+      <div class="record-topline">
+        <span id="record-code"></span>
+        <button class="icon-button" id="drawer-close" type="button" aria-label="关闭档案详情">×</button>
+      </div>
+      <div id="record-content"></div>
+    </article>
+  </aside>
+
+  <script src="archive-data.js"></script>
+  <script src="location-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

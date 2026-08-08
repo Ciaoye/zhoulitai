@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="1996—2026 周立太案件、法律政策与媒体叙事关系时间线">
+  <title>案件如何进入制度｜1996—2026</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="gh-sites" aria-label="周立太档案馆站点导航" style="position:sticky;top:0;z-index:99999;display:flex;align-items:center;gap:18px;padding:7px 18px;background:rgba(22,22,22,.94);color:#ddd;font:12px/1.5 system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;box-shadow:0 1px 0 rgba(255,255,255,.08);">
+  <span style="color:#9a9a9a;letter-spacing:.08em;font-weight:600;">周立太档案馆</span>
+  <a href="../1/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">01 · 时间线</a>
+  <a href="../2/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">02 · 工伤故事</a>
+  <a href="../3/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">03 · 档案全貌</a>
+  <span style="margin-left:auto;color:#777;">GitHub Pages 部署</span>
+</nav>
+
+
+  <header class="masthead">
+    <p class="eyebrow">周立太档案馆 · 关系时间线 01</p>
+    <div class="masthead__grid">
+      <h1>案件如何<br>进入制度</h1>
+      <div class="masthead__intro">
+        <p class="deck">一张纵向全景图，放下三十年间周立太所经手的案件、地方规则、公共事件与媒体叙事。圆点代表一个档案节点；点越大，越处在某条因果链的关键位置；细线连接时间或议题上前后承接的节点。</p>
+        <div class="masthead__stats" aria-label="时间线统计">
+          <div><strong>1996—2026</strong><span>时间范围</span></div>
+          <div><strong id="event-count">0</strong><span>档案节点</span></div>
+          <div><strong id="chain-count">0</strong><span>关系链条</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ====================================================
+         SECTION 01 / 全景：纵向时间轴
+         ==================================================== -->
+    <section class="overview" aria-labelledby="overview-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-number">01 / 全景</p>
+          <h2 id="overview-title">三十年，落在同一张图上</h2>
+        </div>
+        <p>打开页面就是完整关系图。每条纵列是一个类别，每个圆点是一个档案节点；关键转折直接标注年份与名称，彩色曲线显示议题、时间与制度上的承接。画布可上下拖动，覆盖完整三十年。</p>
+      </div>
+
+      <!-- 类别筛选 + 检索 -->
+      <div class="controls" aria-label="时间线筛选">
+        <div class="control-block">
+          <span class="control-label">类别</span>
+          <div class="filter-group" id="category-filters" aria-label="按类别筛选"></div>
+        </div>
+        <label class="search-box">
+          <span class="control-label">检索</span>
+          <input id="search-input" type="search" placeholder="案件、人物、制度或媒体标题" autocomplete="off">
+        </label>
+        <label class="filter-toggle filter-toggle--labels">
+          <input id="toggle-all-labels" type="checkbox"><i></i><span>标注全部节点</span>
+        </label>
+        <button class="plain-button" id="reset-button" type="button">重置</button>
+      </div>
+
+      <div class="relationship-key">
+        <div>
+          <p class="chain-story__kicker">完整关系网络</p>
+          <h3>十二条斗争路径，同时留在图上</h3>
+        </div>
+        <p>连线涵盖诉权入口、双赔、赔偿标准与假肢费、先行支付、户籍差别、超龄劳动者、职业病、风险代理、地方文件审查、全国劳动立法与媒体叙事。连线表示承接关系，不宣称单一个案是制度变化的唯一原因。点击下面任意一条链的名称，可以只显示那一条链。</p>
+        <div class="relationship-legend" id="relationship-legend" aria-label="关系线图例"></div>
+      </div>
+
+      <!-- 时间轴本体 -->
+      <figure class="timeline-figure" aria-label="1996 到 2026 年纵向点阵关系时间线">
+        <div class="timeline-shell">
+          <div class="timeline-gutter" id="timeline-gutter" aria-hidden="true"></div>
+          <div class="timeline-scroll" id="timeline-scroll">
+            <div class="timeline-canvas" id="timeline-canvas">
+              <svg class="timeline-grid" id="timeline-grid" aria-hidden="true"></svg>
+              <div class="timeline-nodes" id="timeline-nodes"></div>
+            </div>
+          </div>
+        </div>
+        <figcaption class="timeline-legend">
+          <span id="result-summary" aria-live="polite"></span>
+          <span class="size-key">
+            <span class="size-key__hint">↓ 拖动查看完整三十年 ↓</span>
+            <span class="size-key__group"><i class="size-key__small"></i><span>次要</span></span>
+            <span class="size-key__group"><i class="size-key__medium"></i><span>关系节点</span></span>
+            <span class="size-key__group"><i class="size-key__large"></i><span>制度转折</span></span>
+          </span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- ====================================================
+         SECTION 02 / 十二条关系链详解
+         ==================================================== -->
+    <section class="chains-detail" aria-labelledby="chains-detail-title">
+      <div class="chains-detail__head">
+        <div>
+          <p class="section-number">02 / 十二条线</p>
+          <h2 id="chains-detail-title">每条线是怎么走出来的</h2>
+        </div>
+        <p>从 1996 到 2026 年的节点可以读成十二个交叉的故事。每一节按年份排列关键节点：既包括周立太的具体斗争，也包括与之相连的中国劳动保障制度变化。</p>
+      </div>
+      <div id="chain-cards"></div>
+    </section>
+
+    <!-- ====================================================
+         SECTION 03 / 三幕叙事
+         ==================================================== -->
+    <section class="story-intro" aria-labelledby="story-title">
+      <div>
+        <p class="section-number">03 / 讲述</p>
+        <h2 id="story-title">这不是一串胜诉记录</h2>
+      </div>
+      <p class="story-intro__lead">从 1996 年第一次南下深圳，到 2026 年建立数字档案，真正贯穿其间的不是一条平滑上升的成功曲线，而是一种反复出现的动作：从个案进入规则，再从规则返回具体的人。</p>
+    </section>
+
+    <article class="story-chapter">
+      <div class="story-chapter__year">1996—2001</div>
+      <div class="story-chapter__copy">
+        <p class="story-kicker">第一幕 · 找到入口</p>
+        <h2>先让案件被看见，<br>再让法院愿意受理</h2>
+        <p>早期节点密集地落在深圳。断臂、死亡与交通事故赔偿首先是一个个工人的生存问题，却很快碰到更大的门槛：仲裁不受理，法院也可能拒绝收案；外来劳动者与本地职工适用不同赔偿标准；交通事故赔偿与工伤待遇能否并行，各地口径也不一致。</p>
+        <p>徐昌文案、彭刚中案、王琼系列案和李启兵案因此不只是个案结果。一次性支付假肢更换费、把断手赔偿从 3.3 万余元推到约 17.8 万元、纠正冻结的计发基数，与“仲裁不收、法院不进”的入口争议一起，把“伤残以后如何生活”推到了制度层面。</p>
+      </div>
+      <figure class="story-image">
+        <img src="img/img_5394f504.jpg" alt="周立太早期维权实践相关档案照片">
+        <figcaption>1996 年被后来反复讲述为"民工维权之路"的起点。档案中的日期、金额与叙述口径仍需回到来源逐项核对。</figcaption>
+      </figure>
+    </article>
+
+    <article class="story-chapter story-chapter--quote">
+      <div class="story-chapter__year">2002—2012</div>
+      <div class="story-chapter__copy">
+        <p class="story-kicker">第二幕 · 名声与代价</p>
+        <h2>"民工律师"成为公共角色，<br>也成为一种负担</h2>
+        <p>媒体制造了辨识度，也制造了单一期待。报道中的周立太从"打工仔打赢官司"的代理人，变成被质疑执业资格的"黑律师"，再成为央视镜头里同时承受道德期待、经济压力与政府关系的行动者。</p>
+        <p>风险代理让无力预付费用的人能够打官司，却也把律师费押在漫长诉讼和当事人履约上。2004 年状告欠费委托人、2011 年再次起诉学生委托人，到 2012 年宣布大幅减少代理农民工案件，这条媒体线记录的不是简单的形象起落，而是一套维权模式的成本。</p>
+      </div>
+      <blockquote>
+        <span>"</span>
+        英雄叙事无法解释为什么一个以维权出名的人，最后会减少维权案件。把案件、收费、媒体与组织压力放回同一张图，转折才变得可见。
+      </blockquote>
+    </article>
+
+    <article class="story-chapter story-chapter--reverse">
+      <div class="story-chapter__year">2013—2024</div>
+      <div class="story-chapter__copy">
+        <p class="story-kicker">第三幕 · 绕过阻塞</p>
+        <h2>诉讼不够时，<br>就改变推动制度的路径</h2>
+        <p>后期的节点不再集中于单一城市，也不只依赖一场诉讼。皮大明案处理"超龄"劳动者的工伤保护；骆世海案追问煤矿关闭后，尘肺复查为何仍要求已经无法取得的劳动关系证明；伍锡梅案则从诉讼走向人大监督，纠正限制工伤基金先行支付的地方文件。</p>
+        <p>尤其是伍锡梅案：2015 年工亡，2021 年限制条款被废止，2024 年完成支付。九年跨度说明，制度变化不是一个醒目的终点，而是多个机关、文件与个案之间缓慢形成的闭环。</p>
+      </div>
+      <figure class="story-image">
+        <img src="img/img_4d30d7bd.jpg" alt="周立太执业与媒体记录相关档案照片">
+        <figcaption>实践重心从沿海集中代理，逐渐转向重庆的制度性案件与监督路径。图片来自档案数据层。</figcaption>
+      </figure>
+    </article>
+
+    <section class="ending" aria-labelledby="ending-title">
+      <div class="ending__title">
+        <p class="section-number">04 / 档案</p>
+        <h2 id="ending-title">最后，案件成为可以重新阅读的材料</h2>
+      </div>
+      <div class="ending__copy">
+        <p>2021 年设立律师档案馆，2022 年迁址并更名，2026 年开始把实体卷宗、媒体报道、照片与视频整理为数字知识网络。时间线本身也是这项工程的一部分：它负责呈现关系，不替代原始证据。</p>
+        <p class="source-note">资料说明：页面据 LLM Wiki 年份页、案件页、法律政策页与媒体来源页整理。条目中的"资料状态"保留未复核、口径冲突与自述标记；连线表示时间、议题或制度承接，不宣称单一个案是法律变化的唯一原因。</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="hover-card" id="hover-card" role="tooltip" hidden></div>
+
+  <aside class="detail-drawer" id="detail-drawer" aria-hidden="true" aria-label="节点详情">
+    <button class="drawer-close" id="drawer-close" type="button" aria-label="关闭详情">×</button>
+    <div id="drawer-content"></div>
+  </aside>
+  <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+
+  <script src="timeline-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

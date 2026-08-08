@@ -1,0 +1,856 @@
+:root {
+  --paper: #f4f1e9;
+  --surface: #fbfaf6;
+  --ink: #171716;
+  --muted: #68665f;
+  --rule: #c9c3b6;
+  --rule-soft: #ddd8cd;
+  --coral: #ce5f4e;
+  --teal: #0c8982;
+  --pink: #b8547d;
+  --green: #627b43;
+  --yellow: #d4a72c;
+  --indigo: #4e6da8;
+  --plum: #775b8f;
+  --cat-case: #d56755;
+  --cat-policy: #167f82;
+  --cat-media: #b54f79;
+  --cat-event: #627b43;
+  font-family: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  letter-spacing: 0;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; background: var(--paper); }
+button, input { font: inherit; color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.masthead {
+  padding: 36px clamp(22px, 5vw, 82px) 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-bottom: 1px solid var(--ink);
+  background: var(--paper);
+}
+.eyebrow {
+  margin: 0;
+  color: var(--coral);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.masthead__grid {
+  display: grid;
+  grid-template-columns: minmax(420px, 1.4fr) minmax(330px, .6fr);
+  gap: clamp(42px, 8vw, 130px);
+  align-items: end;
+}
+.masthead h1 {
+  margin: 0;
+  font: 900 clamp(56px, 8vw, 124px)/.92 "Noto Serif SC", "Songti SC", SimSun, serif;
+}
+.deck { margin: 0; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.75; }
+.masthead__stats {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  border-top: 1px solid var(--ink);
+}
+.masthead__stats div { padding-top: 11px; }
+.masthead__stats strong, .masthead__stats span { display: block; }
+.masthead__stats strong { font-size: 18px; font-weight: 800; }
+.masthead__stats span { margin-top: 4px; color: var(--muted); font-size: 10px; }
+
+/* ============================================================
+   OVERVIEW SECTION (时间轴所在)
+   ============================================================ */
+.overview {
+  padding: 56px clamp(22px, 5vw, 82px) 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--ink);
+}
+.section-heading {
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, .75fr);
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 28px;
+}
+.section-number {
+  margin: 0;
+  color: var(--coral);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.section-heading h2 {
+  margin: 9px 0 0;
+  font: 900 clamp(32px, 3.6vw, 54px)/1.08 "Noto Serif SC", "Songti SC", SimSun, serif;
+}
+.section-heading > p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.75; }
+
+/* ============================================================
+   CONTROLS
+   ============================================================ */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule-soft);
+  flex-wrap: wrap;
+}
+.control-block { display: flex; align-items: center; gap: 10px; }
+.control-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.filter-group { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter-toggle {
+  --filter-color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 32px;
+  padding: 4px 10px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  cursor: pointer;
+  user-select: none;
+  font-size: 12px;
+}
+.filter-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+.filter-toggle i { width: 9px; height: 9px; background: var(--filter-color); border-radius: 50%; }
+.filter-toggle:has(input:not(:checked)) { opacity: .35; }
+.filter-toggle--labels { --filter-color: var(--ink); border-style: dashed; }
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--ink);
+  flex: 0 1 240px;
+}
+.search-box input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 12px; }
+.plain-button {
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+}
+.plain-button:hover { background: var(--ink); color: white; }
+
+/* 完整关系网络说明与图例 */
+.relationship-key {
+  display: grid;
+  grid-template-columns: minmax(260px, .65fr) minmax(380px, 1.35fr);
+  gap: 12px 48px;
+  padding: 18px 0 22px;
+  border-bottom: 1px solid var(--ink);
+}
+.relationship-key h3 {
+  margin: 6px 0 0;
+  font: 800 21px/1.3 "Noto Serif SC", "Songti SC", serif;
+}
+.relationship-key > p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+.relationship-legend {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule-soft);
+}
+.relationship-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 7px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 10px;
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+.relationship-legend__item:hover { border-color: var(--rule); color: var(--ink); }
+.relationship-legend__item.is-active {
+  color: var(--ink);
+  font-weight: 700;
+  background: var(--surface);
+}
+.relationship-legend__item i { width: 22px; height: 2px; flex: 0 0 auto; }
+
+/* 旧关系链按钮样式保留兼容，不在当前页面使用 */
+.chains-panel {
+  padding: 18px 0 24px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.chains-panel__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.chains-panel__head p { margin: 0; }
+.chains-panel__head small {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+.chains-legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 4px 12px;
+}
+.chain-legend-btn {
+  --chain-color: var(--ink);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, opacity .15s ease;
+}
+.chain-legend-btn:hover { border-color: var(--rule); background: rgba(0, 0, 0, .02); }
+.chain-legend-btn[aria-pressed="true"] {
+  border-color: var(--chain-color);
+  background: color-mix(in srgb, var(--chain-color), transparent 90%);
+}
+.chain-legend-btn--all {
+  border: 1px solid var(--rule);
+  background: var(--paper);
+}
+.chain-legend-btn--all[aria-pressed="true"] {
+  border-color: var(--ink);
+  background: color-mix(in srgb, var(--ink), transparent 92%);
+}
+.chain-legend-btn .dot {
+  flex: 0 0 auto;
+  margin-top: 6px;
+  width: 10px; height: 10px;
+  background: var(--chain-color);
+  border-radius: 50%;
+}
+.chain-legend-btn .copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.chain-legend-btn .kicker {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--chain-color);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.chain-legend-btn .title {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+/* 当前选中的链文字描述 */
+.chain-story {
+  display: grid;
+  grid-template-columns: minmax(250px, .6fr) minmax(360px, 1.4fr);
+  gap: 40px;
+  padding: 8px 0 22px;
+  border-bottom: 1px solid var(--ink);
+}
+.chain-story__kicker {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.chain-story h3 {
+  margin: 6px 0 0;
+  font: 800 21px/1.3 "Noto Serif SC", "Songti SC", serif;
+}
+.chain-story > p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+
+/* ============================================================
+   TIMELINE —— 纵向滚动全景图（X = 类别列，Y = 年份）
+   ============================================================ */
+.timeline-figure {
+  margin: 0;
+  padding: 30px 0 18px;
+  position: relative;
+}
+.timeline-shell { position: relative; }
+.timeline-scroll {
+  overflow-x: hidden;
+  overflow-y: auto;
+  cursor: grab;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) transparent;
+}
+.timeline-scroll.is-dragging { cursor: grabbing; user-select: none; }
+.timeline-scroll::-webkit-scrollbar { width: 8px; }
+.timeline-scroll::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 4px; }
+.timeline-scroll::-webkit-scrollbar-track { background: transparent; }
+.timeline-canvas {
+  position: relative;
+  /* 宽高由 JS 按 年份×像素 计算后内联写入 */
+}
+.timeline-grid,
+.timeline-nodes {
+  position: absolute;
+  inset: 0;
+}
+.timeline-grid { display: block; overflow: visible; pointer-events: none; z-index: 1; }
+.timeline-nodes { z-index: 3; }
+
+/* 顶部固定类别栏（不随纵向滚动） */
+.timeline-gutter {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 5;
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+  pointer-events: none;
+}
+.timeline-gutter__lane {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.timeline-gutter__lane i { width: 10px; height: 10px; border-radius: 50%; }
+.timeline-gutter__lane span {
+  font: 800 12px/1.4 "Noto Serif SC", "Songti SC", serif;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.timeline-gutter__lane--case span { color: var(--cat-case); }
+.timeline-gutter__lane--policy span { color: var(--cat-policy); }
+.timeline-gutter__lane--media span { color: var(--cat-media); }
+.timeline-gutter__lane--event span { color: var(--cat-event); }
+
+/* 网格与泳道 */
+.grid-band--case { fill: color-mix(in srgb, var(--cat-case), transparent 95%); }
+.grid-band--policy { fill: color-mix(in srgb, var(--cat-policy), transparent 95%); }
+.grid-band--media { fill: color-mix(in srgb, var(--cat-media), transparent 95%); }
+.grid-band--event { fill: color-mix(in srgb, var(--cat-event), transparent 95%); }
+.grid-axis { stroke: var(--rule); stroke-width: 1; }
+.grid-row-line { stroke: var(--rule-soft); stroke-width: 1; }
+.grid-tick { stroke: var(--rule); stroke-width: 1; }
+.grid-vline--major { stroke: var(--rule-soft); stroke-width: 1; }
+.grid-year {
+  fill: var(--muted);
+  font-size: 9.5px;
+  font-weight: 700;
+  font-family: "Noto Sans SC", sans-serif;
+}
+.grid-year--major { fill: var(--ink); font-size: 11.5px; font-weight: 900; }
+
+/* 节点 */
+.timeline-node {
+  --node-color: var(--ink);
+  --node-size: 10px;
+  position: absolute;
+  width: var(--node-size);
+  height: var(--node-size);
+  padding: 0;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--surface);
+  border-radius: 50%;
+  background: var(--node-color);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--node-color), #000 14%);
+  cursor: pointer;
+  transition: opacity .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.timeline-node[data-importance="1"] { --node-size: 8px; }
+.timeline-node[data-importance="2"] { --node-size: 14px; }
+.timeline-node[data-importance="3"] { --node-size: 21px; border-width: 2.5px; }
+.timeline-node:hover,
+.timeline-node:focus-visible,
+.timeline-node.is-active {
+  z-index: 9;
+  outline: 0;
+  transform: translate(-50%, -50%) scale(1.35);
+  box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--ink);
+}
+.timeline-node.is-dimmed { opacity: .15; }
+.timeline-node[hidden] { display: none; }
+
+/* 标签（SVG 文字，字形描边光晕而非白底块；字号由 JS 按视口内联设置） */
+.tl-label {
+  font-family: "Noto Sans SC", sans-serif;
+  font-weight: 700;
+  fill: var(--ink);
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 3.5px;
+  stroke-linejoin: round;
+}
+.tl-label--minor { font-weight: 600; fill: #3f3e3a; }
+.tl-label__year { fill: var(--muted); font-size: .82em; font-weight: 800; }
+.tl-label.is-dimmed { opacity: .12; }
+.tl-leader {
+  stroke: #b8b1a5;
+  stroke-width: .8;
+  stroke-dasharray: 1.5 2.5;
+}
+.tl-leader.is-dimmed { opacity: .12; }
+
+/* 关系链连线 */
+.conn-under {
+  fill: none;
+  stroke: var(--surface);
+  stroke-width: 5;
+  opacity: .85;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.conn-path {
+  fill: none;
+  stroke-width: 2;
+  opacity: .52;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: opacity .2s ease;
+}
+.conn-path.is-solo { opacity: .95; stroke-width: 2.6; }
+.conn-path.is-dimmed, .conn-under.is-dimmed { opacity: .05; }
+.conn-arrow {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: .65;
+}
+.conn-arrow.is-dimmed { opacity: .05; }
+
+/* 图例与底部信息 */
+.timeline-legend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0 8px;
+  border-top: 1px solid var(--ink);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+.size-key { display: inline-flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.size-key__hint { color: var(--muted); margin-right: 10px; letter-spacing: 0.06em; }
+.size-key__group { display: inline-flex; align-items: center; gap: 4px; }
+.size-key i {
+  display: inline-block;
+  border-radius: 50%;
+  background: var(--ink);
+}
+.size-key__small { width: 6px; height: 6px; }
+.size-key__medium { width: 10px; height: 10px; }
+.size-key__large { width: 16px; height: 16px; }
+#result-summary { font-weight: 800; color: var(--ink); }
+
+/* ============================================================
+   7 条关系链详解 (storytelling 第二块)
+   ============================================================ */
+.chains-detail {
+  padding: 80px clamp(22px, 5vw, 82px);
+  background: var(--paper);
+  border-bottom: 1px solid var(--ink);
+}
+.chains-detail__head {
+  display: grid;
+  grid-template-columns: minmax(320px, .75fr) minmax(420px, 1.25fr);
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 48px;
+}
+.chains-detail__head h2 {
+  margin: 9px 0 0;
+  font: 900 clamp(32px, 3.6vw, 54px)/1.08 "Noto Serif SC", "Songti SC", SimSun, serif;
+}
+.chains-detail__head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+.chain-card {
+  display: grid;
+  grid-template-columns: 70px minmax(0, .7fr) minmax(0, 1.3fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+  padding: 38px 0;
+  border-top: 1px solid var(--rule);
+}
+.chain-card:first-of-type { border-top: 1px solid var(--ink); }
+.chain-card:last-of-type { border-bottom: 1px solid var(--ink); }
+.chain-card__num {
+  font: 900 30px/1 "Noto Serif SC", "Songti SC", serif;
+  color: var(--ink);
+}
+.chain-card__num small {
+  display: block;
+  margin-top: 8px;
+  font: 800 10px "Noto Sans SC", sans-serif;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+.chain-card__copy h3 {
+  margin: 0;
+  font: 800 22px/1.25 "Noto Serif SC", "Songti SC", serif;
+}
+.chain-card__copy .kicker {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.chain-card__copy p {
+  margin: 12px 0 0;
+  font-size: 14px;
+  line-height: 1.85;
+  color: #3f3e3a;
+}
+.chain-card__nodes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.chain-node-row {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 14px;
+  padding: 10px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.chain-node-row:first-child { border-top: 0; padding-top: 0; }
+.chain-node-row .yr {
+  font: 800 13px "Noto Serif SC", "Songti SC", serif;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+.chain-node-row .yr small {
+  display: block;
+  margin-top: 2px;
+  font: 700 10px "Noto Sans SC", sans-serif;
+  color: var(--muted);
+}
+.chain-node-row .title {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.chain-node-row .desc {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ============================================================
+   三幕叙事 (storytelling 第三块)
+   ============================================================ */
+.story-intro {
+  display: grid;
+  grid-template-columns: minmax(320px, .8fr) minmax(420px, 1.2fr);
+  gap: clamp(60px, 12vw, 190px);
+  align-items: center;
+  padding: 80px clamp(22px, 5vw, 110px);
+  background: var(--paper);
+  border-bottom: 1px solid var(--ink);
+}
+.story-intro__lead {
+  margin: 0;
+  font: 700 clamp(24px, 3vw, 42px)/1.55 "Noto Serif SC", "Songti SC", serif;
+}
+
+.story-chapter {
+  display: grid;
+  grid-template-columns: 100px minmax(320px, .8fr) minmax(320px, .8fr);
+  gap: clamp(28px, 5vw, 78px);
+  align-items: center;
+  min-height: 600px;
+  padding: 74px clamp(22px, 5vw, 110px);
+  background: var(--surface);
+  border-bottom: 1px solid var(--ink);
+}
+.story-chapter__year {
+  align-self: start;
+  padding-top: 5px;
+  font-size: 12px;
+  font-weight: 900;
+  writing-mode: vertical-rl;
+  letter-spacing: 0.06em;
+}
+.story-kicker {
+  margin: 0 0 8px;
+  color: var(--coral);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.story-chapter__copy h2 {
+  margin: 12px 0 28px;
+  font: 900 clamp(32px, 4vw, 57px)/1.12 "Noto Serif SC", "Songti SC", serif;
+}
+.story-chapter__copy > p:not(.story-kicker) {
+  max-width: 680px;
+  margin: 0 0 17px;
+  color: #3f3e3a;
+  font-size: 15px;
+  line-height: 1.95;
+}
+.story-image { margin: 0; }
+.story-image img {
+  width: 100%;
+  height: clamp(340px, 41vw, 560px);
+  object-fit: cover;
+  filter: saturate(.74) contrast(1.04);
+}
+.story-image figcaption {
+  margin-top: 10px;
+  max-width: 520px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.6;
+}
+.story-chapter--reverse .story-chapter__copy { grid-column: 3; }
+.story-chapter--reverse .story-image { grid-column: 2; grid-row: 1; }
+.story-chapter--quote { background: #e9e5dc; }
+.story-chapter blockquote {
+  margin: 0;
+  padding: 26px 0 0;
+  border-top: 3px solid var(--coral);
+  font: 700 clamp(23px, 2.7vw, 39px)/1.55 "Noto Serif SC", "Songti SC", serif;
+}
+.story-chapter blockquote span {
+  display: block;
+  height: 42px;
+  color: var(--coral);
+  font-size: 76px;
+  line-height: 1;
+}
+
+.ending {
+  display: grid;
+  grid-template-columns: minmax(330px, 1fr) minmax(390px, 1fr);
+  gap: clamp(50px, 10vw, 160px);
+  padding: 90px clamp(22px, 5vw, 110px) 110px;
+  background: var(--ink);
+  color: var(--paper);
+}
+.ending__title p { margin: 0 0 9px; color: var(--coral); }
+.ending h2 {
+  margin: 0;
+  font: 900 clamp(32px, 4vw, 54px)/1.1 "Noto Serif SC", "Songti SC", serif;
+}
+.ending__copy > p { margin: 0 0 24px; font-size: 16px; line-height: 1.9; }
+.ending .source-note {
+  padding-top: 20px;
+  border-top: 1px solid #686761;
+  color: #bbb8af;
+  font-size: 11px;
+  line-height: 1.75;
+}
+
+/* ============================================================
+   HOVER CARD & DETAIL DRAWER
+   ============================================================ */
+.hover-card {
+  position: fixed;
+  z-index: 80;
+  width: min(360px, calc(100vw - 24px));
+  padding: 16px 18px;
+  background: var(--ink);
+  color: white;
+  border: 1px solid white;
+  box-shadow: 7px 7px 0 rgba(206, 95, 78, .76);
+  pointer-events: none;
+}
+.hover-card[hidden] { display: none; }
+.hover-card__meta,
+.detail-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 9px;
+  color: #eee8dc;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.hover-card__meta i, .detail-meta i { width: 9px; height: 9px; border-radius: 50%; }
+.hover-card h3 { margin: 0 0 8px; font: 800 19px/1.3 "Noto Serif SC", "Songti SC", serif; }
+.hover-card p { margin: 0; color: #e8e4db; font-size: 12px; line-height: 1.65; }
+.hover-card small { display: block; margin-top: 10px; color: #f0c93d; }
+
+.detail-drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  width: min(510px, 100vw);
+  height: 100dvh;
+  padding: 64px clamp(22px, 4vw, 46px) 40px;
+  overflow-y: auto;
+  background: var(--surface);
+  border-left: 1px solid var(--ink);
+  transform: translateX(102%);
+  transition: transform .22s ease;
+}
+.detail-drawer.is-open { transform: translateX(0); }
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(23, 23, 22, .36);
+}
+.drawer-close {
+  position: absolute;
+  right: 18px;
+  top: 14px;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+.drawer-close:hover { background: var(--ink); color: white; }
+.detail-image {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  margin-bottom: 22px;
+  border: 1px solid var(--ink);
+}
+.detail-drawer h2 {
+  margin: 0 0 18px;
+  font: 900 30px/1.18 "Noto Serif SC", "Songti SC", serif;
+}
+.detail-drawer h3 {
+  margin: 28px 0 9px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.detail-drawer p { margin: 0; line-height: 1.8; font-size: 14px; }
+.detail-impact {
+  border-top: 3px solid var(--coral);
+  padding-top: 12px;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+  font-weight: 700;
+}
+.detail-status { color: var(--muted); font-size: 13px; }
+.detail-source {
+  display: inline-block;
+  margin-top: 28px;
+  color: var(--ink);
+  text-underline-offset: 4px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1100px) {
+  .section-heading { grid-template-columns: 1fr; gap: 18px; }
+  .chains-detail__head { grid-template-columns: 1fr; gap: 18px; }
+  .chains-legend { grid-template-columns: 1fr 1fr; }
+  .story-chapter { grid-template-columns: 60px minmax(0, .8fr) minmax(0, .8fr); }
+}
+
+@media (max-width: 900px) {
+  .masthead__grid { grid-template-columns: 1fr; gap: 32px; }
+  .masthead h1 { font-size: clamp(56px, 13vw, 90px); }
+  .controls { flex-wrap: wrap; }
+  .search-box { flex: 1 1 100%; }
+  .chain-story { grid-template-columns: 1fr; gap: 8px; }
+  .relationship-key { grid-template-columns: 1fr; gap: 8px; }
+  .story-intro { grid-template-columns: 1fr; gap: 28px; }
+  .ending { grid-template-columns: 1fr; gap: 28px; }
+  .story-chapter { grid-template-columns: 44px 1fr; min-height: auto; padding: 60px 24px; }
+  .story-chapter__year { grid-column: 1; grid-row: 1 / span 2; }
+  .story-chapter__copy,
+  .story-chapter--reverse .story-chapter__copy { grid-column: 2; }
+  .story-image,
+  .story-chapter--reverse .story-image,
+  .story-chapter blockquote { grid-column: 2; grid-row: auto; }
+  .story-image img { height: min(65vw, 460px); }
+  .chain-card {
+    grid-template-columns: 50px 1fr;
+    gap: 18px;
+  }
+  .chain-card__num { grid-column: 1; grid-row: 1 / span 2; }
+  .chain-card__copy { grid-column: 2; }
+  .chain-card__nodes { grid-column: 2; }
+}
+
+@media (max-width: 600px) {
+  .masthead { padding: 24px 18px 32px; }
+  .masthead h1 { font-size: 56px; }
+  .deck { font-size: 15px; }
+  .masthead__stats { grid-template-columns: 1.5fr 1fr 1fr; }
+  .masthead__stats strong { font-size: 14px; }
+  .overview { padding: 36px 14px 0; }
+  .section-heading h2 { font-size: 32px; }
+  .filter-group { width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); }
+  .filter-toggle { justify-content: center; }
+  .chains-legend { grid-template-columns: 1fr; }
+  .chain-story { grid-template-columns: 1fr; }
+  .grid-year--minor { display: none; }
+  .timeline-gutter__lane span { font-size: 10px; }
+  .timeline-node[data-importance="1"] { --node-size: 6px; }
+  .timeline-node[data-importance="2"] { --node-size: 10px; }
+  .timeline-node[data-importance="3"] { --node-size: 15px; }
+  .timeline-legend { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .story-intro, .ending { padding: 58px 20px 66px; }
+  .story-intro__lead { font-size: 24px; }
+  .story-chapter { grid-template-columns: 24px minmax(0, 1fr); gap: 18px; padding: 56px 18px; }
+  .story-chapter__copy h2 { font-size: 30px; }
+  .story-chapter__copy > p:not(.story-kicker) { font-size: 14px; }
+  .story-chapter blockquote { font-size: 22px; }
+  .hover-card { display: none !important; }
+  .chains-detail { padding: 56px 18px; }
+  .chain-card { padding: 28px 0; gap: 14px; grid-template-columns: 36px 1fr; }
+  .chain-card__num { font-size: 24px; }
+  .chain-card__copy h3 { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+}
