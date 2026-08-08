@@ -143,7 +143,7 @@ body {
   position: fixed;
   z-index: 8;
   left: 2rem;
-  top: 1.5rem;
+  top: 3.6rem;
   padding: 0.48rem 0.7rem;
   background: var(--ink);
   color: white;
@@ -227,7 +227,7 @@ body {
   .step[data-layout="left"] .textContainer { width: 100%; }
   .step h2 { font-size: 1.2rem; }
   .step p { font-size: 0.84rem; line-height: 1.65; }
-  .chapter-tag { top: 0.65rem; left: 0.65rem; }
+  .chapter-tag { top: 3.6rem; left: 0.65rem; }
   .viz-title { font-size: 23px; }
   .viz-subtitle { font-size: 12px; }
 }
