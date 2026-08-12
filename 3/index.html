@@ -9,16 +9,16 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<nav class="gh-sites" aria-label="周立太档案馆站点导航" style="position:sticky;top:0;z-index:99999;display:flex;align-items:center;gap:18px;padding:7px 18px;background:rgba(22,22,22,.94);color:#ddd;font:12px/1.5 system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;box-shadow:0 1px 0 rgba(255,255,255,.08);">
-  <span style="color:#9a9a9a;letter-spacing:.08em;font-weight:600;">周立太档案馆</span>
-  <a href="../1/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">01 · 时间线</a>
-  <a href="../2/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">02 · 工伤故事</a>
-  <a href="../3/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">03 · 档案全貌</a>
-  <span style="margin-left:auto;color:#777;">GitHub Pages 部署</span>
-</nav>
-
-
   <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="site-chrome">
+  <nav class="gh-sites" aria-label="周立太档案馆站点导航" style="display:flex;align-items:center;gap:18px;padding:7px 18px;background:rgba(22,22,22,.94);color:#ddd;font:12px/1.5 system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;box-shadow:0 1px 0 rgba(255,255,255,.08);">
+    <span style="color:#9a9a9a;letter-spacing:.08em;font-weight:600;">周立太档案馆</span>
+    <a href="../1/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">01 · 时间线</a>
+    <a href="../2/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">02 · 工伤故事</a>
+    <a href="../3/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">03 · 档案全貌</a>
+    <span style="margin-left:auto;color:#777;">GitHub Pages 部署</span>
+  </nav>
+
   <header class="site-header">
     <div class="brand-block">
       <span class="brand-seal" aria-hidden="true">周</span>
@@ -27,21 +27,24 @@
     </div>
     <nav class="main-nav" aria-label="主要导航">
       <a href="#overview">关系网络</a>
+      <a href="#moc">专题索引</a>
       <a href="#biography">生平</a>
-      <a href="#cases">案件</a>
-      <a href="#structures">概念</a>
+      <a href="#cases">关键案件</a>
+      <a href="#structures">关键议题</a>
       <a href="#locations">地点</a>
-      <a href="#people">人物</a>
-      <a href="#organizations">机构</a>
-      <a href="#media">媒体报道</a>
+      <a href="#people">关键人物</a>
+      <a href="#organizations">关键机构</a>
+      <a href="#media">关键媒体</a>
+      <a href="#complete">全部页面</a>
     </nav>
     <button class="search-trigger" id="search-trigger" type="button" aria-label="打开全馆检索">检索</button>
   </header>
+  </div>
 
   <div class="yaml-strip" aria-label="档案元信息">
     <span>status: internal-preview</span>
     <span>source: LLM-wiki</span>
-    <span>updated: 2026-08-08</span>
+    <span>updated: 2026-08-11</span>
   </div>
 
   <div class="content-wrap">
@@ -90,22 +93,30 @@
       </div>
     </section>
 
+    <section class="structure-section" id="moc" aria-labelledby="moc-title">
+      <div class="section-heading">
+        <div><span class="section-no">B</span><h2 id="moc-title">专题索引</h2></div>
+        <p>档案的入口与导航枢纽，按专题入口与档案导航分层呈现</p>
+      </div>
+      <div class="structure-body" id="moc-list"></div>
+    </section>
+
     <section class="biography-section" id="biography" aria-labelledby="biography-title">
       <div class="section-heading">
-        <div><span class="section-no">B</span><h2 id="biography-title">周立太的生平</h2></div>
+        <div><span class="section-no">C</span><h2 id="biography-title">周立太的生平</h2></div>
         <p>不按年份罗列，以人生阶段进入档案</p>
       </div>
       <div class="bio-lead">
         <p id="bio-summary"></p>
-        <a class="text-link" href="#/page/bio-zhou-litai">打开人物总页 <span aria-hidden="true">→</span></a>
+        <a class="text-link" href="#/page/bio-zhou-litai">查看周立太生平 <span aria-hidden="true">→</span></a>
       </div>
       <div class="life-path" id="life-path"></div>
     </section>
 
     <section class="case-section" id="cases" aria-labelledby="cases-title">
       <div class="section-heading inverse">
-        <div><span class="section-no">C</span><h2 id="cases-title">所有案件</h2></div>
-        <p>按案件性质编排 · 全部非占位案件</p>
+        <div><span class="section-no">D</span><h2 id="cases-title">关键案件</h2></div>
+        <p>从全部案件中挑出的实质案件，按性质编排</p>
       </div>
       <div class="filter-bar" id="case-filter" aria-label="案件类别筛选"></div>
       <div class="case-register">
@@ -116,15 +127,15 @@
 
     <section class="structure-section" id="structures" aria-labelledby="structures-title">
       <div class="section-heading">
-        <div><span class="section-no">D</span><h2 id="structures-title">概念 · 议题 · 规范</h2></div>
-        <p>从档案中挑出已具实质的概念、议题与规范页，按专题索引、核心议题与法律政策分层呈现</p>
+        <div><span class="section-no">E</span><h2 id="structures-title">关键议题 · 规范</h2></div>
+        <p>从档案中挑出已具实质的核心议题与法律政策页，分层呈现</p>
       </div>
       <div class="structure-body" id="structure-list"></div>
     </section>
 
     <section class="location-section" id="locations" aria-labelledby="locations-title">
       <div class="section-heading">
-        <div><span class="section-no">E</span><h2 id="locations-title">地点地图</h2></div>
+        <div><span class="section-no">F</span><h2 id="locations-title">地点地图</h2></div>
         <p>把数十年的行动范围放回中国地理之中</p>
       </div>
       <div class="location-body">
@@ -152,7 +163,7 @@
 
     <section class="people-section" id="people" aria-labelledby="people-title">
       <div class="section-heading">
-        <div><span class="section-no">F</span><h2 id="people-title">关键人物</h2></div>
+        <div><span class="section-no">G</span><h2 id="people-title">关键人物</h2></div>
         <p>与档案相关的人物页</p>
       </div>
       <div class="name-index" id="people-list"></div>
@@ -160,7 +171,7 @@
 
     <section class="organization-section" id="organizations" aria-labelledby="org-title">
       <div class="section-heading inverse">
-        <div><span class="section-no">G</span><h2 id="org-title">关键机构</h2></div>
+        <div><span class="section-no">H</span><h2 id="org-title">关键机构</h2></div>
         <p>法院、政府部门、律所、媒体与研究机构</p>
       </div>
       <div class="org-index" id="organization-list"></div>
@@ -168,10 +179,19 @@
 
     <section class="media-section" id="media" aria-labelledby="media-title">
       <div class="section-heading">
-        <div><span class="section-no">H</span><h2 id="media-title">媒体报道</h2></div>
-        <p>报纸、电视与网络媒体对周立太及其案件的报道</p>
+        <div><span class="section-no">I</span><h2 id="media-title">关键媒体报道</h2></div>
+        <p>从媒体报道中挑出的实质报道，按来源呈现</p>
       </div>
       <div class="media-grid" id="media-list"></div>
+    </section>
+
+    <section class="complete-section" id="complete" aria-labelledby="complete-title">
+      <div class="section-heading">
+        <div><span class="section-no">全</span><h2 id="complete-title">全部页面</h2></div>
+        <p>全馆每一份页面，按类型排列。灰色的占位（stub）页面仅保留名称与简介，不可点击。</p>
+      </div>
+      <div class="filter-bar" id="complete-filter" aria-label="完整档案类型筛选"></div>
+      <div id="complete-list"></div>
     </section>
     </main>
   </div>

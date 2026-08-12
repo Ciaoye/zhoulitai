@@ -1,6 +1,9 @@
 (() => {
   const YEAR_START = 1996;
   const YEAR_END = 2026;
+  // 打印模式：URL 带 ?print=1 时画布与字号整体放大 2 倍（配合高 DPI 截图输出可打印长图）
+  const PRINT_SCALE = new URLSearchParams(window.location.search).get("print") === "1" ? 2 : 1;
+  if (PRINT_SCALE > 1) document.documentElement.classList.add("print-scale");
   const CATEGORY_ORDER = ["case", "policy", "media", "event"];
   // 列宽比例：案件标注多占 1.5 倍、政策 1.2 倍、媒体/事件 1.0 倍（对应 CATEGORY_ORDER 顺序）
   const LANE_SCALE = [1.5, 1.2, 1, 1];
@@ -132,6 +135,7 @@
       node.dataset.id = item.id;
       node.dataset.importance = importance(item);
       node.style.setProperty("--node-color", categoryColor(item.category));
+      node.style.setProperty("--node-size", `${[8, 14, 21][importance(item) - 1] * PRINT_SCALE}px`);
       node.setAttribute("aria-label", `${formatDate(item)} ${item.title}，点击查看详情`);
       node.addEventListener("mouseenter", (event) => showHover(item, event.currentTarget));
       node.addEventListener("mouseleave", hideHover);
@@ -289,17 +293,17 @@
   // ---------- 布局参数（竖版：X = 类别列，Y = 年份） ----------
   function computeMetrics() {
     const vw = window.innerWidth;
-    const narrow = vw < 720;
-    const mid = !narrow && vw < 1100;
-    const pxPerYear = narrow ? 62 : mid ? 92 : 108;     // 每年纵向高度
-    const baseLane = narrow ? 118 : mid ? 176 : 224;    // 基准列宽（再乘 LANE_SCALE 得到各列宽）
+    const narrow = !PRINT_SCALE && vw < 720;
+    const mid = !PRINT_SCALE && !narrow && vw < 1100;
+    const pxPerYear = (narrow ? 62 : mid ? 92 : 108) * PRINT_SCALE; // 每年纵向高度
+    const baseLane = (narrow ? 118 : mid ? 176 : 224) * PRINT_SCALE; // 基准列宽（再乘 LANE_SCALE 得到各列宽）
     const laneWidths = LANE_SCALE.map((s) => Math.round(baseLane * s));
-    const gutterH = narrow ? 52 : 64;                   // 顶部固定类别栏高度
-    const yearAxisW = narrow ? 58 : mid ? 92 : 116;     // 左侧年份轴宽度（含左侧标签空间）
-    const footerH = 20;
-    const topPad = gutterH + (narrow ? 10 : 16);
-    const bottomPad = narrow ? 30 : 60;
-    const rightPad = narrow ? 16 : 40;
+    const gutterH = (narrow ? 52 : 64) * PRINT_SCALE;                // 顶部固定类别栏高度
+    const yearAxisW = (narrow ? 58 : mid ? 92 : 116) * PRINT_SCALE;  // 左侧年份轴宽度（含左侧标签空间）
+    const footerH = 20 * PRINT_SCALE;
+    const topPad = gutterH + (narrow ? 10 : 16) * PRINT_SCALE;
+    const bottomPad = (narrow ? 30 : 60) * PRINT_SCALE;
+    const rightPad = (narrow ? 16 : 40) * PRINT_SCALE;
     const width = yearAxisW + laneWidths.reduce((a, b) => a + b, 0) + rightPad;
     const height = topPad + (YEAR_END - YEAR_START + 1) * pxPerYear + bottomPad;
     const yFor = (year, month = 6) =>
@@ -478,8 +482,8 @@
 
     // 标签（竖版：标签在节点左侧或右侧，按纵向位置防重叠）
     labelsById.clear();
-    const baseSize = metrics.narrow ? 9 : 11;
-    const minorSize = metrics.narrow ? 8.5 : 10;
+    const baseSize = (metrics.narrow ? 9 : 11) * PRINT_SCALE;
+    const minorSize = (metrics.narrow ? 8.5 : 10) * PRINT_SCALE;
     const labelFont = `700 ${baseSize}px "Noto Sans SC", sans-serif`;
     const yearFont = `800 ${Math.round(baseSize * 0.82 * 10) / 10}px "Noto Sans SC", sans-serif`;
     const colsFor = (all) => {
@@ -549,7 +553,7 @@
         if (hidden) text.setAttribute("visibility", "hidden");
         const yearSpan = svgElement("tspan", { class: "tl-label__year" });
         yearSpan.textContent = yearText;
-        const gap = svgElement("tspan", { dx: 5 });
+        const gap = svgElement("tspan", { dx: 5 * PRINT_SCALE });
         gap.textContent = titleText;
         text.append(yearSpan, gap);
         gLabel.appendChild(text);

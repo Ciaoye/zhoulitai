@@ -40,7 +40,7 @@
     return text;
   }
   function renderMarkdown(md) {
-    const lines = (md || "").split("\n");
+    const lines = (md || "").replace(/\r\n?/g, "\n").split("\n");
     let html = "";
     let i = 0;
     const isTableSep = (l) => l.includes("-") && /^[\s|:-]+$/.test(l) && l.includes("|");
@@ -479,11 +479,6 @@
   }
 
   /* ---------- structures (no toolbar) ---------- */
-  const STRUCTURE_BLOCKS = [
-    { key: "moc", title: "专题索引", no: "Ⅰ", note: "档案的入口与导航枢纽" },
-    { key: "theme", title: "核心议题", no: "Ⅱ", note: "围绕工伤、程序、规范与公共形象的论点集群" },
-    { key: "law_policy", title: "法律与政策", no: "Ⅲ", note: "国家级立法与地方配套规定" },
-  ];
   const THEME_CLUSTER_ORDER = [
     "工伤赔偿与保险", "维权程序与成本", "规范性文件审查",
     "周立太现象与公共形象", "打黑与辩护权", "农民工社会属性",
@@ -505,42 +500,40 @@
     const m = /^(\d{4})/.exec(dateStart);
     return m ? `${m[1]}年` : "";
   }
-  function renderStructures() {
-    const byType = { moc: [], theme: [], law_policy: [] };
-    data.structures.forEach((page) => { (byType[page.type] || (byType[page.type] = [])).push(page); });
-    const mocHtml = MOC_KIND_ORDER.map((kind) => {
-      const items = byType.moc.filter((page) => page.mocKind === kind);
+  function renderMoc() {
+    const moc = data.structures.filter((page) => page.type === "moc");
+    const html = MOC_KIND_ORDER.map((kind) => {
+      const items = moc.filter((page) => page.mocKind === kind);
       if (!items.length) return "";
       return `<div class="moc-group"><p class="group-label">${escapeHtml(kind)}</p><div class="moc-chips">${
         items.map((page) => `<a class="moc-chip" href="#/page/${encodeURIComponent(page.id)}">${escapeHtml(page.title)}</a>`).join("")}</div></div>`;
-    }).join("");
+    }).join("") || "<p class='empty-note'>暂无专题索引</p>";
+    $("#moc-list").innerHTML = html;
+  }
+  function renderConcepts() {
+    const themes = data.structures.filter((page) => page.type === "theme");
+    const laws = data.structures.filter((page) => page.type === "law_policy");
     const themeFilter = `<div class="filter-bar" id="theme-filter"><button type="button" class="filter-chip active" data-cluster="*">全部议题</button>${
       THEME_CLUSTER_ORDER
-        .filter((c) => byType.theme.some((p) => p.cluster === c))
+        .filter((c) => themes.some((p) => p.cluster === c))
         .map((c) => `<button type="button" class="filter-chip" data-cluster="${escapeHtml(c)}">${escapeHtml(c)}</button>`)
         .join("")
     }</div>`;
-    const themeHtml = themeFilter + THEME_CLUSTER_ORDER.map((cluster) => {
-      const items = byType.theme.filter((page) => page.cluster === cluster);
+    const themeHtml = THEME_CLUSTER_ORDER.map((cluster) => {
+      const items = themes.filter((page) => page.cluster === cluster);
       if (!items.length) return "";
       return `<div class="theme-cluster" data-cluster="${escapeHtml(cluster)}"><p class="group-label">${escapeHtml(cluster)} <span class="group-count">${items.length}</span></p><div class="structure-index">${
         items.map((page) => structureCard(page, "议题")).join("")}</div></div>`;
     }).join("");
     const lawHtml = LAW_JURIS_ORDER.map((juris) => {
-      const items = byType.law_policy
+      const items = laws
         .filter((page) => page.jurisdiction === juris)
         .sort((a, b) => (a.dateStart || "9999").localeCompare(b.dateStart || "9999"));
       if (!items.length) return "";
       return `<div class="theme-cluster"><p class="group-label">${escapeHtml(juris)} <span class="group-count">${items.length}</span></p><div class="structure-index">${
         items.map((page) => structureCard(page, "法律", yearOf(page.dateStart))).join("")}</div></div>`;
     }).join("");
-    $("#structure-list").innerHTML = STRUCTURE_BLOCKS.map((block) => {
-      const inner = block.key === "moc" ? mocHtml : block.key === "theme" ? themeHtml : lawHtml;
-      return `<div class="struct-block" id="block-${block.key}">
-        <div class="struct-block-head"><span class="struct-block-no">${block.no}</span><h3>${block.title}</h3><p>${block.note}</p></div>
-        ${inner || "<p class='empty-note'>暂无</p>"}
-      </div>`;
-    }).join("");
+    $("#structure-list").innerHTML = (themeHtml + lawHtml) || "<p class='empty-note'>暂无</p>";
     attachThemeFilter();
   }
   function attachThemeFilter() {
@@ -551,7 +544,7 @@
       if (!chip) return;
       const cluster = chip.dataset.cluster;
       bar.querySelectorAll(".filter-chip").forEach((b) => b.classList.toggle("active", b === chip));
-      document.querySelectorAll("#block-theme .theme-cluster").forEach((div) => {
+      document.querySelectorAll("#structure-list .theme-cluster").forEach((div) => {
         div.style.display = (cluster === "*" || div.dataset.cluster === cluster) ? "" : "none";
       });
     });
@@ -634,6 +627,18 @@
       .sort((a, b) => b.degree - a.degree)
       .slice(0, 14);
   }
+  // Long bodies (e.g. the ~36K-char biography) are rendered lazily: show a
+  // safe preview first, expand to the full markdown only on request. This
+  // keeps the drawer opening instantly instead of blocking on a huge render.
+  const BODY_PREVIEW_LIMIT = 6000;
+  function splitPreview(raw, limit) {
+    const text = raw.replace(/\r\n?/g, "\n");
+    if (text.length <= limit) return text;
+    let cut = text.lastIndexOf("\n\n", limit);
+    if (cut < Math.floor(limit * 0.4)) cut = limit;
+    return text.slice(0, cut);
+  }
+
   function openRecord(pageId) {
     const page = pagesById.get(pageId);
     if (!page) return;
@@ -646,6 +651,9 @@
           <a href="#/page/${encodeURIComponent(item.id)}" class="related-chip" data-type="${escapeHtml(item.type)}">${escapeHtml(item.title)}</a>
         `).join("")}</div>
       </section>` : "";
+    const rawBody = page.body || page.summary || "";
+    const longBody = rawBody.length > BODY_PREVIEW_LIMIT;
+    const previewBody = longBody ? splitPreview(rawBody, BODY_PREVIEW_LIMIT) : rawBody;
     $("#record-content").innerHTML = `
       <div class="record-meta">
         <span>状态: ${escapeHtml(page.status)}</span>
@@ -654,8 +662,17 @@
       </div>
       <h2 class="record-title">${escapeHtml(page.title)}</h2>
       ${linksHtml}
-      <div class="record-body">${renderMarkdown(page.body || page.summary)}</div>
+      <div class="record-body" id="record-body">${renderMarkdown(previewBody)}</div>
+      ${longBody ? `<button type="button" class="record-expand" id="record-expand">展开完整内容 ▾</button>` : ""}
     `;
+    const expandBtn = $("#record-expand");
+    if (expandBtn) {
+      expandBtn.addEventListener("click", () => {
+        const bodyEl = $("#record-body");
+        if (bodyEl) bodyEl.innerHTML = renderMarkdown(rawBody);
+        expandBtn.remove();
+      });
+    }
     drawer.classList.add("open");
     drawer.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
@@ -730,39 +747,17 @@
     const groups = new Map();
     pointItems.forEach((item) => { if (!groups.has(item.place.id)) groups.set(item.place.id, []); groups.get(item.place.id).push(item); });
 
-    // declutter: gently push apart place centers that sit too close (nearby cities overlap)
-    const centers = new Map();
-    placeData.places.forEach((place) => {
-      const [bx, by] = project([place.lon, place.lat]);
-      centers.set(place.id, { x: bx, y: by });
-    });
-    const cids = [...centers.keys()];
-    const MIN_SEP = 36;
-    for (let iter = 0; iter < 90; iter++) {
-      for (let a = 0; a < cids.length; a++) {
-        for (let b = a + 1; b < cids.length; b++) {
-          const A = centers.get(cids[a]), B = centers.get(cids[b]);
-          let dx = B.x - A.x, dy = B.y - A.y;
-          const d = Math.hypot(dx, dy);
-          if (d > 0.01 && d < MIN_SEP) {
-            const push = (MIN_SEP - d) * 0.5;
-            dx /= d; dy /= d;
-            A.x -= dx * push; A.y -= dy * push;
-            B.x += dx * push; B.y += dy * push;
-          }
-        }
-      }
-    }
-    centers.forEach((c) => { c.x = Math.max(24, Math.min(1056, c.x)); c.y = Math.max(24, Math.min(636, c.y)); });
-
-    const DOT_R = 3.2, BIG_R = 2.7, RING_GAP = 9.5, GOLDEN = 2.399963;
+    // Keep every dot anchored to the real geographic projection. Earlier versions
+    // pushed place centers apart to "declutter", but that made labels and dense
+    // city clouds drift far from their true map positions. The spiral stays tight
+    // so overlapping nearby cities remain readable without moving the center.
+    const DOT_R = 4.0, BIG_R = 3.6, RING_GAP = 6.2, GOLDEN = 2.399963;
     const labelLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     labelLayer.classList.add('label-layer');
 
     groups.forEach((items, placeId) => {
       const place = items[0].place;
-      const ctr = centers.get(placeId) || { x: 0, y: 0 };
-      const ax = ctr.x, ay = ctr.y;
+      const [ax, ay] = project([place.lon, place.lat]);
       const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       g.classList.add('place-cloud');
       g.dataset.place = placeId;
@@ -823,15 +818,50 @@
     }
   }
 
+  /* ---------- complete archive (all pages incl. stubs) ---------- */
+  function renderComplete() {
+    const items = data.complete || [];
+    const groups = new Map();
+    const order = [];
+    items.forEach((p) => {
+      if (!groups.has(p.type)) { groups.set(p.type, []); order.push(p.type); }
+      groups.get(p.type).push(p);
+    });
+    const labelOf = (t) => (items.find((p) => p.type === t) || {}).typeLabel || t;
+    const chips = [`<button type="button" class="filter-chip active" data-type="*">全部 <span class="chip-count">${items.length}</span></button>`]
+      .concat(order.map((t) => `<button type="button" class="filter-chip" data-type="${escapeHtml(t)}">${escapeHtml(labelOf(t))} <span class="chip-count">${groups.get(t).length}</span></button>`));
+    $("#complete-filter").innerHTML = chips.join("");
+    function paint(type) {
+      const blocks = order.filter((t) => type === "*" || t === type).map((t) => {
+        const arr = groups.get(t);
+        const cards = arr.map((p) => p.isStub
+          ? `<div class="complete-card stub" title="占位页面（stub），暂无正文"><span class="complete-type">${escapeHtml(p.typeLabel)}</span><strong>${escapeHtml(p.title)}</strong><p>${escapeHtml(excerpt(p.summary, 96))}</p><span class="stub-tag">占位</span></div>`
+          : `<a class="complete-card" href="#/page/${encodeURIComponent(p.id)}"><span class="complete-type">${escapeHtml(p.typeLabel)}</span><strong>${escapeHtml(p.title)}</strong><p>${escapeHtml(excerpt(p.summary, 96))}</p></a>`);
+        return `<div class="complete-block" data-type="${escapeHtml(t)}"><h3 class="complete-block-title">${escapeHtml(labelOf(t))}<span>${arr.length}</span></h3><div class="complete-grid">${cards.join("")}</div></div>`;
+      }).join("");
+      $("#complete-list").innerHTML = blocks;
+    }
+    paint("*");
+    $("#complete-filter").addEventListener("click", (e) => {
+      const chip = e.target.closest(".filter-chip");
+      if (!chip) return;
+      const type = chip.dataset.type;
+      $("#complete-filter").querySelectorAll(".filter-chip").forEach((b) => b.classList.toggle("active", b === chip));
+      paint(type);
+    });
+  }
+
   /* ---------- boot ---------- */
   renderMetrics();
   initNetwork();
   renderCases();
   renderBiography();
-  renderStructures();
+  renderMoc();
+  renderConcepts();
   initLocationMap();
   renderPeople();
   renderOrganizations();
   renderMedia();
+  renderComplete();
   handleRoute();
 })();

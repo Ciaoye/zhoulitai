@@ -854,3 +854,30 @@ img { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
 }
+
+/* ============================================================
+   PRINT MODE（?print=1 打印长图：整体放大 2 倍）
+   ============================================================ */
+.print-scale .grid-year { font-size: 19px; font-weight: 700; }
+.print-scale .grid-year--major { font-size: 23px; font-weight: 900; }
+.print-scale .grid-axis,
+.print-scale .grid-row-line,
+.print-scale .grid-tick,
+.print-scale .grid-vline--major { stroke-width: 2; }
+.print-scale .tl-label { stroke-width: 7px; }
+.print-scale .tl-leader { stroke-width: 1.7; }
+.print-scale .conn-under { stroke-width: 10; }
+.print-scale .conn-path { stroke-width: 4; opacity: .6; }
+.print-scale .conn-arrow { stroke-width: 4; }
+.print-scale .timeline-node {
+  border-width: 4px;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--node-color), #000 14%);
+}
+.print-scale .timeline-node[data-importance="3"] { border-width: 5px; }
+.print-scale .timeline-gutter__lane i { width: 20px; height: 20px; }
+.print-scale .timeline-gutter__lane span { font-size: 24px; }
+.print-scale .timeline-legend { font-size: 22px; }
+.print-scale #result-summary { font-size: 20px; }
+.print-scale .size-key__small { width: 12px; height: 12px; }
+.print-scale .size-key__medium { width: 20px; height: 20px; }
+.print-scale .size-key__large { width: 32px; height: 32px; }
