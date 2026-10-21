@@ -742,6 +742,7 @@
       'place-macheng-hubei': '湖北麻城', 'place-chongqing-municipality': '重庆地区', 'place-chengdu': '成都',
       'place-luxian-sichuan': '四川泸县', 'place-quxian-sichuan': '四川渠县', 'place-anxiang-hunan': '湖南安乡',
       'place-leiyang-hunan': '湖南耒阳', 'place-guangdong': '珠三角', 'place-shenzhen': '深圳',
+      'place-dandong-liaoning': '辽宁丹东', 'place-jiangjin-chongqing': '重庆江津',
     };
 
     const groups = new Map();
