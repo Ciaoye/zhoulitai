@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#eee9df"><title>三张问题墙 · 瓶行宇宙</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<nav class="gh-sites" aria-label="周立太档案馆站点导航" style="position:sticky;top:0;z-index:99999;display:flex;align-items:center;gap:18px;padding:7px 18px;background:rgba(22,22,22,.94);color:#ddd;font:12px/1.5 system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;box-shadow:0 1px 0 rgba(255,255,255,.08);">
+  <span style="color:#9a9a9a;letter-spacing:.08em;font-weight:600;">周立太档案馆</span>
+  <a href="../0/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">00 · 问题墙</a>
+  <a href="../1/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">01 · 时间线</a>
+  <a href="../2/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">02 · 工伤故事</a>
+  <a href="../3/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">03 · 互动卡</a>
+  <span style="margin-left:auto;color:#777;">GitHub Pages 部署</span>
+</nav>
+
+<header><span>周立太数字档案馆 × 瓶行宇宙</span><span>一起留下想法 ↗</span></header>
+<main><nav aria-label="选择问题"><button data-q="0" aria-pressed="true">01 档案</button><button data-q="1" aria-pressed="false">02 生活</button><button data-q="2" aria-pressed="false">03 劳动保障</button></nav>
+<section class="question"><div><p class="eyebrow" id="number"></p><h2 id="question"></h2></div></section>
+<section id="answers"><div class="wall-heading"><h3>大家的回答 <span id="count"></span></h3><button id="refresh" type="button">刷新回答 ↻</button></div><p id="load-status" role="status" aria-live="polite"></p><div id="wall" class="wall"></div><a id="unlock" href="#write" hidden></a>
+</section>
+<section id="write"><form><label for="answer">你的回答</label><textarea id="answer" required maxlength="4000" rows="6" placeholder="一个细节、一段经历，或一个还没想明白的念头……"></textarea><div class="form-bottom"><div><label for="name">署名 <span>（选填）</span></label><input id="name" maxlength="60" placeholder="不填就是匿名朋友" autocomplete="nickname"></div><button id="submit">提交并查看回答</button></div><p id="submit-status" role="status" aria-live="polite"></p></form></section>
+</main><script src="app.js"></script></body></html>
