@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>周立太数字档案馆 互动情境卡</title>
+<style>
+:root{--paper:#f5f0e6;--ink:#272b2a;--muted:#62665f;--line:#c9c7bc;--red:#88442f;--blue:#345a65}*{box-sizing:border-box}[hidden]{display:none!important}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",sans-serif;line-height:1.8}header{max-width:1400px;margin:auto;padding:26px 30px 8px}h1{font-size:22px;font-weight:500;margin:0 0 8px}header p{font-size:14px;color:var(--muted);margin:6px 0}.toolbar{max-width:1400px;margin:0 auto;padding:14px 30px 20px;display:flex;align-items:center;flex-wrap:wrap;gap:10px}button{font:inherit;cursor:pointer;color:inherit}button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}.filter,.print{border:1px solid var(--line);border-radius:2px;background:transparent;font-size:14px;padding:7px 13px}.filter[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}a{color:var(--blue)}.count{margin-left:auto;color:var(--muted);font-size:13px}
+#print-sheets{display:none}.card-body{flex:1;display:flex;flex-direction:column;min-height:0}main{max-width:1400px;margin:auto;padding:0 30px 30px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.pair{min-width:0}.face{padding:28px 32px;border:1px solid var(--line);background:#fffdf7;min-height:760px;display:flex;flex-direction:column;position:relative}.back{background:#e9eee8;border-color:#b5c1b5}.meta{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:10px;font-size:12px;color:var(--muted)}.who{margin:20px 0 20px;padding:12px 16px;border-left:3px solid var(--red);background:#f2ece0}.who-solo{border-left-color:var(--line);background:#f5f2ea}.who-era{font-size:13px;letter-spacing:.04em;color:var(--muted);margin-bottom:5px}.who-role{font-size:21px;line-height:1.55;font-weight:500}.who-label{display:block;font-size:11px;letter-spacing:.14em;color:var(--muted);margin-bottom:2px}.story p{font-size:18px;line-height:1.95;margin:0 0 15px}.ask{margin:22px 0 18px;padding:16px 18px;background:#e9eee8;border:1px solid #b5c1b5}.ask-label{font-size:11px;letter-spacing:.16em;color:var(--blue);margin:0 0 6px}.question{font-size:19px;line-height:1.6;margin:0;font-weight:500}.options{display:grid;gap:9px}.option{display:flex;gap:12px;align-items:flex-start;width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:2px;background:transparent;text-align:left;font-size:16px;line-height:1.7}.option b{font-weight:500;color:var(--red);flex:0 0 17px}.option[aria-pressed="true"]{background:#e1e3d7;border-color:var(--ink)}.bottom{margin-top:auto;padding-top:20px;display:flex;align-items:end;justify-content:space-between;gap:18px}.chosen{font-size:12px;color:var(--muted)}.flip{border:0;border-bottom:1px solid currentColor;background:transparent;padding:6px 0;color:var(--red);font-size:14px;white-space:nowrap}.history-answer{font-size:20px;line-height:1.7;font-weight:500;margin:20px 0 14px;padding-left:14px;border-left:3px solid var(--blue)}.history-body{font-size:17px;line-height:1.95;margin:0 0 14px}.knowledge{border:1px solid var(--line);border-left:3px solid var(--blue);background:#f2f4ee;padding:12px 14px;margin:6px 0 12px}.knowledge-label{font-size:12px;color:var(--blue);margin:0 0 6px;letter-spacing:.06em;font-weight:500}.knowledge p{font-size:15px;line-height:1.85;margin:0 0 8px}.knowledge p:last-child{margin:0}.knowledge .law-ref{font-size:13px;color:var(--muted)}.branches{border-top:1px solid var(--line);padding-top:14px}.branches-label{font-size:12px;color:var(--blue);margin:0 0 10px}.branch{display:flex;gap:10px;margin:0 0 10px;font-size:15px;line-height:1.8}.branch b{color:var(--blue);font-weight:500;flex:0 0 16px}.source{font-size:12px;color:var(--muted);margin:16px 0 0}.print-foot{display:none}footer{max-width:1400px;margin:auto;padding:0 30px 30px;font-size:13px;color:var(--muted)}
+@media(max-width:760px){header{padding:22px 18px 6px}.toolbar{padding:10px 18px 20px}.count{width:100%;margin:0}main{grid-template-columns:1fr;padding:0 18px 25px;gap:18px}.face{padding:22px;min-height:730px}.who-role{font-size:20px}.story p{font-size:17px}.question{font-size:18px}.option{font-size:15px}.history-answer{font-size:19px}.history-body{font-size:16px}footer{padding:0 18px 30px}}
+@page{size:A3 portrait;margin:0}
+@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}body{background:#fff}header,.toolbar,footer{display:none!important}main{display:none!important}.print-sheets{display:block!important}.sheet{width:297mm;height:420mm;margin:0;padding:0;position:relative;display:grid;grid-template-columns:148.5mm 148.5mm;grid-template-rows:210mm 210mm;background:#fff;break-after:page;page-break-after:always;break-inside:avoid;page-break-inside:avoid}.sheet:last-child{break-after:auto;page-break-after:auto}.sheet::before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:.2mm dashed #d8d8d8;z-index:9}.sheet::after{content:"";position:absolute;top:50%;left:0;right:0;border-top:.2mm dashed #d8d8d8;z-index:9}.pcard{width:148.5mm;height:210mm;padding:6mm 7mm 5mm;margin:0;border:.2mm solid #bbb;background:#faf7ef;overflow:hidden;position:relative;display:flex;flex-direction:column;min-height:0}.pcard.back{border-left:.2mm solid #bbb;background:#edf0e9}.meta{display:flex;justify-content:space-between;border-bottom:.2mm solid #d6d3c8;padding-bottom:1.2mm;margin-bottom:2.4mm;font-size:7.4pt;color:#666}.card-body{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;padding:0 0 1mm}.pcard.back{padding-bottom:16mm}
+.pcard.back .card-body{padding-bottom:0}.who{margin:2.6mm 0 2.6mm;padding:1.4mm 2.4mm;border-left:.8mm solid #a06a55;background:#f4efe4}.who-solo{border-left-color:#bbb;background:#f5f2ea}.who-era{font-size:7.4pt;margin-bottom:.8mm;letter-spacing:.04em;color:#666}.who-role{font-size:12.8pt;line-height:1.45}.who-label{display:block;font-size:6.8pt;letter-spacing:.14em;color:#666;margin-bottom:.5mm}.story p{font-size:11.4pt;line-height:1.85;margin:0 0 2.4mm}.ask{margin:2.6mm 0 2.2mm;padding:1.8mm 2.4mm;background:#eaede3;border:.2mm solid #c3cab9}.ask-label{font-size:6.8pt;letter-spacing:.16em;color:#345a65;margin:0 0 1mm}.question{font-size:12.4pt;line-height:1.55;margin:0;font-weight:500}.options{display:grid;gap:1.8mm}.option{display:flex;gap:2mm;align-items:flex-start;width:100%;padding:1.7mm 2.5mm;border:.2mm solid #d3d1c6;border-radius:1mm;background:transparent;text-align:left;font-size:10.2pt;line-height:1.6;color:#272b2a}.option b{font-weight:500;color:#88442f;flex:0 0 4mm}.option[aria-pressed="true"]{background:#e1e3d7;border-color:#88442f}.bottom{display:none}.print-foot{display:block;position:absolute;left:7mm;right:7mm;bottom:5mm;margin:0;padding-top:1.6mm;border-top:.2mm solid #dcd9cd;font-size:6.6pt;color:#8a8f88;letter-spacing:.06em}.history-answer{font-size:13.4pt;line-height:1.65;font-weight:500;margin:3mm 0 2.4mm;padding-left:3.5mm;border-left:.8mm solid #5b7d85}.history-body{font-size:11pt;line-height:1.78;margin:0 0 2.1mm}.knowledge{padding:1.8mm 2.4mm;margin:0 0 1.8mm;border:.2mm solid #cccfc5;border-left:.9mm solid #5b7d85;background:#f1f3ec}.knowledge-label{font-size:7.6pt;margin:0 0 1.1mm;letter-spacing:.06em;color:#345a65;font-weight:500}.knowledge p{font-size:9.7pt;line-height:1.68;margin:0 0 1.1mm}.knowledge .law-ref{font-size:7.2pt;color:#666}.branches{padding-top:2.2mm;border-top:.2mm solid #bbb}.branches-label{font-size:7.2pt;color:#345a65;margin:0 0 1.4mm}.branch{display:flex;gap:2mm;margin:0 0 1.4mm;font-size:9.9pt;line-height:1.65}.branch b{color:#345a65;font-weight:500;flex:0 0 4mm}.source{font-size:7.4pt;color:#666;margin:1.4mm 0 0}.pcard .source{position:absolute;left:7mm;right:7mm;bottom:11mm;margin:0;padding-top:1mm;border-top:.2mm solid #d8d5c9}.sheet-note{display:none}}
+</style></head><body>
+<nav class="gh-sites" aria-label="周立太档案馆站点导航" style="position:sticky;top:0;z-index:99999;display:flex;align-items:center;gap:18px;padding:7px 18px;background:rgba(22,22,22,.94);color:#ddd;font:12px/1.5 system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;box-shadow:0 1px 0 rgba(255,255,255,.08);">
+  <span style="color:#9a9a9a;letter-spacing:.08em;font-weight:600;">周立太档案馆</span>
+  <a href="../1/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">01 · 时间线</a>
+  <a href="../2/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">02 · 工伤故事</a>
+  <a href="../3/" style="color:#f0f0f0;text-decoration:none;font-weight:600;">03 · 互动卡</a>
+  <span style="margin-left:auto;color:#777;">GitHub Pages 部署</span>
+</nav>
+
+
+<header><h1>周立太数字档案馆 · 互动情境卡</h1><p>45张情境卡。先进入当时的处境，作出选择，再翻面看真实后续。</p></header>
+<div class="toolbar"><button class="filter" data-topic="全部" aria-pressed="true">全部</button><button class="filter" data-topic="委托与信任" aria-pressed="false">委托与信任</button><button class="filter" data-topic="继续还是退出" aria-pressed="false">继续还是退出</button><button class="filter" data-topic="受伤以后" aria-pressed="false">受伤以后</button><button class="filter" data-topic="程序与阻力" aria-pressed="false">程序与阻力</button><button class="filter" data-topic="垫付与生计" aria-pressed="false">垫付与生计</button><button class="filter" data-topic="常识：劳动关系" aria-pressed="false">常识：劳动关系</button><button class="filter" data-topic="常识：工伤认定" aria-pressed="false">常识：工伤认定</button><button class="filter" data-topic="常识：赔偿计算" aria-pressed="false">常识：赔偿计算</button><button class="filter" data-topic="常识：先行支付" aria-pressed="false">常识：先行支付</button><button class="filter" data-topic="常识：程序与费用" aria-pressed="false">常识：程序与费用</button><button class="filter" data-topic="常识：习以为常" aria-pressed="false">常识：习以为常</button><button class="filter" data-topic="常识：程序空转" aria-pressed="false">常识：程序空转</button><button class="print">打印当前卡片</button><span class="count" aria-live="polite">45张</span></div>
+<main><article class="pair" data-id="S01" data-topic="委托与信任">
+<section class="face front" aria-label="S01 正面">
+<div class="card-body">
+<div class="meta"><span>S01 · 委托与信任</span><span>正面</span></div>
+<div class="who"><div class="who-era">2004年 · 重庆</div><div class="who-role"><span class="who-label">你的身份</span>为工伤工人代理索赔的律师</div></div>
+<div class="story"><p>你接下了一位受伤工人的案子。他当时付不起律师费，你们约定等取得赔偿后再按协议付费。你根据伤残情况和工资资料提出了索赔。案件中，索赔金额发生了调整，工人却由此怀疑：你是不是没有全心替他争取？</p><p>后来，他在法院主持下接受了11.5万元调解款，没有通知你，也没有支付律师费，回了老家。按照你们的约定，他拿到赔偿后应当结清律师费。现在赔偿已经领走，你还没有拿到自己的报酬。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">现在，你会怎样处理这位原来的委托人？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>放弃这一次追索，把精力留给其他案件</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>再谈一次，核对工作、约定与他能承受的支付安排</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>起诉追讨，即使外界会问你为什么告受伤的工人</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">S01 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="S01 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>S01 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">周立太所在的律所起诉了原委托人。法院判工人支付律师费1.4万元。</p><p class="history-body">先把这笔账算清楚。工人最初索赔35万多元；周立太核对工资资料后，把金额调低到32万多元——他后来解释，最初的数据是按工人自己讲的工资算的，核实后必须往下调，这是按证据办事。可在工人看来，请了律师，要的钱反而变少了。</p><p class="history-body">煤矿后来提出调解：一次性付11.5万元。工人为什么接受？他对记者算过账：官司再打下去可能还要几年，万一煤矿这几年里倒闭，纸上判得再多也拿不到一分钱；他还要养孩子，剩下的钱是往后生活的依靠。他接受了调解，没有通知律师，也没有结清费用，就回了老家。他对记者说，剩下的钱“我就是要把它藏在我附近的地方，我不会给别人知道的。即使法庭到时要强制执行，反正我是不会拿出来的”。</p><p class="history-body">律所随后起诉追讨。据《新民周刊》报道，当时欠周立太律师费的委托人已有160多人，这位工人是他第一次起诉的原委托人。案例汇编记载，法院认定双方的委托合同有效，判令工人支付1.4万元律师费。</p><p class="history-body">还有一层背景，帮我们理解“工人为什么付不起”这类问题：周立太接农民工案子，多数约定胜诉或拿到赔偿后才收费——打输或拿不到钱，他就分文没有。垫着办案费走完整个程序，最后被欠费，是这套收费方式风险的另一面。</p>
+</div>
+<p class="source">依据：中国青年报2005年报道；新民周刊2007年报道；委托代理合同案汇编</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">S01 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="W06" data-topic="继续还是退出">
+<section class="face front" aria-label="W06 正面">
+<div class="card-body">
+<div class="meta"><span>W06 · 继续还是退出</span><span>正面</span></div>
+<div class="who"><div class="who-era">1980年代初 · 湖南</div><div class="who-role"><span class="who-label">你的身份</span>在砖瓦厂挑砖、拉板车的工人</div></div>
+<div class="story"><p>你退伍后回过农村，后来又到湖南一家砖瓦厂打工。厂里有人为了讨工资发生冲突，甚至打了起来。你也在这里靠劳动挣生活费。</p><p>你开始琢磨：要到自己应得的钱，难道只能这样闹？如果不用打架，还有没有别的办法？你没受过多少学校教育，也不懂该找哪个部门、翻哪部法律。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">如果要找另一条路，你会先怎么做？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>去找律师、找劳动方面的法律，看看能否依法处理</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>先和工友一起与厂方协商，争取眼前把工资结清</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>先保住自己的工作和收入，暂时不再介入这场争执</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">W06 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="W06 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>W06 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">看到讨薪冲突以后，周立太开始自学法律，后来走进了法律服务所。</p><p class="history-body">人物报道写道：1979年退伍后，他返乡当了农民，“回到老家，没有姑娘愿意嫁给他”。1980年，他去湖南打工，盘算着年底带个湘妹子回家成亲，人家对他没意思。</p><p class="history-body">后来，厂里有人为讨薪打了起来。报道记下他当时的念头：“不打架，是不是就不能维权？”从此，周立太开始自学法律。</p><p class="history-body">1985年8月，开县司法局在陈家区组建法律服务所，他受聘从事法律工作。1986年，他参加全国律师资格考试并取得资格。</p>
+</div>
+<p class="source">依据：新京报人物报道；2007年采访</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">W06 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="W01" data-topic="受伤以后">
+<section class="face front" aria-label="W01 正面">
+<div class="card-body">
+<div class="meta"><span>W01 · 受伤以后</span><span>正面</span></div>
+<div class="who"><div class="who-era">1996年 · 深圳</div><div class="who-role"><span class="who-label">你的身份</span>在塑料厂受伤的工人</div></div>
+<div class="story"><p>你在工厂操作机器时，左上肢被轧断，住院治疗了几个月。厂里没有给你买工伤保险，入职时也没有签劳动合同。</p><p>厂方只愿赔三万多元。你此后还需要继续治疗、安装假肢，工作和生活都变了。继续争取要找人、花时间，也不知道最后能多拿到多少。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">面对这笔钱，你准备怎么办？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>先接受厂方提出的金额，尽快拿到能安排生活的钱</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>找律师继续索赔，把治疗和以后的需要一起提出</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>先与厂方再谈，要求追加费用或作出后续支付安排</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">W01 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="W01 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>W01 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">彭刚中继续找律师，后来委托周立太起诉厂方。</p><p class="history-body">先说结果：1997年1月委托，同年5月15日一审判决，8月4日二审维持——从起诉到终审大约半年多。判决合计172,320.75元：一次性补偿金56,520.75元、继续医疗费15,000元、假肢费用100,800元（按每次11,200元、九次计算）。判决写明款项在生效后三日内支付，一审受理费5,080元由厂方负担。厂方最初只愿赔三万多元。</p><p class="history-body">诉讼期间的生活是这样的：他住院四个月的医疗费，厂方在事故后已经支付；判决书记载，他起诉时交不起诉讼费，申请了缓交——诉状材料里写明，厂里只给几百元工资，只能维持基本生活。据《工伤背后》一书记载，签订委托协议后第三天，彭刚中找到周立太说没地方住了，两人住到了一起——这正是后来周立太在深圳租楼收留伤残工人的开端。</p><p class="history-body">律师费最后付了吗？案例汇编与回访报道的记载是：拿到全部赔偿金后，彭刚中走了，再也没露面；应支付的代理费至今未付。</p>
+</div>
+<p class="source">依据：彭刚中案一审判决；《工伤背后》（赵国君）；2015年回访报道</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">W01 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="W02" data-topic="受伤以后">
+<section class="face front" aria-label="W02 正面">
+<div class="card-body">
+<div class="meta"><span>W02 · 受伤以后</span><span>正面</span></div>
+<div class="who"><div class="who-era">1996—1997年 · 深圳</div><div class="who-role"><span class="who-label">你的身份</span>没有签劳动合同的受伤工人</div></div>
+<div class="story"><p>你一直在厂里做工，后来在工作中被机器压断了左上肢。到了要索赔的时候，你发现手上没有劳动合同，厂里也没有给你办理工伤保险。</p><p>索赔时，你拿不出劳动合同。你需要让处理案子的人相信：你确实受雇于这家厂、是在工作中受的伤。空口无凭，得拿出东西来。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">没有劳动合同，你要怎么证明自己在这里上班？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>找工友、工资或其他用工记录，尽量证明工作关系</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>找律师，把已有的材料和实际工作的情况一起说明</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>先不走正式程序，直接与厂方谈一笔能接受的钱</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">W02 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="W02 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>W02 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">法院认定彭刚中和工厂之间存在劳动关系，由工厂承担工伤赔偿。</p><p class="history-body">法院是怎么查明的？判决书记载：他受聘于这家工厂，在车间操作机器时被压断左上肢——受聘、干活、受伤，这三个事实都查到了，双方形成“事实劳动关系”：没签合同，但确实在厂里干活、听厂里安排、拿厂里工资的关系。厂方没办工伤保险，赔偿就由厂方按工伤标准支付。1997年1月委托，同年5月一审判决。</p><p class="history-body">1997年就能这样判，靠的是法院对事实的认定，当时全国法律并没有写过“事实劳动关系”这个词。它被写进全国性规定，是后来的事：2005年，原劳动和社会保障部发文，明确了没有书面合同时认定劳动关系的标准（工资记录、考勤记录、工友证言、工作证、招工登记表等都可以作证据）；2008年《劳动合同法》施行，进一步要求用工一个月内必须签书面合同，超过一个月不满一年不签的，要付双倍工资。1997年深圳这家法院先行一步的判法，后来被这些规定一一接住。</p><div class="knowledge"><p class="knowledge-label">事实劳动关系</p><p>没有书面劳动合同，实际受聘、接受管理、从事有报酬劳动的，可认定事实劳动关系；工友证言、工资记录、厂牌都可作为证据。<span class="law-ref">　本案判决；人社部发〔2005〕12号参照</span></p></div>
+</div>
+<p class="source">依据：彭刚中案一审判决；劳社部发〔2005〕12号；《劳动合同法》（2008年施行）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">W02 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="W03" data-topic="受伤以后">
+<section class="face front" aria-label="W03 正面">
+<div class="card-body">
+<div class="meta"><span>W03 · 受伤以后</span><span>正面</span></div>
+<div class="who"><div class="who-era">2000—2001年 · 深圳</div><div class="who-role"><span class="who-label">你的身份</span>右手被机器轧断的工人</div></div>
+<div class="story"><p>你在工厂做工时被机器轧断右手，需要安装假肢。厂里没有给你办理工伤保险。社保局——政府里管工伤保险的部门——已经算清了厂方该赔多少，让厂方支付，可钱一直没拿到。</p><p>后来，工厂搬走了，连人也找不到。治疗和日常生活还要花钱，应由厂方支付的工伤待遇却一直没有拿到。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">下一步，你会怎么做？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>继续找厂方，设法追到原来应该付款的人</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>找社保局申请“垫付”：让它先把厂方该付的钱付给你，它以后再去找厂方追</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>先回老家安顿生活，请人帮助继续跟进</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">W03 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="W03 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>W03 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">陈用刚没有等到厂方出现，而是向社保机构申请垫付。</p><p class="history-body">2000年7月4日，社保机构作出处理决定，认定他应得待遇：医疗费7052元、一次性补偿金27576元、按月生活补助费1149元、康复器具费19000元、工伤津贴850元，合计55627元，由厂方支付。厂方没有支付，后来搬迁、下落不明。10月31日，陈用刚向社保机构申请“垫付”——请机构先把厂方该付的钱付给他，机构之后再去向厂方追讨。</p><p class="history-body">机构先是口头答复无法办理，2001年7月28日又书面答复：先补交厂方拒不支付的材料，补齐后再受理。陈用刚随后起诉，一审败诉。2002年4月30日，深圳市中级人民法院二审撤销一审判决，判令社保机构把处理决定算出的那笔钱先垫付给陈用刚。</p><p class="history-body">厂里没交工伤保险，社保为什么还要管？——深圳特区的工伤保险条例规定：未参保职工发生工伤的，由用人单位按工伤保险的标准支付全部待遇；用人单位不支付的，由社保基金先垫付、再向单位追偿。“谁出钱”和“该赔多少”是两个问题：没参保只改变钱从谁手里出，不改变工人应得多少。这条思路2011年被《社会保险法》第41条写进国家法律。</p><p class="history-body">这类案子推动了立法吗？——周立太称陈用刚案等垫付判例是社保法第41条的先声，这是他的自述；立法档案里没有找到独立的第三方记载可以证实这条因果线。可以确认的是：深圳的判例在前（2002），国家立法在后（2011），思路一致。</p><div class="knowledge"><p class="knowledge-label">先行支付的雏形</p><p>单位不支付时由基金/机构垫付的思路，2011年以《社会保险法》第41条写入国家法律。<span class="law-ref">　社保法第41条（2011施行）</span></p></div>
+</div>
+<p class="source">依据：陈用刚案二审判决；《社会保险法》第41条（2011年施行）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">W03 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="W04" data-topic="程序与阻力">
+<section class="face front" aria-label="W04 正面">
+<div class="card-body">
+<div class="meta"><span>W04 · 程序与阻力</span><span>正面</span></div>
+<div class="who"><div class="who-era">2001年 · 深圳</div><div class="who-role"><span class="who-label">你的身份</span>正在申请工伤待遇垫付的工人</div></div>
+<div class="story"><p>你的手在工作中受了伤，厂里没给你买工伤保险，也没有支付已经确定的待遇。如今工厂搬走、下落不明，你向社保机构——政府里管工伤保险的部门——申请“垫付”：请它先把厂方该付的钱付给你，它再去向厂方追。</p><p>机构的答复是：先补一份厂方“拒不支付”的证明——一份写明厂方没付钱、盖了章的材料，补齐才受理。可你连厂方的人都找不到，上哪里去弄这份证明？</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">这道门卡住以后，你会怎样继续？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>继续寻找厂方或其他材料，尽量补齐要求的证明</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>要求明确说明拒绝垫付的依据，并寻求律师帮助、提起诉讼</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>暂时放下申请，先借钱或回乡解决眼前生活</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">W04 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="W04 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>W04 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">陈用刚继续起诉。二审法院撤销了一审判决，判令社保机构垫付。</p><p class="history-body">他第一次申请时，社保机构口头答复：中院的终审判决还没有下发，《深圳经济特区工伤保险条例实施细则》尚未出台，无法计算，不能支付。2001年7月28日，机构书面答复要求他尽快补充厂方不支付工伤待遇的证据材料，补齐后方受理——可厂方已经搬迁、下落不明，这正是机构自己调查得出的结论。</p><p class="history-body">二审法院认为，在这种情况下让工人取得那份证明“几近不可能”，这项要求也没有法律依据；如果机构认为厂方已经付过钱，机构同样需要证明。2002年4月30日，法院撤销一审判决，判令社保机构把处理决定确定的那笔钱先垫付给陈用刚，一、二审受理费各100元由机构承担。</p><div class="knowledge"><p class="knowledge-label">谁主张，谁举证</p><p>行政机关已查明的事实（如厂方下落不明），不能再要求申请人去证明相反事实；主张对方已付款的一方应负举证责任。<span class="law-ref">　本案二审判决说理</span></p></div>
+</div>
+<p class="source">依据：陈用刚案二审判决第7、8页</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">W04 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="W05" data-topic="受伤以后">
+<section class="face front" aria-label="W05 正面">
+<div class="card-body">
+<div class="meta"><span>W05 · 受伤以后</span><span>正面</span></div>
+<div class="who"><div class="who-era">2001年 · 深圳</div><div class="who-role"><span class="who-label">你的身份</span>在工厂工作的女工</div></div>
+<div class="story"><p>下班时，工厂怀疑你和其他女工把假发产品藏在身上，要求脱衣搜身。你的身体和尊严受到了侵犯，同事们也经历了同样的事。</p><p>接下来还要不要留在这里工作？要不要把事情说出去？如果追究，你希望得到钱、公开道歉，还是让这样的事不要再发生？每一种做法都要你和同事投入时间，重新面对这件事。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">眼下，你会先怎样行动？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>和其他女工一起找律师，要求道歉并提出赔偿</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>先与厂方交涉，要求公开说明、道歉和改变做法</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>先离开这家工厂，暂时不追究，另找工作安顿自己</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">W05 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="W05 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>W05 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">56名女工找到了周立太，向工厂提起诉讼。</p><p class="history-body">女工们的诉状写道：2001年7月30日下午5时50分许，管理员进入人毛部车间，喝斥她们双手抱头、像狗一样趴在地上，伸手搜到内衣内裤，个别女工被脱去上下衣；男管理员数人在场守候，搜身持续约一个小时。她们不只要求赔钱，还要求工厂消除影响、公开赔礼道歉。</p><p class="history-body">卷宗中的诉状提出精神损失费3万元和其他损失2000元，并要求港方母公司承担连带责任。案例汇编记载，案件后来经法院调解，每人获得4000元精神抚慰金；起诉时提出的金额，与调解达成的金额并不相同。</p><div class="knowledge"><p class="knowledge-label">搜身侵犯的是什么权利</p><p>这起案件走的是民事诉讼：工人在诉状里主张，强行搜身侵犯了人格尊严和人身自由，依据是《宪法》第37、38条和《民法通则》第101、106、120条，请求赔礼道歉和精神损失费。<span class="law-ref">　本案诉状</span></p><p>《宪法》第37条：公民的人身自由不受侵犯，禁止非法搜查公民身体；第38条：公民的人格尊严不受侵犯。<span class="law-ref">　宪法第37、38条</span></p><p>当时的报道提到，副市长表态要追究“搜身”事件主要肇事者的法律责任；但本馆卷宗与报道里没有刑事追诉结果的记载。<span class="law-ref">　羊城晚报2001年报道</span></p></div>
+</div>
+<p class="source">依据：女工案诉状；答辩状；案例汇编；羊城晚报2001年报道；周立太2007年自述</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">W05 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="G02" data-topic="程序与阻力">
+<section class="face front" aria-label="G02 正面">
+<div class="card-body">
+<div class="meta"><span>G02 · 程序与阻力</span><span>正面</span></div>
+<div class="who"><div class="who-era">2004年12月 · 重庆</div><div class="who-role"><span class="who-label">你的身份</span>接待律师与工人代表的工会工作人员</div></div>
+<div class="story"><p>83名被解聘的工人想就经济补偿和社会保险申请仲裁，交不起21万多元仲裁费，按规定需要工会出具困难证明才能申请缓交。律师和两名工人代表为此找到了你们。</p><p>你们的界定标准写在制度里：困难职工指“享受城市居民最低生活保障线标准的职工”。可这83人都是从农村来的工人，没有城市低保。按条文，他们不属于你们认定的困难职工；按处境，他们确实拿不出这笔仲裁费。双方越谈越僵，最后吵了起来。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">这份困难证明，你会怎么处理？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>严格按界定标准执行，建议他们去县以上工会并出示低保证明</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>向上级反映标准与农村工人处境的错位，争取灵活处理</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>出具证明，承受违反现行界定口径的可能责任</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">G02 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="G02 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>G02 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">市总工会没有出具证明。2005年1月，83名工人起诉它“不履行法定职责”。</p><p class="history-body">据《中国青年报》报道，2004年12月27日，周立太和两名工人代表前往重庆市总工会请求出具困难证明。市总工会让他们到县以上工会开证明，并要求出示低保证明；周立太认为工人原单位是重庆大型企业，应由市总工会管辖，双方争执，没有拿到证明。</p><p class="history-body">2005年1月4日，83名工人以“不履行法定职责”为由，向重庆市第一中级人民法院提起行政诉讼，请求判令市总工会5日内出具困难证明。据南方都市报报道，中院立案庭随后通知：此案可以立案，但要按属地原则到渝中区法院起诉。周立太按法院意见递交了材料。</p><p class="history-body">后续怎么样了？本馆收录的报道都止于2005年初的“等待答复”；这起诉讼最终结果的记载，档案里没有找到。</p>
+</div>
+<p class="source">依据：中国青年报2005年报道；南方都市报2005年1月报道</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">G02 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="J01" data-topic="程序与阻力">
+<section class="face front" aria-label="J01 正面">
+<div class="card-body">
+<div class="meta"><span>J01 · 程序与阻力</span><span>正面</span></div>
+<div class="who"><div class="who-era">1997年 · 深圳宝安</div><div class="who-role"><span class="who-label">你的身份</span>审理工伤索赔案的法官</div></div>
+<div class="story"><p>面前这起案件里，工人被机器压断左上肢，厂方没有与他签劳动合同，也没有办理工伤保险。双方对“存不存在劳动关系”就有争执。</p><p>更大的难题在赔偿范围：工人需要安装假肢，而假肢有使用周期，到期必须更换。可当时的工伤保险法规，对“假肢更换费”没有规定。支持，等于在法规空白处往前走一步；不支持，工人往后的更换费用就要一次次再讨。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">对这笔假肢更换费，你会怎么处理？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>法规没有规定，本案不予处理，留待以后解决</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>参照相近领域的规定，把更换费一次性算清</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>只判这一次的安装费，以后的更换另行主张</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">J01 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="J01 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>J01 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">一审判决参照《广东省道路交通事故处理规定》，把假肢更换费算到70周岁，一次性付清。</p><p class="history-body">法院先认定了事实劳动关系：没有书面合同，但工人实际受聘于工厂、在工作中受伤，工伤赔偿由厂方承担。</p><p class="history-body">对于假肢更换费，当时的工伤保险法规没有规定。判决“参照”了《广东省道路交通事故处理规定》第二十一条——工伤保险的法规没写这笔钱，就借这部最相近的规定来算——十八岁以前每两年更换一次、十八岁后每四年一次——计算到70周岁共九次。每次11200元的价格，有深圳市残疾人用品用具服务站出具的证明为据（国产机械手）。假肢费100800元，加一次性补偿金56520.75元、继续医疗费15000元，合计172320.75元，限判决生效后三日内支付。判决作出于1997年5月15日；厂方上诉后，同年8月4日二审维持。</p><p class="history-body">后来的法律跟上了吗？跟上了。1996年的《企业职工工伤保险试行办法》只笼统提到辅助器具费用，没有规定“更换费”怎么算；2004年1月1日《工伤保险条例》施行，明确规定工伤职工配置辅助器具的费用，按项目从工伤保险基金支付（未参保的由单位支付）——“假肢要换、费用要赔”从借道交通事故规定的权宜之计，变成了工伤保险自己的条款。</p><div class="knowledge"><p class="knowledge-label">参照适用与制度演进</p><p>法规空白时，法院可参照最相近的规定处理；本案参照的假肢更换周期计算，后来被工伤保险立法吸收。<span class="law-ref">　判决说理；案例汇编（归属汇编评价）</span></p></div>
+</div>
+<p class="source">依据：彭刚中案一审判决；《企业职工工伤保险试行办法》（1996）；《工伤保险条例》（2004年施行）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">J01 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="P01" data-topic="受伤以后">
+<section class="face front" aria-label="P01 正面">
+<div class="card-body">
+<div class="meta"><span>P01 · 受伤以后</span><span>正面</span></div>
+<div class="who"><div class="who-era">1997年 · 深圳</div><div class="who-role"><span class="who-label">你的身份</span>被判决支付工伤赔偿的塑料厂负责人</div></div>
+<div class="story"><p>厂里的工人被机器压断了左上肢。他没有签劳动合同，你们也没有给他办工伤保险。治疗几个月后，他被鉴定为伤残，需要安装假肢，还要继续治疗。工人起诉了。</p><p>一审判决认定：虽然没签合同，你们之间存在事实劳动关系，这笔赔偿应由厂方支付。判决要求你们支付一次性补偿金、继续医疗费，还有一大笔假肢安装费——按每次11200元、更换九次计算，三项合计超过17万元。当初你们只愿出三万多元。</p><p>作为厂方负责人，你有你的理由：这笔钱比想象中大得多；假肢按70岁一次算清，未必合理；而且你们早就为工人投保了雇主责任险——该保险公司出的钱，为什么要全压在厂里？你决定向深圳中院提起上诉。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">上面是厂方真实的上诉理由。如果是你，你会把重点放在哪一条？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>上诉理由一：已投雇主责任险，赔偿责任应先由保险公司承担</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>上诉理由二：一次性补偿金以月工资1023元为基数，不符合实际</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>上诉理由三：假肢按九次计算偏高，应核减</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">P01 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="P01 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>P01 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">厂方不服一审判决，上诉到深圳市中级人民法院。二审维持原判。</p><p class="history-body">一审判决认定双方形成事实劳动关系：没有书面合同，但工人实际在这里工作、在工作中受伤，工伤赔偿就由厂方承担。判决参照《广东省道路交通事故处理规定》，把假肢安装费按每四年更换一次、计算到70周岁共九次，一次性付清。</p><p class="history-body">厂方提出了三条上诉理由：已经为工人向保险公司投保了雇主责任险；一次性补偿金以月工资1023元为基数不符合实际；假肢按九次计算偏高。工人一方在答辩中提出，一审少算了一次假肢费。1997年8月4日，深圳市中级人民法院二审判决：驳回上诉，维持原判。</p><p class="history-body">三条上诉理由都没有动摇二审。但对厂方来说，这场上诉也不全是“不想付钱”：雇主责任险的争议，是商业保险与工伤赔偿如何衔接的问题——这在当时同样是法律没有写清楚的地带，判决最终按“厂方先赔、保险另算”处理。</p>
+</div>
+<p class="source">依据：彭刚中案原判决与案例汇编</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">P01 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="P02" data-topic="受伤以后">
+<section class="face front" aria-label="P02 正面">
+<div class="card-body">
+<div class="meta"><span>P02 · 受伤以后</span><span>正面</span></div>
+<div class="who"><div class="who-era">2001年 · 深圳</div><div class="who-role"><span class="who-label">你的身份</span>被56名女工起诉的工厂管理者</div></div>
+<div class="story"><p>你们是生产假发类毛发制品的外商投资企业，长期以来原料失窃是让管理层头疼的问题。此前保安和举报信都指向整毛班有员工私藏原料。</p><p>这次查验时，管理人员称看见员工往外掏毛发、往工作台下踢刀具，于是临时决定由女管理人员隔着衣服检查员工的腰部和口袋。事后，56名女工把工厂告上法庭，指控脱衣搜身、侵犯人身权利。你们提交的答辩说：事出有因，检查只进行了十几分钟，而且并没有脱光衣服。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">面对这场诉讼，你会怎么处理？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>坚持答辩立场，强调检查事出有因、方式克制</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>接受法院调解，给女工一笔精神抚慰金了结此事</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>公开承认处理方式不当，道歉并改变管理制度</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">P02 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="P02 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>P02 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">案件经法院调解结案，56名女工每人获得4000元精神抚慰金。</p><p class="history-body">卷宗里的答辩状写着厂方的说法：因为原料屡屡失窃，才临时决定检查；由四名女管理人员隔着衣服摸、拍腰部和口袋，个别女工自行解开围裙以示清白，前后约10至15分钟。答辩还提出，过磅统计显示这批女工加工的毛发重量超过核发数量，现场发现了违规刀具，检查因女工的过错而起，精神赔偿责任应当减免，厂方保留追究的权利。</p><p class="history-body">女工的诉状讲的完全是另一回事：双手抱头趴在地上、被伸手搜到内衣内裤、个别女工被脱去上下衣、持续约一个小时。被一并起诉的宝洋产业（香港）有限公司答辩称，工人是与深圳的工厂建立劳动关系，自己不应承担连带责任。案件没有等到判决认定，经法院调解，每人获得4000元精神抚慰金。</p>
+</div>
+<p class="source">依据：女工案民事答辩状、诉状与案例汇编</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">P02 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="S03" data-topic="委托与信任">
+<section class="face front" aria-label="S03 正面">
+<div class="card-body">
+<div class="meta"><span>S03 · 委托与信任</span><span>正面</span></div>
+<div class="who"><div class="who-era">2002—2005年前后 · 重庆</div><div class="who-role"><span class="who-label">你的身份</span>代理一位高位截瘫工人的律师</div></div>
+<div class="story"><p>你接下了一位高位截瘫工人的案子。委托手续由他的妻子办理，先交了一笔费用，其余约定在案结后支付。此后，你和同事推进认定、仲裁、诉讼与执行，前后忙了两年多。</p><p>工人曾在记者面前表示，取得赔偿后会按约付费。但等你们上门结算，他否认认识你，又说合同和委托书并不是自己签的。你清楚记得去医院探望、陪同采访的经历，签名却的确是妻子代签。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">面对这句否认，你下一步最想先做什么？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>先整理授权、往来和工作记录，核清委托关系</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>再与工人和妻子共同谈，弄清争议究竟在哪</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>停止上门争执，寻求第三方或司法程序处理</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">S03 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="S03 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>S03 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">按周立太的记述，律所多次上门讨费，仍没有收到后续约定的律师费。</p><p class="history-body">2002年，这位高位截瘫工人的妻子代他办理委托，先交3000元，约定案结后再结算其余费用。工人曾向采访记者表示，拿到赔偿就会按约付款。</p><p class="history-body">两年多后，案件执行完毕——判决企业支付医疗费17万元、伤残补助等费用24万余元，合计40余万元。同所律师前往他家结算，他却称不认识周律师，合同也不是自己签的。周立太在博文中承认签名确由妻子代签，同时写道自己多次去医院看望过他，还陪同记者采访。</p><p class="history-body">结局写在这篇博文的结尾：为工人赢得40余万元赔偿后，律所除签约时收的3000元，其余约定费用分文没有收到。这是截至2007年博文发表时的状态，此后是否补付，档案里没有记载。</p>
+</div>
+<p class="source">依据：周立太博文《风险代理惹的祸！》（2007）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">S03 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="S04" data-topic="垫付与生计">
+<section class="face front" aria-label="S04 正面">
+<div class="card-body">
+<div class="meta"><span>S04 · 垫付与生计</span><span>正面</span></div>
+<div class="who"><div class="who-era">2001—2003年前后 · 重庆</div><div class="who-role"><span class="who-label">你的身份</span>已经接受风险代理的律所负责人</div></div>
+<div class="story"><p>一个个人承包工程的人来找你，主张还有500多万元工程款没有结清。他已经向银行和亲戚借了很多钱，没有钱预付律师费，你们约定案结后再按比例收费。</p><p>起诉之后，法院通知交纳3.8万余元诉讼费。他连这笔钱也拿不出来，再来向律所借。如果不借，眼前这一步就难以继续；如果借，你们承担的就不只是时间，还要拿出能否收回都未知的现金。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">你会怎样回应这次借款请求？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>借出这笔钱，让诉讼继续推进</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>先寻找其他筹款或费用救济的可能，再决定是否借</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>不再扩大垫付，说明律所能够承担的边界</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">S04 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="S04 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>S04 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">律所借出了3.8万元。案子后来败诉，这笔借款也没收回来。</p><p class="history-body">据周立太的博文，承包人借了这笔钱交诉讼费，要求铁路企业再付500多万元工程款。诉讼中，铁路企业对原合同的工程价格提出异议，法院委托审核评估。</p><p class="history-body">评估结果认为，承包人此前领取的钱已经超过应领工程款，法院判他败诉。周立太写道，承包人于2003年3月去世，律所既没收到约定的律师费，借出的3.8万元也无法收回。</p><p class="history-body">同一篇博文的末尾提供了这批案子的总账背景：律所自2004年以来累计退还律师费150余万元，另有大量垫付费用难以收回——“但这个社会谁又能理解周立太的难处”，他这样收尾。</p>
+</div>
+<p class="source">依据：周立太《风险代理惹的祸！》案例1，2007年</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">S04 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="S05" data-topic="程序与阻力">
+<section class="face front" aria-label="S05 正面">
+<div class="card-body">
+<div class="meta"><span>S05 · 程序与阻力</span><span>正面</span></div>
+<div class="who"><div class="who-era">2000年代 · 深圳</div><div class="who-role"><span class="who-label">你的身份</span>代理一群工人劳动争议的律师</div></div>
+<div class="story"><p>你代理29名工人追索加班工资等权益。仲裁费用数额很大，经过争取，暂时缓交了。</p><p>可仲裁作出结果后，出了个死结：仲裁庭说，先把费用交清，才给复印一份“送达回证”——就是证明仲裁结果哪天送到你手里的那张纸。你要去法院起诉，法院说：没有这张纸，不能立案。</p><p>一边是：不交钱，拿不到纸；另一边是：没有纸，立不了案。而起诉的时限一天天逼近。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">卡在这个死结上，你会怎么办？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>继续向仲裁机构交涉，争取先拿到或证明送达情况</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>带着现有材料直接去法院，当面说明被卡住的经过，争取立案</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>想办法凑钱交清费用，先拿到那张纸再说</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">S05 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="S05 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>S05 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">律师继续和法院交涉，案件终于立案，后来仍被判败诉。</p><p class="history-body">据周立太的记述，29名工人被要求交纳十余万元仲裁费，经争取才获准缓交——先办案，费用以后再结。仲裁结束后，仲裁庭又要求先交清费用，才让他们复印送达回证——这份材料能证明仲裁结果何时送到手中，关系到下一步起诉的时限计算。</p><p class="history-body">没有回证，法院不肯立案。他们在15天的起诉期限内向龙岗区大鹏法庭递交材料，经多次解释、交涉，法院才受理。案件后来败诉，周立太又通知深圳分所把收取的律师费退还工人。</p>
+</div>
+<p class="source">依据：周立太《风险代理惹的祸！》案例3，2007年</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">S05 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="S06" data-topic="委托与信任">
+<section class="face front" aria-label="S06 正面">
+<div class="card-body">
+<div class="meta"><span>S06 · 委托与信任</span><span>正面</span></div>
+<div class="who"><div class="who-era">2000年代 · 深圳</div><div class="who-role"><span class="who-label">你的身份</span>代理一批工人的律所负责人</div></div>
+<div class="story"><p>这批29名工人委托你追索加班工资等权益，每人交了1500元费用，其中包括办案差旅费。你和同事办理了仲裁、诉讼。</p><p>案子打完了：败诉。工人没拿到他们要求的赔偿。现在的问题是这1500元×29的律师费怎么办。</p><p>你觉得按合同不用全退——工作确实做了，差旅确实花了。可工人败了诉，一分钱没拿到，还搭了钱。退，还是不退？</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">这笔已经收下的律师费，你会怎么处理？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>全部退还——工人败诉已经够难了，别再让他们承担这笔钱</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>按合同来——工作做了、钱花了，列明账目按约定结算</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>扣掉已经花掉的差旅等必要开支，剩下的退还</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">S06 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="S06 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>S06 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">周立太安排退款，部分工人却因此怀疑律师办案出了问题，随后到分所争执、投诉。</p><p class="history-body">据他的博文，这批29名工人败诉后，他考虑到工人的困难，通知深圳分所退还此前收取的律师费。</p><p class="history-body">他写道，一些工人把退款理解成律师承认办案有问题，约着来到分所、堵住大门，后来又向司法部门投诉。律所退了费，仍需安排时间接受司法部门的询问。</p><p class="history-body">同一篇博文的末尾还记了总账：考虑到当事人的困难，律所自2004年以来累计退还的律师费达150余万元；他退费还有另一层考虑——“希望尽力维持社会稳定，减少社会冲突和矛盾”。</p>
+</div>
+<p class="source">依据：周立太《风险代理惹的祸！》案例3，2007年</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">S06 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="S07" data-topic="委托与信任">
+<section class="face front" aria-label="S07 正面">
+<div class="card-body">
+<div class="meta"><span>S07 · 委托与信任</span><span>正面</span></div>
+<div class="who"><div class="who-era">2007年 · 重庆</div><div class="who-role"><span class="who-label">你的身份</span>替受伤工人办理认定与索赔的律师</div></div>
+<div class="story"><p>你接下一个建筑工人的受伤案件。企业注册地和事故发生地不在同一个区县，医疗费、工伤认定和证据调查分别要推进。承办律师为查证、找证人已经往返十余次。</p><p>工人又被告知，要缴纳一千多元仲裁费用。他和家人觉得办理太慢，要求退费。</p><p>钱还没拿到，又要往外掏；案子办了一半，人想退出。谈话僵住了。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">如果你是这位律师，你会怎么办？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>把已完成的工作、接下来的步骤、还要等多久，摊开来讲清楚</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>先听他说——他最急的是医疗费、时间，还是对结果没了信心</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>按合同办——终止委托可以，先核对费用怎么结算</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">S07 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="S07 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>S07 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">周立太提出，退费应扣除已经花掉的差旅费。工人的妻子不接受，打电话向司法局投诉。</p><p class="history-body">2007年5月15日，周立太和同事接受这位建筑工人的委托。两天后，他们向沙坪坝区劳动争议仲裁委员会申请先处理医疗费；5月27日，又到公司注册地大足县申请工伤认定。为找证人、收集证据，承办律师先后去了大足十余次。</p><p class="history-body">工人得知仲裁还要交一千多元，认为律师办事太慢，要求退还已经交给律所的费用。周立太解释手续仍在办理，工人的妻子仍坚持要退。他提出，即使退款，也应先扣除已经发生的差旅费。双方没有谈拢，妻子随后向司法局投诉。这是周立太在博文中写下的经过。</p><p class="history-body">案子后来怎么样了？这篇博文没有写下文，本馆档案里也没有找到这起委托的结局记载。</p>
+</div>
+<p class="source">依据：周立太《风险代理惹的祸！》案例4，2007年</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">S07 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="S08" data-topic="垫付与生计">
+<section class="face front" aria-label="S08 正面">
+<div class="card-body">
+<div class="meta"><span>S08 · 垫付与生计</span><span>正面</span></div>
+<div class="who"><div class="who-era">1997年前后 · 深圳</div><div class="who-role"><span class="who-label">你的身份</span>不断接到伤残工人求助的律师</div></div>
+<div class="story"><p>你代理的工伤工人中，有人治疗后失去了工作，没有地方住，连三餐也难安排。案子还要继续，他们却可能连留在深圳等待的条件都没有。</p><p>如果你只管办案，这些生活困难仍会影响他们能否留下；如果由你提供食宿，法律服务之外又要增加房租、做饭和每天的生活开支。求助的人不止一个。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">这些人接下来的食宿，你准备怎样安排？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>继续收留，先解决眼前无处可去的人</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>限定食宿人数或期限，同时寻找其他支持</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>把办案与安置分别组织，争取更多人共同承担</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">S08 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="S08 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>S08 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">周立太租下了房子，让等待维权的伤残工人免费吃住。</p><p class="history-body">2015年的回访报道写道，1997年，他在深圳租下一栋四层楼：一楼做饭，四楼办公，中间两层住伤残工人。人多时，夏天连楼顶也铺上凉席。</p><p class="history-body">开销有多大？《工伤背后》一书记下了一笔账：三年来，他为照顾这些伤残工人的日常生活，每月花费一万多元；另有慈善机构赞助和一些经济案的收入支撑。更早的时候，他和工人们四个人挤一间房：每天房费60元，大锅煮稀饭、买最便宜的菜也要40多元，一天最少开销100元。</p><p class="history-body">据2005年报道统计，他前后收留过200多人，住得最久的一位住了500多天，饮食起居都由他付钱。他回忆，吃饭的人多，一大锅稀饭很快就见底。为省开支，他买两元钱一斤的猪头肉、一元钱一斤的鸡骨架熬汤炖粉条。多年后重回深圳，他又到这栋旧楼前站了一个小时，并去回访曾经代理过的伤残工人。</p>
+</div>
+<p class="source">依据：澎湃新闻回访报道2015；中国青年报2005；《工伤背后》（赵国君）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">S08 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="S09" data-topic="垫付与生计">
+<section class="face front" aria-label="S09 正面">
+<div class="card-body">
+<div class="meta"><span>S09 · 垫付与生计</span><span>正面</span></div>
+<div class="who"><div class="who-era">2007年 · 重庆与深圳</div><div class="who-role"><span class="who-label">你的身份</span>经营一家律所的律师</div></div>
+<div class="story"><p>你替工人追讨工资，自己的律所却发不出工资了：40多名员工，已经两个月没领到钱，共欠20多万元。房租、差旅等开支每月还要16万元左右。</p><p>去年借的30万元债还没还。上一年深圳分所接了700多件案子、收入134万元，重庆总所438件、收入不到100万元——“这些收入根本不够”。不少办案垫出去的费用，又迟迟收不回来。</p><p>员工在等工资，工人也在等案件结果。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">换成是你，会先做什么？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>先保员工的工资——团队散了什么都干不成</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>先保手上的案子——工人的委托不能断</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>收缩规模，砍掉收不回成本的案件类型</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">S09 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="S09 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>S09 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">周立太仍在接案，也借过钱维持开支；接受采访时，员工工资还欠着。</p><p class="history-body">2007年8月，他告诉记者，前一年借的30万元债还没有还。律所有40多名员工，已经拖欠两个月工资，共20多万元；房租、差旅等开支每月仍要16万元左右。采访时，深圳分所当年已经接了400多件案子。</p><p class="history-body">收入明细他也摊开了：上一年深圳分所受理700多件案子，收入134万元；重庆总所438件，收入不到100万元——“这些收入根本不够”。</p><p class="history-body">记者问他能否用诉讼追回欠费。他说，追讨还要花路费、诉讼费，打赢也可能执行不到钱。他希望执行款能按委托协议由银行扣付律师费。这次采访没有记载欠发工资后来怎样补齐——那笔工资的下落，档案里也没有找到。</p>
+</div>
+<p class="source">依据：何涛采访周立太，2007年8月</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">S09 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="S12" data-topic="继续还是退出">
+<section class="face front" aria-label="S12 正面">
+<div class="card-body">
+<div class="meta"><span>S12 · 继续还是退出</span><span>正面</span></div>
+<div class="who"><div class="who-era">2000年代至2012年</div><div class="who-role"><span class="who-label">你的身份</span>自己也成了债权人的律师</div></div>
+<div class="story"><p>你能替工人起诉企业，却不能因此保证自己收回律师费。有的原委托人回到了不同省份，联系、取证、起诉和执行都要再花时间。每追一笔钱，差旅和人员又要增加一笔成本。</p><p>记者追问，既然是你的劳动所得，为什么不继续去讨？你想到的是：人手已经很紧，现有案子也离不开人。追回一笔小额费用，可能要先拿出一笔不小的支出。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">面对分散各地的欠费，你会采用哪种策略？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>尽量逐笔追索，即使短期成本高</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>先处理证据清楚、距离近、回收可能较高的案件</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>收缩个别追索，把更多精力放在收费与付款机制</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">S12 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="S12 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>S12 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">周立太挑了一位在重庆的原委托人起诉，没有把各地的欠费人都逐一告上法庭。</p><p class="history-body">当时欠他律师费的委托人已有160多人，散在各地。他向《新民周刊》解释，先告这位当事人，一个原因是对方就在重庆，往返路费低；去其他城市追讨，会再增加一笔诉讼成本。他也希望这起官司能促使其他欠费人付款。</p><p class="history-body">到了2012年，记者再问为什么不继续追讨，他回答，欠费的人散在各地，人手和差旅费都不够。他曾建议把执行款交由银行按协议扣付律师费，但在那次采访里说，这些建议一直没有得到回复。</p>
+</div>
+<p class="source">依据：新民周刊2007年报道；2012年访谈</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">S12 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="S13" data-topic="程序与阻力">
+<section class="face front" aria-label="S13 正面">
+<div class="card-body">
+<div class="meta"><span>S13 · 程序与阻力</span><span>正面</span></div>
+<div class="who"><div class="who-era">2001年 · 据周立太事后自述</div><div class="who-role"><span class="who-label">你的身份</span>约定胜诉后才收费的代理律师</div></div>
+<div class="story"><p>你代理一批伤残工人，与他们约定胜诉后才收取费用。经过一轮轮争论，你等来一份败诉判决。</p><p>但在同一天，工人被叫到另一个法庭，以生活补助名义拿到了支票，随后被安排返乡。你与工人约定的是胜诉后收费。现在工人领到了补助，判决却写着败诉，原先约定的收费条件没有实现。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">工人领钱返乡了，你的费用却落了空。接下来，你会怎么办？</p></div>
+<div class="options"></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">想一想，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">S13 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="S13 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>S13 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">周立太回忆，自己没有收到律师费，最后一个人拎着几十份卷宗回了出租屋。</p><p class="history-body">按他后来的讲述，那批工人先被法院判败诉，随后又被叫到另一个法庭，按各自请求数额领到了“生活补助”支票。有关部门请来了电视台拍摄，安排了车辆和车票，把工人直接送往车站。一个名叫杨福发的工人，揣着支票从他面前走过，连招呼都没打。</p><p class="history-body">他没能在现场与工人结算费用。此前签的是胜诉后收费的协议，败诉判决使他无法按原条件收费。</p><p class="history-body">他在2005年采访中回忆，当天早上还为一群工人付了去法院的十几辆出租车费，晚上独自拎着几十份卷宗回到出租屋，大哭一场。现场经过均来自他的自述。</p>
+</div>
+<p class="source">依据：周立太2015年回顾；2005年采访转述</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">S13 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="S14" data-topic="程序与阻力">
+<section class="face front" aria-label="S14 正面">
+<div class="card-body">
+<div class="meta"><span>S14 · 程序与阻力</span><span>正面</span></div>
+<div class="who"><div class="who-era">2001—2002年 · 深圳</div><div class="who-role"><span class="who-label">你的身份</span>在深圳办案的重庆律师</div></div>
+<div class="story"><p>你在深圳代理了许多工人的案件，与当地一些部门反复打交道。现在，司法部门要求你停止在当地从事律师业务，你自己的执业也成了一场争议。</p><p>有关部门认为你未办理相关手续长期在深圳接案等；你则认为自己因替工人争取权益而受到针对。你手上还有工作和委托，继续留下、交涉、起诉或离开，都有代价。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">当自己也需要维权时，你会怎样走下一步？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>先厘清手续争议，争取通过交涉恢复正常工作</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>对有关行为提起诉讼，把执业争议交给法院</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>离开当地，另作安排，减少继续消耗</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">S14 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="S14 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>S14 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">周立太起诉了龙岗区司法局，但这场官司没有赢。</p><p class="history-body">2001年，龙岗区司法局向他出具停止在当地从事律师业务的通知。有关部门的说法是，他作为重庆律师，没有办理相关手续就长期在深圳接案；周立太则认为，这与自己不断代理工人起诉有关部门有关。</p><p class="history-body">他回忆的另一幕更具体：2001年1月15日下午，深圳市中级人民法院第四法庭，他代理的王琼等系列案宣判败诉——此前同类案件他们全部胜诉，深圳中院还曾责令两区社保局重新作出处理决定；其间深圳市人大答复“此类案件赔偿基数不再调整”。宣判后，法庭不让律师与当事人见面；隔壁的第五法庭里，银行和社保局已经等在那里，按各人请求数额签发支票、发放差旅费，再用事先安排好的大巴把工人送往车站。</p><p class="history-body">这样的安排是为了什么？按周立太的理解，这样工人当场拿到钱、当天被送走，就不需要再通过律师结算费用——他称此案签的是胜诉收费协议，败诉判决使收费条件落空。这一幕在他本人2005年、2007年对媒体的讲述和2015年博文中反复出现，细节逐步具体（发钱总额他另称三百多万元、每人补贴400元差旅费），但均出自他一人的叙述，本馆没有找到法院文书或第三方旁证。</p><p class="history-body">2010年人物报道记载，2002年6月，他对龙岗区司法局提起诉讼，结果败诉。（宣判日场景为周立太本人自述。）</p>
+</div>
+<p class="source">依据：新京报2010年人物报道；周立太本人回顾</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">S14 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="S15" data-topic="程序与阻力">
+<section class="face front" aria-label="S15 正面">
+<div class="card-body">
+<div class="meta"><span>S15 · 程序与阻力</span><span>正面</span></div>
+<div class="who"><div class="who-era">2004年底至2005年初 · 重庆</div><div class="who-role"><span class="who-label">你的身份</span>代理83名工人劳动争议的律师</div></div>
+<div class="story"><p>83名工人想就被解聘后的补偿、社会保险等问题申请仲裁。报道记载，进入程序先要交21万多元费用。工人们负担不起，你开始申请缓交。</p><p>申请缓交又需要困难证明。你和工人代表找到工会，却在该由哪一级工会出具、需要什么低保证明上发生分歧。工人来自农村，眼前的困难没有直接变成对方认可的那一种证明。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">争取权益的入口又被一张证明卡住，你会怎样继续？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>先按要求逐级寻找能出具证明的机构</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>整理困难与争议材料，继续交涉或寻找其他费用支持</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>围绕不出具证明的问题，再启动一场诉讼</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">S15 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="S15 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>S15 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">83名工人起诉了重庆市总工会，要求它出具困难证明。</p><p class="history-body">2004年12月27日，周立太和两名工人代表前往市总工会。市总工会让他们到县以上工会开证明，并要求出示低保证明。周立太认为，工人原来的单位是当地大型企业，应由市总工会处理；双方争执，没有拿到证明。</p><p class="history-body">2005年1月4日，工人们起诉，要求市总工会在5日内出具证明。到记者采访时，周立太又按法院意见去渝中区法院递交了材料，正在等待答复。那笔让他们申请缓交的仲裁费，报道记为合计21万多元。</p><div class="knowledge"><p class="knowledge-label">程序费用门槛</p><p>2008年5月1日起劳动争议仲裁不收费；此前的缓交/减免常被“困难证明”卡住（工会口径：城市低保户）。<span class="law-ref">　《劳动争议调解仲裁法》第53条；本案报道</span></p></div>
+</div>
+<p class="source">依据：中国青年报《维权的窘境》，2005年</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">S15 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="S16" data-topic="程序与阻力">
+<section class="face front" aria-label="S16 正面">
+<div class="card-body">
+<div class="meta"><span>S16 · 程序与阻力</span><span>正面</span></div>
+<div class="who"><div class="who-era">2000年代初 · 重庆</div><div class="who-role"><span class="who-label">你的身份</span>代理工人追索养老保险的律师</div></div>
+<div class="story"><p>你代理的一批工人希望补缴养老保险。你逐案准备材料，却发现受理机关反复援引同一份部门文件：这类请求不进入相应的争议处理程序。</p><p>如果只改写每个工人的申请，那个共同的障碍仍在。你开始把注意力放到文件本身：一个部门的文件，能否把这些请求挡在门外？但挑战文件，又意味着要离开原来单个案件的范围。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">你会把下一轮工作放在哪里？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>继续为个别工人寻找可以进入程序的区别与证据</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>向有关机关提出审查、撤销文件的请求</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>向媒体和研究者解释共同障碍，争取更多支持</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">S16 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="S16 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>S16 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">周立太先申请撤销那份文件，后来又起诉重庆市政府不履行职责；法院没有受理。</p><p class="history-body">这份2001年的“79号文”规定，一些劳动者要求单位补缴养老保险的申诉，劳动争议仲裁委员会不予受理。周立太代理的相关案件被挡住后，向市法制办——市政府里审查文件合法性的部门——申请撤销这份文件。</p><p class="history-body">结果呢？《中国青年报》报道了法制办的口头答复：审查后认为79号文确实违法、应该撤销，“但鉴于种种原因，目前还不能撤销”，希望周立太理解。周立太代理的几百起补缴养老保险官司，因这份文件悉数被驳回。2002年12月，他转而上书国务院，请求责令重庆市政府撤销79号文。2005年，他又起诉市政府不履行职责，法院裁定不予受理。</p><p class="history-body">工人们的养老保险最后补缴了吗？这份文件后来撤销了吗？本馆档案里没有找到79号文被撤销的记载，也没有补缴结果的记载——这条线在档案里断了。</p><div class="knowledge"><p class="knowledge-label">规范性文件审查</p><p>认为部门文件与上位法抵触的，可申请审查/撤销；本案路径是申请市法制办撤销，今天的对应制度包括备案审查。<span class="law-ref">　本案经过；监督法备案审查制度</span></p></div>
+</div>
+<p class="source">依据：中国青年报2005年报道；《旧报新读：79号文和它的两个反对者》（转南方周末报道）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">S16 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="S19" data-topic="继续还是退出">
+<section class="face front" aria-label="S19 正面">
+<div class="card-body">
+<div class="meta"><span>S19 · 继续还是退出</span><span>正面</span></div>
+<div class="who"><div class="who-era">1982年前后</div><div class="who-role"><span class="who-label">你的身份</span>在工厂打工、正在自学法律的青年</div></div>
+<div class="story"><p>你读过的书不多，当过兵，退伍后回过农村，也在外地打过工。你看见讨薪时发生的冲突，开始想：不靠打架，有没有别的办法争取自己应得的东西？你开始自学法律。</p><p>1982年，你写信向一位知名律师请教，收到的回信却劝你安心放牛种田。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">收到回信以后，你会怎样继续？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>接受劝告，先回到熟悉、能维持生活的工作</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>边劳动边自学，等待还能进入这个职业的机会</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>另找愿意指导的人，争取从相关法律工作开始</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">S19 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="S19 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>S19 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">周立太没有按回信的劝告回去种田，继续自学，后来考取了律师资格。</p><p class="history-body">人物报道写道，1982年，他向一位知名律师写信请教，对方回信劝他“安心放牛种田，比什么都好”。他受到刺激，发誓要超过这个律师。</p><p class="history-body">自学很苦，“自信心也极受打击”——报道只留下这八个字的概括。1985年，开县新组建法律服务所，他被聘进去工作。1986年，中国第一次实行律师资格统一考试，没有年龄和学历限制，他报了名，成绩超过分数线12分。</p><p class="history-body">报道还留下一个注脚：因为从小饿怕了，他至今中餐晚餐必须有肉，少了就会抱怨。</p>
+</div>
+<p class="source">依据：新京报2010年人物报道；2007年本人采访</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">S19 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="S20" data-topic="继续还是退出">
+<section class="face front" aria-label="S20 正面">
+<div class="card-body">
+<div class="meta"><span>S20 · 继续还是退出</span><span>正面</span></div>
+<div class="who"><div class="who-era">2004年前后 · 据人物报道</div><div class="who-role"><span class="who-label">你的身份</span>已经做了多年工人维权案件的律师</div></div>
+<div class="story"><p>你的律所已经几个月发不出工资，一些花心力培养的律师也离开了。你替工人追讨过赔偿，自己的工作却没有足够稳定的收入。你开始想：还要不要做下去？</p><p>你从农村出来，也有过打工和挨饿的经历。如今成了律师，仍被生活的开销追着走。你想暂时离开这些卷宗和争执，但又没有想好，离开之后究竟要过什么日子。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">眼下，你准备怎样对待这个“不想干了”的念头？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>暂时离开律所，换个环境，试着把这些事放下</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>缩小业务规模，留下来把现有事情处理完</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>不再做律师，寻找能够维持生活的其他工作</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">S20 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="S20 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>S20 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">周立太去了寺庙，住了两天，又下山回来了。</p><p class="history-body">2010年的人物报道把这段经历放在2004年前后：律所几个月发不出工资，他苦心培养的多名律师陆续离开，他一度决定出家。可是在庙里吃了两天素，第三天就撑不住了。</p><p class="history-body">2012年，他又向记者讲起这件事，说自己天生爱吃肉，发现庙里没肉吃，就跑下了山。同一次采访里他也说了另一面：“为农民工打官司犹如炒股票，我已经被深度套牢了。”</p><p class="history-body">另一篇报道记下了他当时的处境：2003年，因收不回律师费，他办公室的电话5次因欠费停机。办公室门上贴着一幅招贴画，黑色底板上只有两个白色大字——“挣扎”。他自己的评价是：这就是自己的生活现状。</p>
+</div>
+<p class="source">依据：新京报2010年人物报道；2012年访谈</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">S20 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K01" data-topic="常识：劳动关系">
+<section class="face front" aria-label="K01 正面">
+<div class="card-body">
+<div class="meta"><span>K01 · 常识：劳动关系</span><span>正面</span></div>
+<div class="who"><div class="who-era">今天</div><div class="who-role"><span class="who-label">你的身份</span>刚入职一家小厂、还没签劳动合同的工人</div></div>
+<div class="story"><p>你在一家小厂找到了活儿，先干起来再说。入职两周，厂里还没提签劳动合同的事，也没提社保。工钱按周发现金，厂牌有一张，考勤在车间门口的白板上。</p><p>你隐约听说：没签合同，出了事厂里可以不认你。可你也需要这份收入。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">手里没有劳动合同，哪些东西能证明你在这里上班？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>工友证言、考勤记录、工资发放记录、厂牌和工作往来记录</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>什么都没有——没有合同就没有劳动关系</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>只能靠老板良心</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K01 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K01 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K01 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">没签合同不等于没有劳动关系。1997年深圳一家法院已经这样判过。</p><p class="history-body">1996年，彭刚中被机器压断左上肢。他入职时没有签劳动合同，厂里也没有办工伤保险。1997年的判决认定：虽然没有书面合同，他实际受聘于工厂、在工作中受伤，双方形成“事实劳动关系”——没签合同，但确实在厂里干活、听厂里安排、拿厂里工资的关系——工伤赔偿由厂方承担。</p><p class="history-body">2019年山东的另一起工亡案里，厂方同样辩称与死者“不存在事实劳动关系”；而厂方在事发后向家属支付了死者生前三个月工资24031元的银行记录，恰恰成了用工关系的证据。</p><div class="knowledge"><p class="knowledge-label">事实劳动关系</p><p>没有书面劳动合同，但实际受聘、接受管理、从事有报酬劳动的，可以认定事实劳动关系。<span class="law-ref">　1997年深圳宝安区法院判决</span></p><p>可作证据的包括：工资支付记录、考勤记录、工友证言、工作证/厂牌、招工登记表、工作往来记录等。<span class="law-ref">　人社部发〔2005〕12号确立的认定参照（通行规则）</span></p><p>今天的补充保障：用工超过一个月不满一年未签书面合同的，应支付二倍工资差额。<span class="law-ref">　《劳动合同法》第82条（2008年施行）</span></p></div>
+</div>
+<p class="source">依据：彭刚中案一审判决；刘胜青案（山东，2019）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K01 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K02" data-topic="常识：工伤认定">
+<section class="face front" aria-label="K02 正面">
+<div class="card-body">
+<div class="meta"><span>K02 · 常识：工伤认定</span><span>正面</span></div>
+<div class="who"><div class="who-era">今天</div><div class="who-role"><span class="who-label">你的身份</span>下班路上被汽车撞伤的工人</div></div>
+<div class="story"><p>你在下班回住处的路上，被一辆汽车撞伤，交警认定对方负主要责任。你在治疗、误工，车险赔了一部分，你听说工伤可能也沾边。</p><p>同事说：上班路上出的事，跟厂里没关系。你想弄清楚：这算不算工伤？车险赔过了，还能不能主张工伤？</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">下面哪种说法是对的？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>上下班途中、非本人主要责任的交通事故，应当认定为工伤；交通事故赔偿与工伤待遇可以分别主张</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>上下班途中的事故一律不算工伤</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>拿了交通事故赔偿，就不能再主张任何工伤待遇</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K02 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K02 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K02 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">上下班途中非本人主要责任的交通事故属于工伤；侵权赔偿与工伤保险是两个法律关系。</p><p class="history-body">1996年4月30日，在深圳务工的徐昌文、赵碧夫妇下班回出租房途中，被一辆香港货柜车撞亡，交警认定港车负主要责任。龙岗区劳动局依据当时的规定认定两人因工死亡。这起案件同时获得了交通事故赔偿和工伤赔偿，被视为全国早期代表案件（各来源对合计金额口径不一，约33万至35万元）。</p><p class="history-body">当时的规定是1996年《企业职工工伤保险试行办法》第8条：上下班的规定时间和必经路线上，发生无本人责任或非本人主要责任的道路交通机动车事故的，认定为工伤。</p><div class="knowledge"><p class="knowledge-label">上下班途中交通事故与“双赔”</p><p>在上下班途中，受到非本人主要责任的交通事故伤害的，应当认定为工伤。<span class="law-ref">　现行《工伤保险条例》第14条第(六)项</span></p><p>第三人侵权赔偿与工伤保险待遇是两种不同的法律关系——1996年试行办法曾采“补差”（已获赔偿要扣减），2004年《工伤保险条例》取消补差，2006年最高人民法院答复明确可同时主张，重庆2011年自行纠正限制规定。<span class="law-ref">　补差→双赔四阶段演变（本馆博文与案件记载）</span></p></div>
+</div>
+<p class="source">依据：徐昌文夫妇案；1996年试行办法第8条</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K02 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K03" data-topic="常识：工伤认定">
+<section class="face front" aria-label="K03 正面">
+<div class="card-body">
+<div class="meta"><span>K03 · 常识：工伤认定</span><span>正面</span></div>
+<div class="who"><div class="who-era">2015年11月27日 · 重庆</div><div class="who-role"><span class="who-label">你的身份</span>在工地打工的工人</div></div>
+<div class="story"><p>你在工地上干活，下午两点多突然倒下，被送进医院，当天下午3点40分抢救无效死亡。家属后来才知道，厂里从来没有给你买过任何保险。</p><p>家里的顶梁柱倒了。妻子和两个孩子还小。有人说：又不是被机器弄伤的，这算“工伤”吗？</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">在工作时间、工作岗位上突发疾病死亡，算不算工伤？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>视同工伤——法律有明确规定</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>不算，只有事故伤害才算</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>要看厂里态度</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K03 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K03 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K03 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">法律把这种情形“视同工伤”：在工作时间和工作岗位，突发疾病死亡或在48小时之内经抢救无效死亡的，视同工伤。</p><p class="history-body">这是江福坤案的开头：2015年11月27日下午，他在工地突发疾病，送重庆德安医院抢救，当日15时40分死亡。2016年3月25日，南岸区人社局认定江福坤因工死亡。</p><p class="history-body">此后家属经仲裁、诉讼拿到生效判决：丧葬费28428元、一次性工亡补助金576880元、两个孩子的抚恤金205241元与331769元，合计1142318元，由未参保的鸿光公司支付。但执行时公司已无可供执行的财产，2017年8月法院裁定“终结执行”——查不到公司还有可执行的财产，只能先结案。家属转而向社保机构申请“先行支付”（让基金先垫上），又打了四年官司——那又是另一场官司。</p><div class="knowledge"><p class="knowledge-label">48小时条款</p><p>在工作时间和工作岗位，突发疾病死亡或者在48小时之内经抢救无效死亡的，视同工伤。<span class="law-ref">　《工伤保险条例》第15条第(一)项（卷宗判决书引用文本）</span></p><p>“48小时”之外的边界（如超过48小时死亡、回家后突发疾病等）在实务中争议很大，个案需具体分析。<span class="law-ref">　通行实务提示，非本案内容</span></p><p>工亡待遇（2016年判例）：丧葬补助金＋一次性工亡补助金＋供养亲属抚恤金。<span class="law-ref">　江福坤案判决四项构成</span></p></div>
+</div>
+<p class="source">依据：伍锡梅案卷宗；工伤保险条例第15条</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K03 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K04" data-topic="常识：赔偿计算">
+<section class="face front" aria-label="K04 正面">
+<div class="card-body">
+<div class="meta"><span>K04 · 常识：赔偿计算</span><span>正面</span></div>
+<div class="who"><div class="who-era">1996年 · 深圳宝安</div><div class="who-role"><span class="who-label">你的身份</span>想知道“一只手值多少钱”的旁观者</div></div>
+<div class="story"><p>1996年的深圳，社保局长期按一个固定数字赔“断一只手”：五级伤残约33101元。这个数字背后有一道公式，公式里有一个关键变量——“市上年度职工月平均工资”。</p><p>社保局一直按1993年的月平均工资679元计算，尽管平均工资年年在涨。工人和律师提出：应该按事故上一年度（1995年）的1023元算。同一个伤残，两种基数，赔偿差出近一倍。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">法院最后按哪个基数判？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>按679元——1993年标准已经执行多年，不宜改动</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>按1023元——赔偿基数应随上年度社会平均工资更新</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>法院会取一个中间数</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K04 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K04 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K04 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">一审按上年度月平均工资1023元计算并判决，二审维持。</p><p class="history-body">1996年8月29日，彭刚中被机器压断左上肢。他所在的厂没有为他办理工伤保险。</p><p class="history-body">判决采用的公式是：一次性补偿金＝市上年度职工月平均工资×65%×伤残等级对应的丧失劳动能力比例×100个月。以1023元代入：1023×65%＝665元（这部分对应“工资×65%”）；665×85%＝565元（乘上五级伤残对应的85%）；565×100＝56520元（再乘100个月）。判决金额56520.75元正是这样一步步乘出来的。若按冻结多年的679元基数，这一项只有三万多元——正是当时深圳两区长期执行的“断手价”。</p><p class="history-body">一审判决除一次性补偿金外，还判了继续医疗费15000元和假肢费100800元，合计172320.75元；厂方上诉，1997年8月4日二审维持。</p><div class="knowledge"><p class="knowledge-label">赔偿是怎么算出来的</p><p>特区时期公式：一次性补偿金＝市上年度职工月平均工资×65%×丧失劳动能力比例×100。基数用“上年度”，而不是某一年冻结的数字。<span class="law-ref">　深圳特区工伤保险法规（判决适用）</span></p><p>当时的怪现象：参保的按1993年679元算，未参保由企业赔的反而按更高基数——买了保险的赔得更少，经系列诉讼纠正。<span class="law-ref">　周立太博文自述，归属其本人</span></p><p>今天的一次性伤残补助金按“本人工资”×规定月数计算，全国统一框架。<span class="law-ref">　《工伤保险条例》第37条（通行制度）</span></p></div>
+</div>
+<p class="source">依据：彭刚中案一审判决；周立太博文（计发基数之争）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K04 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K05" data-topic="常识：先行支付">
+<section class="face front" aria-label="K05 正面">
+<div class="card-body">
+<div class="meta"><span>K05 · 常识：先行支付</span><span>正面</span></div>
+<div class="who"><div class="who-era">今天</div><div class="who-role"><span class="who-label">你的身份</span>胜诉后却发现公司注销、执行不到钱的工人</div></div>
+<div class="story"><p>你受了工伤，官司打赢了，判决书写明单位应支付你各项工伤保险待遇几十万元。可申请强制执行时发现：公司账户是空的，厂房是租的，人也不见了。法院裁定终结执行程序。</p><p>判决成了“法律白条”。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">这张白条，下一步怎么兑现？去找谁？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>去找社保经办机构，申请工伤保险基金先行支付——《社会保险法》第41条：单位不支付的，从基金中先行支付，基金再向单位追偿</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>没有别的办法，只能自己继续找老板</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>要靠媒体曝光才有人垫付</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K05 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K05 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K05 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">《社会保险法》第41条确立了先行支付制度：用人单位不支付的，从工伤保险基金中先行支付，基金再向单位追偿。</p><p class="history-body">去找社保经办机构，申请先行支付——《社会保险法》第41条：单位不支付的，从工伤保险基金中先行支付，基金再向单位追偿。</p><p class="history-body">2002年的深圳，陈用刚就走过这条路的前身：厂方未参保又搬迁失联，法院终审判令社保机构依特区条例垫付已确定的工伤待遇，并且指出——机构自己查到“厂方搬迁、下落不明”，就不能再要求工人去证明“厂方没付过钱”。</p><p class="history-body">2011年7月1日，《社会保险法》施行，第41条把这一思路写进国家法律：职工所在用人单位未依法缴纳工伤保险费，发生工伤事故的，由用人单位支付工伤保险待遇；用人单位不支付的，从工伤保险基金中先行支付。先行支付的款项，由基金向用人单位追偿。周立太称陈用刚案是这一制度的先声——此为其本人自述。</p><p class="history-body">现实提醒：先行支付落地并不容易。伍锡梅案里，社保局以“公司从未参保”为由拒绝支付，家属又打了六轮程序，2021年才经再审改判拿到支付决定（见 K06）。</p><div class="knowledge"><p class="knowledge-label">工伤保险基金先行支付</p><p>适用情形：单位未依法缴纳工伤保险费、发生工伤，单位又不支付待遇。<span class="law-ref">　《社会保险法》第41条（2011-07-01施行）</span></p><p>程序入口：依法经仲裁/诉讼后仍不能获得待遇、法院出具中止/终结执行文书的，可向社保经办机构申请先行支付。<span class="law-ref">　《社会保险基金先行支付暂行办法》第6条（卷内引用）</span></p><p>基金垫钱后，社保部门有权再向单位把这笔钱要回来（这就是“追偿”）。<span class="law-ref">　《社会保险基金先行支付暂行办法》</span></p></div>
+</div>
+<p class="source">依据：陈用刚案二审判决；社保法第41条；伍锡梅案判决引文</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K05 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K06" data-topic="常识：先行支付">
+<section class="face front" aria-label="K06 正面">
+<div class="card-body">
+<div class="meta"><span>K06 · 常识：先行支付</span><span>正面</span></div>
+<div class="who"><div class="who-era">2018—2021年 · 重庆</div><div class="who-role"><span class="who-label">你的身份</span>替工亡丈夫申请先行支付的家属</div></div>
+<div class="story"><p>丈夫江福坤在工地突发疾病死亡，认定了因工死亡，判决书判公司赔114万余元，执行终结，一分钱没拿到。你按《社会保险法》第41条，向社保局申请先行支付。</p><p>社保局答复：不予支付。理由是——你丈夫的公司“从未参加”工伤保险，不属于41条说的“未依法缴纳”情形。一审、二审、再审，法院都支持了社保局。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">这道门被“从未参保”四个字堵死，下一步怎么走？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>向人大申请对高院解答文件进行备案审查</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>接受结果，制度就是这样</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>继续逐级信访</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K06 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K06 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K06 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">代理律师申请备案审查；人大审核后责令废除高院解答第24条；检察院抗诉；2021年12月6日再审改判，社保局限60日内支付。</p><p class="history-body">先行支付申请2019年5月6日被书面拒绝：公司“从未参保”，不算41条的“未依法缴纳”。一审、二审（2020-05-20）、再审（2020-08-20）均未支持。挡路的是重庆高院一份解答的第24条。</p><p class="history-body">转机来自另一条路径：周立太向市人大申请“备案审查”——请人大查一查法院这份解答合不合法。人大审核后责令废除该条，高院2021年2月25日发文废止；检察院提出抗诉（认为原判有误，要求重审），高院指令再审，五中院2021年12月6日改判：限社保局60日内支付江福坤的工伤保险待遇。从丈夫去世到改判，六年。</p><div class="knowledge"><p class="knowledge-label">被文件挡住时：备案审查</p><p>法院、政府发的文件，如果和国家法律相冲突，老百姓可以向人大常委会写信，请它审查这份文件——本案正是这条路径让限制性条文被废止。<span class="law-ref">　备案审查制度（监督法）</span></p><p>检察院抗诉是再审的启动渠道之一：本案经市检察院抗诉、高院指令再审后改判。<span class="law-ref">　民事诉讼法再审程序</span></p><p>“单位从未参保”不该成为拒绝先行支付的理由——再审判决给出了这个答案。<span class="law-ref">　重庆五中院2021-12-06再审判决</span></p></div>
+</div>
+<p class="source">依据：伍锡梅案卷宗（行政卷）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K06 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K07" data-topic="常识：程序与费用">
+<section class="face front" aria-label="K07 正面">
+<div class="card-body">
+<div class="meta"><span>K07 · 常识：程序与费用</span><span>正面</span></div>
+<div class="who"><div class="who-era">2007年10月 · 重庆万州</div><div class="who-role"><span class="who-label">你的身份</span>被改制工厂解聘、想申请仲裁的老职工</div></div>
+<div class="story"><p>工厂改制，你们204名职工被解除劳动关系。有人干了二十一年。大家决定申请劳动仲裁，要求支付加班工资、被克扣的工资、住房补贴、失业保险金等，合计3000多万元。</p><p>2007年11月，仲裁委的交费通知来了：立案要交的受理费加上按争议金额比例算的处理费，共349826元。你们申请减交、免交或者缓交，被拒绝——按规定得先让工会开出一份“确实困难”的证明。老职工说：还不知道能不能讨回工资，就要先交35万？“依法维权简直是件奢侈品！”</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">这笔钱和这道程序门槛，后来怎么样了？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>交费是法定要求，只能想办法凑钱</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>事情经媒体报道后引发制度变化——收费办法被撤销</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>换个别的人名义分案申请，绕开收费</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K07 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K07 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K07 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">新华社2008年1月报道此事后，仲裁委实收20500元并开庭；重庆市撤销了仲裁收费办法，提前执行“仲裁不收费”。</p><p class="history-body">2008年1月22日，新华社“新华视点”播发报道。此前204名职工已向重庆市法制办申请重新审查收费办法。</p><p class="history-body">报道之后：仲裁委按每人100元实收处理费共20500元，开庭审理，不再收取其他费用；重庆市法制办（市政府管文件合法性的部门）依法撤销《重庆市劳动争议仲裁收费管理办法》；市劳动部门表示将提前执行《劳动争议调解仲裁法》“仲裁不收费”的规定（该法2008年5月1日施行，立法在前、事件在后，本案促成的是提前执行）。</p><div class="knowledge"><p class="knowledge-label">仲裁收费的终结</p><p>劳动争议实行“先仲裁、后诉讼”的前置程序——仲裁是必经的第一道门。<span class="law-ref">　劳动争议处理制度通行规则</span></p><p>2008年5月1日起，劳动争议仲裁不收费，经费由财政保障；此前重庆按标的额1%预收处理费（标的超10万元部分）。<span class="law-ref">　《劳动争议调解仲裁法》第53条；原重庆市收费办法（已撤销）</span></p><p>当时申请减、免、缓须凭工会困难证明——83人案中农村工人因“不是城市低保户”开不出证明，是同一道门槛的另一种卡法（见S15）。<span class="law-ref">　本馆《维权的窘境》2005报道</span></p></div>
+</div>
+<p class="source">依据：太白204人案（wiki页：新华社等报道）；劳动争议调解仲裁法</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K07 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K08" data-topic="常识：劳动关系">
+<section class="face front" aria-label="K08 正面">
+<div class="card-body">
+<div class="meta"><span>K08 · 常识：劳动关系</span><span>正面</span></div>
+<div class="who"><div class="who-era">2016年9月7日 · 重庆开州</div><div class="who-role"><span class="who-label">你的身份</span>52岁还在工地干活的女工</div></div>
+<div class="story"><p>你52岁，在北部新区一个整治工程的工地上做混凝土搅拌。清洗搅拌机时，有人误合了电闸，你的右腿被机器卷了进去。消防把你救出来时，腿已经保不住了。</p><p>人社局认定了工伤。可当你申请劳动仲裁主张待遇时，仲裁委说：你已年满52周岁，主体不适格，不予受理。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">超过退休年龄的劳动者受伤，路在哪里？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>劳动仲裁是唯一入口，不受理就没有办法了</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>可以转入民事诉讼路径主张赔偿，但程序更长、更绕</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>过了退休年龄受伤一律不算工伤</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K08 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K08 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K08 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">郑能必转入民事诉讼继续主张；她的案子先后经历仲裁不予受理、民事诉讼、再审申请。</p><p class="history-body">郑能必的右踝部毁损型离断伤被认定为工伤（2016年11月7日）。但申请仲裁时，仲裁委员会不予受理（2017年4月13日），理由是她已年满52周岁——“主体不适格”，意思是她超出了劳动仲裁接收申请的范围。案件转入民事诉讼，后来还提交了民事再审申请——理由包括程序异议和实体主张（未参加养老保险人员的一次性伤残就业补助金应全额支付）。</p><p class="history-body">超过法定退休年龄的劳动者：工伤可以认定，但劳动仲裁这道门常常进不去，被迫绕道民事诉讼。同一年出生的农民工群体里，这样“认定得了工伤、拿不到待遇”的循环并不少见。</p><div class="knowledge"><p class="knowledge-label">超龄劳动者的程序困境</p><p>达到法定退休年龄的劳动者，工伤认定可以做（本案即被认定）；但劳动仲裁常以“主体不适格”（超过法定年龄、不在受理范围内）为由不予受理。<span class="law-ref">　郑能必案（2017-04-13不予受理）</span></p><p>之后的路径通常是民事诉讼主张用工主体责任/人身损害赔偿——程序更长。<span class="law-ref">　本案走向（(2017)渝0154民初2917号）</span></p><p>这个问题至今仍有地方差异，最高法相关司法解释与各地做法不完全一致，个案需具体分析。<span class="law-ref">　通行实务提示</span></p></div>
+</div>
+<p class="source">依据：郑能必案（wiki页；案卷OCR）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K08 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K10" data-topic="常识：习以为常">
+<section class="face front" aria-label="K10 正面">
+<div class="card-body">
+<div class="meta"><span>K10 · 常识：习以为常</span><span>正面</span></div>
+<div class="who who-solo"><div class="who-era">年份竞猜</div></div>
+<div class="story"><p>每周工作40小时、周六周日休息——这项制度写在纸面上人人有份，落到现实里却千差万别。今天仍有不少公司实行996、大小周，加班文化并没有消失。</p><p>不过，“每周工作40小时、双休”成为全国制度，有一个确切的年份。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">“每周工作40小时、双休”是哪一年成为全国制度的？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>1980年代就有了</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>1995年5月1日（企业最迟1997年5月）</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>2008年劳动合同法施行时</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K10 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K10 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K10 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">1995年5月1日。双休制度的全国推行，距今不过三十年。</p><p class="history-body">今天写在制度里的“双休”，是1995年5月1日由国务院令第174号确立的：每日8小时、每周40小时。机关事业单位周六日为周休息日；企业可灵活安排，执行有困难的最迟1997年5月1日起施行。在此之前，1994年3月先实行过一段“大小礼拜”（隔周双休）。</p><p class="history-body">本馆材料里，加班费的痕迹到处都是：深圳糖厂29名工人1990至2004年间长期被欠加班工资，2000年代追索加班费的仲裁要交十余万元费用；直到2008年5月1日《劳动争议调解仲裁法》施行，劳动仲裁才不再收费。“每周40小时”和“加班要给钱”，都远比想象中年轻。</p><p class="history-body">至于纸面之外——996为什么屡禁不止、拒绝996被辞退怎么办，见 K23。</p><div class="knowledge"><p class="knowledge-label">习以为常的时间点</p><p>双休（每周40小时）：1995-05-01起施行，企业最迟1997-05-01。<span class="law-ref">　国务院令第174号</span></p><p>加班费的法定标准1995年随《劳动法》施行——但在流水线上被长期拖欠是常态，本馆多起案件即为追索加班工资。<span class="law-ref">　《劳动法》第44条；本馆案件记载</span></p><p>劳动仲裁不收费：2008-05-01起。<span class="law-ref">　《劳动争议调解仲裁法》第53条</span></p></div>
+</div>
+<p class="source">依据：国务院令第174号；周立太博文案例3；劳动争议调解仲裁法</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K10 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K11" data-topic="常识：习以为常">
+<section class="face front" aria-label="K11 正面">
+<div class="card-body">
+<div class="meta"><span>K11 · 常识：习以为常</span><span>正面</span></div>
+<div class="who"><div class="who-era">2006年12月</div><div class="who-role"><span class="who-label">你的身份</span>考虑要不要接工伤风险代理的律师</div></div>
+<div class="story"><p>你是2006年的律师。一个工伤工人付不起律师费，问你能不能“打赢再付费”。在这之前，这是行业的常见做法：本馆档案里，周立太1996年起对农民工大量采用风险代理，“不打赢不收钱”，也因此深度陷入欠费困境。</p><p>2006年，国家出台《律师服务收费管理办法》。你翻了翻条文，发现事情变了。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">按新规，工伤赔偿案件还能不能实行风险代理？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>可以，只要双方自愿签合同</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>不可以——工伤赔偿、索要劳动报酬等案件明文禁止</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>只有刑事案件禁止</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K11 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K11 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K11 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">不可以。《律师服务收费管理办法》第十一条把工伤赔偿、请求支付劳动报酬、社保待遇等案件列为禁止风险代理的情形。</p><p class="history-body">条文列出四类除外情形：婚姻继承；社会保险待遇或最低生活保障待遇；赡养费抚养费及抚恤金、救济金、工伤赔偿；请求支付劳动报酬。这类案件关乎基本生存，不宜让收费与结果挂钩。</p><p class="history-body">打不起官司怎么办？制度给了几条别的路：法律援助（2003年起有全国条例；2022年《法律援助法》施行后进一步扩展）；劳动仲裁免费（2008年起）；诉讼费可以申请缓交、减交、免交——彭刚中起诉时缓交了诉讼费，太白酒厂204人则被35万元仲裁费挡在门外，直到仲裁收费取消。</p><p class="history-body">周立太2007年接受采访时说：“2006年12月1日以前，考虑到有些农民工付不起钱，我对部分农民工官司实行风险代理……但是这样却使我深深陷入经济上的困难。2006年之后，根据国家规定，不再实行风险代理制了。”</p><p class="history-body">先有付不起钱的工人和愿意垫风险的律师，后有禁止风险代理的规则；欠费与执业困境，是规则变迁背后没写进条文的代价。</p><div class="knowledge"><p class="knowledge-label">打不起官司的人怎么办</p><p>法律援助：经济困难的公民可以申请免费法律援助律师（2003年《法律援助条例》施行；2022年《法律援助法》进一步扩展）。<span class="law-ref">　《法律援助条例》（2003）；《法律援助法》（2022）</span></p><p>劳动争议仲裁不收费：2008年5月1日起，仲裁费用由财政保障。<span class="law-ref">　《劳动争议调解仲裁法》第53条</span></p><p>诉讼费缓交、减交、免交：交不起可以申请司法救助（彭刚中案、太白酒厂204人案都走过缓交/减交路径）。<span class="law-ref">　《诉讼费用交纳办法》（2007）；本馆案件记载</span></p></div>
+</div>
+<p class="source">依据：《律师服务收费管理办法》第11条；2007年采访</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K11 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K14" data-topic="常识：习以为常">
+<section class="face front" aria-label="K14 正面">
+<div class="card-body">
+<div class="meta"><span>K14 · 常识：习以为常</span><span>正面</span></div>
+<div class="who"><div class="who-era">1994年 · 重庆开县</div><div class="who-role"><span class="who-label">你的身份</span>想在砖瓦厂讨回工资的工人</div></div>
+<div class="story"><p>1980年代初，你在湖南的砖瓦厂挑砖。有人为讨薪和厂里打了起来。你想：不打架，还有什么办法？彼时的你不知道找谁、翻哪部法律——因为全国层面，确实还没有一部劳动基本法。</p><p>转折在1994年7月5日：《劳动法》通过，1995年1月1日施行。这是新中国第一部系统规定劳动合同、工资、工时、劳动保护、社会保险的劳动基本法。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">《劳动法》施行之前，打工者遇到欠薪、工伤，主要靠什么？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>劳动仲裁和法院</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>全国统一的劳动基本法并不存在——主要靠地方规定、行政协调，或忍</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>劳动教养制度</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K14 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K14 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K14 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">全国性的劳动基本法1995年才施行。此前靠地方性规定与行政协调，救济渠道稀少。</p><p class="history-body">再具体一点：全国层面并非完全空白——《劳动法》之前有1993年国务院《企业劳动争议处理条例》，劳动争议仲裁委员会在企业里开始建立；再往前，1987年国务院也发过《国营企业劳动争议处理暂行规定》，但只适用于国营企业职工。对1990年代涌向珠三角、长三角的农民工来说，这些渠道基本够不着：没有全国性法律明确合同、工资、工伤该按什么标准处理，遇到欠薪，多数靠老乡、靠厂方自觉、靠行政协调，或者忍。</p><p class="history-body">本馆 wiki 记有一条常被忽视的常识：《劳动法》出台后，“过去的临时工与正式工的概念随之消除”——形成劳动关系后应无条件办理各项社会保险，“法律规定是统一的一个标准”，不存在农民工与城市工人的区别对待空间（此为周立太的援引与主张）。</p><p class="history-body">一部1995年的法律，把“打工”从身份差异拉进了统一的权利框架。今天习以为常的“签合同、缴社保、加班费、工伤赔偿”，追到源头都是那一年才开始在全国层面成文——而让纸面权利变成可执行的权利，又用了此后三十年。</p><div class="knowledge"><p class="knowledge-label">习以为常的权利有多年轻</p><p>《劳动法》1995-01-01施行：新中国第一部劳动基本法，签合同、社会保险、工时、加班费、工伤待遇自此有全国统一框架。<span class="law-ref">　《劳动法》</span></p><p>此前：1987年《国营企业劳动争议处理暂行规定》→1993年《企业劳动争议处理条例》→1995年《劳动法》。<span class="law-ref">　国务院行政法规序列（馆外公开资料）</span></p><p>馆内对照：W06/S19——周立太1980年代的自学法律，正发生在“无法可依”的年代。<span class="law-ref">　本馆档案（砖瓦厂讨薪与自学法律的经历）</span></p></div>
+</div>
+<p class="source">依据：《劳动法》（1994通过/1995施行）；本馆wiki；周立太早年经历</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K14 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K17" data-topic="常识：习以为常">
+<section class="face front" aria-label="K17 正面">
+<div class="card-body">
+<div class="meta"><span>K17 · 常识：习以为常</span><span>正面</span></div>
+<div class="who"><div class="who-era">1997—1999年 · 深圳宝安、龙岗</div><div class="who-role"><span class="who-label">你的身份</span>发现自己“买了保险反而赔得少”的工人</div></div>
+<div class="story"><p>你受了工伤，鉴定了伤残等级。当初厂里给你办了工伤保险——赔偿由社保基金出，按理说不用怕厂里赖账。</p><p>可拿到处理决定一看：你的赔偿按1993年的月平均工资679元计算。而同一家厂里没办保险、由厂方自己赔的工友，反而按上年度的1378元算——算下来比你多出几万元。</p><p>买了保险的赔得少，没买的赔得多——这是为什么？</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">这种怪事，为什么会发生？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>社保局算的总不会错，可能政策就是这样</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>两者依据的计算规则不一样，可能有一方算错了</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>不知道，想知道答案</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K17 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K17 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K17 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">数百名工人分批起诉了两个区的社保局。1998年6月19日，深圳中院行政庭当庭终审，王琼等7人胜诉。</p><p class="history-body">怪事的答案，出在“计发基数冻结”：法规写的是按“市上年度”社会月平均工资计算，社保局却一直停在1993年的679元——平均工资年年涨，赔偿标准不涨。而未参保由企业赔偿的工人，走的是民事判决路径，法院按上年度的1378元算——两套轨道，两种基数，就出现了“参保的反而赔得少”。</p><p class="history-body">据周立太自述，1997年6月至2001年，他代理王琼等数百名伤残工人，先后起诉深圳宝安、龙岗两区社保局，全部采用风险代理（胜诉才收费）。1998年前，这批案件被两区法院及深圳中院判决工人全部胜诉，法院责令社保局重新作出工伤保险待遇处理决定。</p><p class="history-body">这场系列诉讼纠正的正是基数冻结。参与诉讼的每个工人因此多拿到数万元。今天习以为常的“赔偿随社会平均工资更新”，当年是几百场官司打出来的。</p><div class="knowledge"><p class="knowledge-label">习以为常的“按现行标准赔”</p><p>赔偿基数应随“上年度社会平均工资”逐年更新，不是某一年冻结的数字。<span class="law-ref">　深圳特区工伤保险法规</span></p><p>参保倒挂：1993—1999年深圳两区按679元（1993年标准）计发，未参保由企业赔的反而按1378元（上年度标准）——买保险的赔得少（周立太自述，有法院判决为证）。<span class="law-ref">　周立太博文</span></p><p>对社保机构的处理决定不服，可以提起行政诉讼——“民告官”在工伤领域是常用路径。<span class="law-ref">　行政诉讼法（1990年施行）</span></p></div>
+</div>
+<p class="source">依据：周立太博文（参保倒挂自述）；王琼案（wiki页）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K17 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K18" data-topic="常识：工伤认定">
+<section class="face front" aria-label="K18 正面">
+<div class="card-body">
+<div class="meta"><span>K18 · 常识：工伤认定</span><span>正面</span></div>
+<div class="who"><div class="who-era">2004—2005年 · 浙江温州</div><div class="who-role"><span class="who-label">你的身份</span>被要求“放弃职业病诊断”换赔偿的矽肺工人</div></div>
+<div class="story"><p>你在矿石研磨厂磨了多年矿石，天天吸粉尘。同乡陆续有人查出矽肺——肺上落了洗不掉的石头粉尘，病情只会加重，不会好转。有人已经死了。</p><p>厂里找到病重的工友家属：签一份调解协议，放弃申请职业病诊断、放弃向劳动部门申诉和向法院起诉，换一笔钱——一位母亲就这样拿到了大儿子的命钱3.2万元和小儿子的医疗费4.7万元。现在协议递到了你面前。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">这份“放弃诊断换赔偿”的协议，签了会怎样？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>签了——拿到手的钱才是真的，诊断要拖很久</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>不签——职业病诊断是法定权利，这种协议可以被认定显失公平</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>签了但私下继续去看病</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K18 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K18 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K18 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">当地检察院后来认定这类调解“显失公平”，介入调查并委托疾控中心为工人们做了职业病诊断：11人确诊二期、三期矽肺。</p><p class="history-body">这是温州龙湾区一起矽肺系列案的开端。检察院介入后，温州市疾控中心为相关民工作出职业病诊断，11人确诊，后鉴定为2至4级伤残；2004年10月，劳动部门作出工伤认定。厂方不服，经复议、行政诉讼，一审曾撤销工伤认定，2005年8月温州中院改判确认工伤。</p><p class="history-body">2005年5月，11名工人赴重庆委托周立太、白自强代理维权。索赔走了五年，11人中有7人在等待中去世——诉讼长过了生命。</p><p class="history-body">常识：接触粉尘等职业危害的工人有法定的职业病诊断权利；“自愿放弃诊断和诉权”的协议，可能被认定显失公平而无效。</p><div class="knowledge"><p class="knowledge-label">职业病诊断是权利</p><p>怀疑因工作患病，可以向职业病诊断机构申请诊断；确诊职业病的，属工伤。<span class="law-ref">　《职业病防治法》；《工伤保险条例》第14条第(四)项</span></p><p>“放弃诊断、放弃申诉诉讼权换一笔钱”的协议，在个案中被检察院认定显失公平——不是签了字就一了百了。<span class="law-ref">　温州矽肺案（龙湾区人民检察院）</span></p><p>职业病有潜伏期：粉尘吸入后可能数年后才确诊，证据（劳动关系、接触史）要尽早留存。<span class="law-ref">　通行实务提示</span></p></div>
+</div>
+<p class="source">依据：何树林等11人温州矽肺案（wiki页）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K18 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K19" data-topic="常识：工伤认定">
+<section class="face front" aria-label="K19 正面">
+<div class="card-body">
+<div class="meta"><span>K19 · 常识：工伤认定</span><span>正面</span></div>
+<div class="who"><div class="who-era">1998年9月 · 深圳宝安</div><div class="who-role"><span class="who-label">你的身份</span>在门卫室上夜班猝死的门卫的家属</div></div>
+<div class="story"><p>你的家人在厂里做门卫，上夜班，第二天早上被人发现死在门卫室里。公安鉴定为猝死——突然的、不明原因的死亡。劳动局认定：属因工死亡。</p><p>厂方不服，提出异议。厂方的理由不是“不是上班时间”，也不是“不是工作场所”，而是：法医鉴定显示他死亡时在做一件私人的、不体面的事——所以不算“因工”。厂方申请了复议，又把官司打到法院。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">门卫在门卫室值夜班时猝死——算工伤吗？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>算——工作时间、工作岗位上猝死，就是因工死亡</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>不算——他死亡时在做私人的事，不是在干活，厂方正是这么主张的</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>算不算，要看厂里态度</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K19 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K19 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K19 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">算。复议和一审、二审都维持了工伤认定：占善林属因工死亡。</p><p class="history-body">占善林1994年入职深圳宝安一家模具塑胶厂做门卫，月薪400元，签了劳动合同，但厂里没办工伤保险。1998年9月他上夜班时猝死于门卫室，宝安区劳动局认定因工死亡。厂方以死亡时的私人行为为由，经行政复议、一审、二审行政诉讼，法院均维持工伤认定。</p><p class="history-body">此后又经仲裁和民事诉讼，家属终获赔偿127173.6元，并执行到位。</p><p class="history-body">常识：工伤认定看的是“工作时间、工作场所、工作原因”这些法定要件；死亡时的私人情形不体面，不等于法律上的排除事由。</p><div class="knowledge"><p class="knowledge-label">猝死与工伤</p><p>在工作时间和工作岗位、工作范围内猝死的，应当认定为工伤（本案适用特区条例；现行制度为“突发疾病死亡或48小时内抢救无效死亡视同工伤”；现行《工伤保险条例》第15条同旨）。<span class="law-ref">　占善林案；现行《工伤保险条例》第15条</span></p><p>厂方不服工伤认定，可以复议、可以告劳动局——认定书的争议本身就是一场行政诉讼。<span class="law-ref">　本案程序</span></p><p>死亡时的私人行为不构成法律上的排除事由——代理意见：不违反法律禁止性规定，不影响工伤认定。<span class="law-ref">　本案代理意见（归属律师）</span></p></div>
+</div>
+<p class="source">依据：占善林案（wiki页；案卷材料）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K19 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K20" data-topic="常识：赔偿计算">
+<section class="face front" aria-label="K20 正面">
+<div class="card-body">
+<div class="meta"><span>K20 · 常识：赔偿计算</span><span>正面</span></div>
+<div class="who who-solo"><div class="who-era">1997—2000年 · 深圳</div></div>
+<div class="story"><p>本馆档案里躺着一条不断被刷新的曲线：同类断手工伤的赔偿，1990年代前期是三万多元（“断手价”）；1997年彭刚中案判了17.2万元；到2000年前后，刘涛案出现了当时全国工伤赔偿的最高纪录。</p><p>刘涛31岁，在织布厂工作时双上臂被轧断，一级伤残，厂里没办工伤保险。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">猜个数字：刘涛案最后判了多少？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>30万元上下</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>80万元上下</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>150万元以上</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K20 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K20 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K20 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">158万元。历时约两年，经工伤认定、仲裁、一审、二审，终审法院判令厂方赔偿伤残补助金及假肢更换费共158万元，创当时全国工伤赔偿金额之最。</p><p class="history-body">这起案件上了中央电视台新闻联播。</p><p class="history-body">从三万出头到十七万，再到一百五十八万，变的主要不是经济，而是规则本身：基数怎么取、哪些项目算赔、算到多久，都是被案件一个个改写的。</p><p class="history-body">彭刚中案（1997）确立的是计发基数按上年度社会平均工资、假肢更换费一次性支付；刘涛案（约2000年）在此基础上把一级伤残（双臂截断）的补助金与假肢费累加到158万元。</p><p class="history-body">这个案子还留下了另一颗种子：最高人民法院在判例选编的评语中认为，工伤赔偿中的精神损失费问题“应当引起关注”，建议在将来的司法解释中加以规范。</p><p class="history-body">（对比注意：158万为一级伤残（双臂）含假肢更换费的总和，与单臂五级17万不可直接等同比较。）</p><div class="knowledge"><p class="knowledge-label">纪录是怎么产生的</p><p>赔偿金额＝计发基数×等级系数×项目月数；基数按上年度社会平均工资、假肢更换费一次性支付等规则被早期案件确立后，金额随之抬升。<span class="law-ref">　彭刚中案（1997）判决</span></p><p>精神损失费进入工伤赔偿的议题，从刘涛案起被最高法判例选编提出“应当引起关注”。<span class="law-ref">　最高法判例选编评语（wiki页记载）</span></p><p>对比注意：158万为一级伤残（双臂）含假肢更换费的总和，与单臂五级17万不可直接等同比较。<span class="law-ref">　本卡编者注</span></p></div>
+</div>
+<p class="source">依据：刘涛案（wiki页）；彭刚中案</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K20 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K21" data-topic="常识：程序空转">
+<section class="face front" aria-label="K21 正面">
+<div class="card-body">
+<div class="meta"><span>K21 · 常识：程序空转</span><span>正面</span></div>
+<div class="who"><div class="who-era">2008—2010年 · 重庆万州</div><div class="who-role"><span class="who-label">你的身份</span>等待丈夫工伤认定结果的遗孀</div></div>
+<div class="story"><p>2008年3月5日，你的丈夫在公海捕鱼时坠海身亡。他是由劳务公司派到台湾籍渔船上的。三个月后，人社局作出决定：不属因工死亡。</p><p>你不服，委托律师开始走程序。此后两年多发生的事按时间排开：你起诉，人社局自己撤销了原决定，你撤诉；它重新作出决定，还是不属工亡；区政府复议撤销、责令重作；劳务公司起诉被驳回；人社局又发通知，要求先去仲裁确认劳动关系；2010年6月，仲裁裁决：你丈夫与劳务公司之间不存在劳动关系。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">你丈夫的死，到底属不属于工伤？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>属于——人是派往渔船工作时坠海的，应当认定为因工死亡</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>不属于——公海、台湾籍渔船、劳务中介，情况特殊</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>问了两年五个月，这个问题还没有被回答</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K21 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K21 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K21 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">两年五个月，十几道程序，“属不属于工伤”这个问题始终没有得到回答。</p><p class="history-body">这是谭跃民案。到2010年9月，工伤认定仍然没有定论——代理律师周立太后来写道：“还没有进入为丈夫之死讨说法的第一道门槛。”</p><p class="history-body">为什么一个“是不是工伤”的问题两年多没有答案？本案的典型之处在于：以“先确认劳动关系”作为工伤认定的前置——劳动部门发出补证通知，要求先去仲裁确认死者与劳务公司有没有劳动关系，仲裁又裁了“不存在”，认定随之悬置。而据周立太记载，劳务公司在此前的申请和庭审陈述中，一直明确承认与谭跃民的劳动关系，是在系列败诉之后才转而否认的——这是他的单方陈述。</p><p class="history-body">这类现象有个名字：程序空转——每个程序都合规地走完，工亡的性质却没有结论。“以确认劳动关系为由中止认定”至今仍有争论。</p><p class="history-body">后续：黄书银就“不存在劳动关系”的仲裁裁决另行提起了诉讼，案件在审。截至档案记载的2010年9月，谭跃民之死是否属于工伤，仍无最终结论；此后档案里没有更多记载。程序节点据博文整理，本卡只采用程序事实。</p><div class="knowledge"><p class="knowledge-label">程序空转与它的名字</p><p>工伤维权可能经过：工伤认定→复议→行政诉讼（一审、二审）→发回重作→再复议→再诉讼→仲裁确认劳动关系→民事诉讼……每一步都合法，实体却悬而未决。<span class="law-ref">　谭跃民案程序链（2008-2010）</span></p><p>“先确认劳动关系”可能被用作拖延：职业病诊断时单位已盖章确认，认定时却又要求重新仲裁确认。<span class="law-ref">　谭少柏案（对照样本）</span></p><p>应对路径之一是程序外的：备案审查、检察监督、媒体报道——本案即经媒体报道进入公共视野。<span class="law-ref">　本馆档案</span></p></div>
+</div>
+<p class="source">依据：谭跃民工亡系列案（wiki页；BK-0101 博文程序事实短引）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K21 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K22" data-topic="常识：工伤认定">
+<section class="face front" aria-label="K22 正面">
+<div class="card-body">
+<div class="meta"><span>K22 · 常识：工伤认定</span><span>正面</span></div>
+<div class="who"><div class="who-era">2023—2025年</div><div class="who-role"><span class="who-label">你的身份</span>刚接到噩耗的家属</div></div>
+<div class="story"><p>亲人连着加班，深夜到家，几小时后猝然离世。悲痛之余，一个现实的问题摆在面前：这算工伤吗？</p><p>两件真实案子，结局相反——案A：湖南一位设计师，周六在公司加班到凌晨三点，回家躺下，三小时后猝死。人社局最初认定：不算。案B：湖北一位保洁员，上完一整天班、开完晚例会，22:30打卡下班，第二天早晨被发现死于家中。人社局认定：不算，家属打了行政复议和行政诉讼，都输了。</p><p>同样是在家中去世，一个最后改判算工伤，一个始终不算。差别在哪里？</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">案A的家属起诉后，法院最终会怎么判？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>算——疾病是一个连续过程，从工位到家只是换了个地方继续发病</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>不算——人都到家了，就不在工作时间和工作岗位</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>各判各的，没有一定之规</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K22 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K22 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K22 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">算。长沙的法院最终判决：视同工伤。</p><p class="history-body">案A（长沙设计师案）：法院认为，疾病的发生是一个连续的过程——从在工位上发病，到回家加重，再到死亡，是无缝衔接的。人社局最初的不予认定，被法院纠正。</p><p class="history-body">案B（湖北保洁员案）：关键事实不同——他在岗期间没有任何发病记录，疾病发作和死亡都发生在家中，完全缺失“工作时间＋工作岗位”两个法定前提。行政复议、一审、二审都维持了不予认定。</p><p class="history-body">两个案子对照，规则其实清楚：《工伤保险条例》第15条规定，在工作时间和工作岗位突发疾病死亡（或48小时内抢救无效死亡）的，视同工伤。争议都出在“发病从哪里开始”——病程从岗位上开始、延续到家的，法院倾向认定；发病完全在家、与在岗状态接不上的，认定不了。还有更进一步的判例：河南一位销售下班后在家用微信处理本职工作到晚上八点多，期间猝死，法院认定“在家加班也属于工作时间和工作岗位”，视同工伤。</p><div class="knowledge"><p class="knowledge-label">回家之后猝死，工伤的边界</p><p>法定规则：在工作时间和工作岗位，突发疾病死亡或在48小时之内经抢救无效死亡的，视同工伤。<span class="law-ref">　《工伤保险条例》第15条第(一)项</span></p><p>“连续性”是关键：发病始于岗位、延续到家中的，有判例支持视同工伤；在岗无发病证据、完全在家中发病的，通常无法认定。<span class="law-ref">　长沙设计师案；湖北保洁员案；山西运城出差返家案（一审撤销不予认定，二审维持）</span></p><p>在家线上办公期间猝死，同样可能被认定“在工作时间和工作岗位”。<span class="law-ref">　郑州居家微信办公案（一审、二审、再审均维持工伤认定）</span></p><p>现实提示：在岗感到严重不适尽量及时就医，并告知医生“加班后不舒服”；加班记录、工作群消息、就医病历都是证据。<span class="law-ref">　湖南长安网普法提示（通行实务提示）</span></p></div>
+</div>
+<p class="source">依据：湖南长安网；湖北日报；光明网；福州律师网评析（均为馆外来源，2026-10-22 核）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K22 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K23" data-topic="常识：习以为常">
+<section class="face front" aria-label="K23 正面">
+<div class="card-body">
+<div class="meta"><span>K23 · 常识：习以为常</span><span>正面</span></div>
+<div class="who"><div class="who-era">2020—2021年</div><div class="who-role"><span class="who-label">你的身份</span>刚被辞退的快递公司试用期员工</div></div>
+<div class="story"><p>你入职一家快递公司，合同写着试用期三个月。公司规章制度规定：工作时间为早9时至晚9时，每周工作6天——就是“996”。</p><p>干了两个月，你以工作时间严重超过法定上限为由，拒绝超时加班安排。公司随即以“试用期间被证明不符合录用条件”为由，和你解除劳动合同。</p><p>你去申请劳动仲裁。猜猜结果？</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">仲裁委员会会怎么裁？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>公司胜——不服从工作安排，辞退有理</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>你胜——996违法，辞退违法，公司要赔偿</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>调解了事——各退一步</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K23 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K23 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K23 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">你胜。仲裁裁决公司支付违法解除劳动合同赔偿金，案件还被通报劳动保障监察机构，公司被责令改正、给予警告。</p><p class="history-body">这是2021年8月人社部、最高法联合发布的劳动人事争议典型案例（第二批）里的真实案子：仲裁委员会裁决快递公司支付张某违法解除劳动合同赔偿金8000元，并将案件通报劳动保障监察机构，公司因规章制度违法被责令改正、给予警告。</p><p class="history-body">两部门的结论明确：“996”严重违反延长工作时间的上限规定，据此制定的规章制度应认定为无效。上限写在《劳动法》第41条：延长工作时间一般每日不超过1小时，特殊原因每日不超过3小时、每月不超过36小时。996每周6天、每天10小时以上，远超上限。拒绝违法超时加班是维护合法权益，不构成“不符合录用条件”。</p><p class="history-body">“大小周”是同一件事的变体：一个星期单休、下个星期双休，轮着来。2021年，快手、字节跳动相继取消大小周。告别大小周的那个月，不少字节员工工资降了约20%——加班费早已是工资的一部分。加班文化的账，从来不只是时间，还有钱。</p><div class="knowledge"><p class="knowledge-label">工时的法定上限</p><p>延长工作时间上限：一般每日不超过1小时；特殊原因每日不超过3小时、每月不超过36小时。<span class="law-ref">　《劳动法》第41条</span></p><p>“996”规章制度违反上限规定，无效；劳动者拒绝违法超时加班被辞退的，属违法解除，可获赔偿。<span class="law-ref">　人社部、最高法第二批劳动人事争议典型案例（2021-08）</span></p><p>大小周同样触碰工时上限；2021年起快手、字节等相继取消。馆内连线：K10——“每周40小时、双休”1995年才有，这一卡是它的当代下文。<span class="law-ref">　中国经济网2022-02报道；本馆卡片K10</span></p></div>
+</div>
+<p class="source">依据：人民日报客户端；中国经济网（馆外来源，2026-10-22 核）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K23 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K24" data-topic="常识：习以为常">
+<section class="face front" aria-label="K24 正面">
+<div class="card-body">
+<div class="meta"><span>K24 · 常识：习以为常</span><span>正面</span></div>
+<div class="who"><div class="who-era">今天</div><div class="who-role"><span class="who-label">你的身份</span>被安排假期加班的员工</div></div>
+<div class="story"><p>国庆假期，公司安排你加3天班。你想着法定节假日总该有三倍工资了吧，老板说：“不发了，给你安排调休，节后连休一星期，多好。”</p><p>你不太确定：调休到底能不能代替加班费？</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">老板这个操作，合法吗？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>合法——调休也是补偿，一换一没毛病</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>不合法——法定节假日加班必须另付三倍加班费，调休代替不了</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>看劳动合同怎么约定</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K24 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K24 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K24 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">不合法。法定节假日加班，必须支付加班费，调休、补休都不能代替。</p><p class="history-body">规则分三档，写在《劳动法》第44条：工作日延长工作时间，不低于工资的150%；休息日安排工作又不能安排补休的，不低于200%；法定休假日安排工作的，不低于300%。</p><p class="history-body">三档里只有一档能“用休换钱”：休息日加班，单位可以先安排补休，补不了才付200%。工作日和法定节假日加班都必须付加班费，调休不能冲抵——法定节假日具有不可替代性。劳动部1995年的补充规定还写明：法定节假日的300%是“另外支付”，当天工资照发，加班费在此基础上另算。</p><p class="history-body">再算一笔现实账：加班费基数按你正常工作时间的全部应得工资算（基本工资＋绩效＋奖金），不能按最低工资凑数。“看不见的加班”也算数：深圳一位员工下班后和周末常被要求线上处理工作、开会，辞职后凭打车记录和线上会议记录起诉，法院认定“非工作时间实质占用休息时间属于加班”，判公司支付加班工资1.4万元。</p><div class="knowledge"><p class="knowledge-label">加班费三档速查</p><p>工作日延长：≥150%；休息日不能补休：≥200%；法定节假日：≥300%且必须另付、不得以调休代替。<span class="law-ref">　《劳动法》第44条；劳部发〔1995〕226号；成都市人社局官方问答</span></p><p>只有休息日加班可以在“补休”与“加班费”之间二选一。<span class="law-ref">　成都市人社局；湖南省人社厅官方问答</span></p><p>加班费基数＝正常工作时间全部应得工资，不含最低工资套路。<span class="law-ref">　中工网劳动者权益小课堂</span></p><p>下班后线上处理工作、开会，实质占用休息时间的，可能构成“隐形加班”，可主张加班费。<span class="law-ref">　深圳南山区法院判例（媒体报道）</span></p></div>
+</div>
+<p class="source">依据：成都市人社局；湖南省人社厅；中工网（馆外官方/媒体来源，2026-10-22 核）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K24 · 当时发生的事 · 出处见正文</p>
+</section></article><article class="pair" data-id="K25" data-topic="常识：劳动关系">
+<section class="face front" aria-label="K25 正面">
+<div class="card-body">
+<div class="meta"><span>K25 · 常识：劳动关系</span><span>正面</span></div>
+<div class="who"><div class="who-era">2022—2025年</div><div class="who-role"><span class="who-label">你的身份</span>送外卖受伤的骑手</div></div>
+<div class="story"><p>你在城市里送外卖。没签劳动合同——平台合作公司跟你签的是承揽、合作协议，有的骑手甚至被要求先注册成“个体工商户”，再签协议。</p><p>一次送餐途中出了交通事故，受伤不轻。要报工伤，先得回答一个问题：你和平台公司之间，存在劳动关系吗？公司说：我们是合作关系，你自愿接单，不存在管理。</p></div>
+<div class="ask"><p class="ask-label">此刻要你决定</p><p class="question">法院会怎么认定？</p></div>
+<div class="options"><button class="option" data-choice="A" aria-pressed="false"><b>A</b><span>不存在——签的是承揽协议，白纸黑字</span></button><button class="option" data-choice="B" aria-pressed="false"><b>B</b><span>看用工事实——接不接受支配性管理，才是判断标准</span></button><button class="option" data-choice="C" aria-pressed="false"><b>C</b><span>一律存在——送外卖就是给他打工</span></button></div>
+</div>
+<div class="bottom"><span class="chosen" aria-live="polite">先作选择，再看真实后续</span><button class="flip">翻面看后续 →</button></div>
+<p class="print-foot">K25 · 历史情境改编 · 正面</p>
+</section>
+<section class="face back" aria-label="K25 背面" hidden>
+<div class="card-body">
+<div class="meta"><span>K25 · 当时真实发生的事</span><span>背面</span></div>
+<p class="history-answer">看用工事实。签什么协议不是关键，有没有“支配性劳动管理”才是。</p><p class="history-body">2025年1月，苏州中院对一起骑手案作出二审判决：改判认定骑手与平台用工公司存在劳动关系。法院看的不是协议名称，而是事实——改单要经站长；请假向站长报备，不得随意下线；病假要交病假单；报酬由站点核算，除按单计酬外还有考核项。结论：骑手对接单、何时接单、接什么单没有实质自主权，公司对其劳动管理具有明显的支配性。</p><p class="history-body">这背后是最高人民法院第42批新就业形态劳动争议指导性案例确立的规则：签订承揽、合作协议，甚至要求劳动者先注册为“个体工商户”再签约，都不能一票否定劳动关系——法院按用工事实，综合考虑工作时间与工作量的自主程度、受管理控制程度、报酬来源等因素认定。</p><p class="history-body">保险这边也有了新通道：2022年7月起，人社部等十部门在七省市针对出行、外卖、即时配送、同城货运四个行业开展职业伤害保障试点——平台按单缴费，骑手受伤可获保障待遇，不必先打一场劳动关系确认官司。那位苏州骑手就先拿到了职业伤害保障费。2025年4月，九部门发文用三年渐进扩围。</p><div class="knowledge"><p class="knowledge-label">平台用工的工伤之门</p><p>劳动关系认定看用工事实：存在“支配性劳动管理”即应认定，协议叫什么名字、是否注册个体工商户不决定结论。<span class="law-ref">　最高人民法院第42批指导性案例237、238号</span></p><p>职业伤害保障试点（2022-07起7省市4行业，2025年起3年扩围）：平台缴费、按单参保，受伤可获待遇，具有社会保险性质。<span class="law-ref">　人社部等十部门试点通知；2025年九部门扩围通知</span></p><p>获得职业伤害保障待遇后，因第三人侵权受伤的，仍可向第三人主张侵权赔偿——两种制度功能不同、并行不悖。<span class="law-ref">　最高人民法院新就业形态典型案例</span></p></div>
+</div>
+<p class="source">依据：央视网；最高人民法院官网；中国日报网（馆外来源，2026-10-22 核）</p><div class="bottom"><span></span><button class="flip">← 回到当时</button></div>
+<p class="print-foot">K25 · 当时发生的事 · 出处见正文</p>
+</section></article></main>
+<div id="print-sheets" class="print-sheets" aria-hidden="true"></div>
+<footer>正面依据历史材料改编；背面叙述当事人实际做过的事与后续经过。成品为 A5（148×210mm）卡：一张 A3 竖版拼 4 联，双面打印后沿中线裁成 4 张 A5，编号相对。线上版。</footer>
+<script>
+const pairs=[...document.querySelectorAll('.pair')];
+pairs.forEach(pair=>{
+ pair.querySelectorAll('.option').forEach(option=>option.addEventListener('click',()=>{
+  pair.querySelectorAll('.option').forEach(o=>o.setAttribute('aria-pressed',String(o===option)));
+  pair.querySelector('.chosen').textContent='你选了 '+option.dataset.choice;
+ }));
+ pair.querySelectorAll('.flip').forEach(button=>button.addEventListener('click',()=>{
+  const front=pair.querySelector('.front'),back=pair.querySelector('.back');
+  front.hidden=!front.hidden;back.hidden=!back.hidden;
+  (front.hidden?back:front).querySelector('.flip').focus({preventScroll:true});
+ }));
+});
+document.querySelectorAll('.filter').forEach(button=>button.addEventListener('click',()=>{
+ const value=button.dataset.topic;
+ pairs.forEach(p=>p.hidden=value!=='全部'&&p.dataset.topic!==value);
+ document.querySelectorAll('.filter').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+ document.querySelector('.count').textContent=pairs.filter(p=>!p.hidden).length+'张';
+}));
+const printHost=document.getElementById('print-sheets');
+function buildPrintSheets(){
+ printHost.innerHTML='';
+ const visible=pairs.filter(p=>!p.hidden);
+ for(let i=0;i<visible.length;i+=4){
+  const group=visible.slice(i,i+4);
+  const front=document.createElement('section');front.className='sheet';
+  const back=document.createElement('section');back.className='sheet';
+  const fc=group.map(p=>p.querySelector('.front').cloneNode(true));
+  const bc=group.map(p=>p.querySelector('.back').cloneNode(true));
+  fc.forEach(n=>{n.classList.remove('hidden');n.removeAttribute('hidden');n.classList.add('pcard');front.appendChild(n);});
+  // 双面打印「长边翻面」后纸面左右互换，故背面页行内左右对调
+  const swap=[];
+  for(let k=0;k<bc.length;k+=2){swap.push(bc[k+1],bc[k]);}
+  swap.forEach(n=>{if(!n)return;n.classList.remove('hidden');n.removeAttribute('hidden');n.classList.add('pcard');back.appendChild(n);});
+  front.insertAdjacentHTML('beforeend','<p class="sheet-note">正面</p>');
+  back.insertAdjacentHTML('beforeend','<p class="sheet-note">背面</p>');
+  printHost.appendChild(front);printHost.appendChild(back);
+ }
+}
+window.addEventListener('beforeprint',buildPrintSheets);
+document.querySelector('.print').addEventListener('click',()=>{buildPrintSheets();window.print();});
+</script></body></html>
