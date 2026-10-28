@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一卷手写的官司 · 李启兵案卷宗</title>
+<link rel="stylesheet" href="volume.css">
+<style>
+  :root{
+    --ink:#1c1a17; --paper:#f7f4ee; --card:#fffdf9; --line:#e2dcd0;
+    --red:#a63d2f; --red-soft:#f3e3df; --gold:#8a6d3b; --muted:#7a7468;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:"Noto Serif SC","Source Han Serif SC","STSong","SimSun",serif;line-height:1.8}
+  .wrap{max-width:960px;margin:0 auto;padding:48px 28px 80px}
+  a{color:var(--red);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .kicker{font-size:13px;letter-spacing:.35em;color:var(--muted);text-transform:uppercase}
+  .crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+  header.case{border-bottom:3px double var(--line);padding-bottom:28px;margin-bottom:40px}
+  h1{font-size:clamp(34px,6vw,52px);font-weight:900;letter-spacing:.06em;line-height:1.25;margin:10px 0 6px}
+  h1 .num{color:var(--red)}
+  .subtitle{font-size:17px;color:var(--muted);margin-top:8px}
+  .case-meta{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:13.5px;color:var(--muted);margin-top:18px}
+  .case-meta b{color:var(--ink);font-weight:600}
+  section{margin-bottom:64px}
+  h2{font-size:22px;font-weight:700;letter-spacing:.12em;margin-bottom:6px}
+  h2::before{content:"§";color:var(--red);margin-right:10px;font-weight:400}
+  .lede{color:var(--muted);font-size:14.5px;margin-bottom:26px}
+  p{margin-bottom:1em}
+  .note{font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:14px;margin-top:28px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:34px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .stat .v{font-size:26px;font-weight:900;color:var(--red);font-variant-numeric:tabular-nums}
+  .stat .k{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .timeline{border-left:2px solid var(--line);margin:26px 0 6px 8px;padding-left:26px}
+  .tl-item{position:relative;margin-bottom:26px}
+  .tl-item::before{content:"";position:absolute;left:-33px;top:8px;width:11px;height:11px;border-radius:50%;background:var(--paper);border:3px solid var(--red)}
+  .tl-item .date{font-size:12.5px;letter-spacing:.15em;color:var(--red);font-weight:700}
+  .tl-item .tt{font-weight:700;margin:2px 0}
+  .tl-item .dd{font-size:14px;color:#4c463c}
+  .docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .doc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;position:relative}
+  .doc .no{position:absolute;top:14px;right:16px;font-size:11px;color:var(--muted);letter-spacing:.1em}
+  .doc h3{font-size:15.5px;margin-bottom:8px;letter-spacing:.05em}
+  .doc blockquote{font-size:13.5px;color:#4c463c;border-left:3px solid var(--red);padding-left:12px;margin:10px 0;font-style:normal}
+  .doc .src{font-size:11.5px;color:var(--muted);margin-top:10px}
+  .pull{background:var(--ink);color:#f2ede2;border-radius:14px;padding:40px 36px;margin:34px 0}
+  .pull .q{font-size:clamp(19px,2.6vw,24px);line-height:1.9;font-weight:600}
+  .pull .q em{color:#e8b4a8;font-style:normal}
+  .pull .who{margin-top:16px;font-size:13px;color:#b8b0a0;letter-spacing:.15em}
+  .formula-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px 26px;margin-bottom:26px}
+  .formula{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px}
+  .f-item{flex:1 1 150px;border:1px dashed var(--line);border-radius:8px;padding:14px 12px;text-align:center;background:#faf8f3}
+  .f-item .name{font-size:13px;color:var(--ink)}
+  .f-item .calc{font-size:11.5px;color:var(--muted);margin:4px 0;font-variant-numeric:tabular-nums}
+  .f-item .amount{font-size:20px;font-weight:800;color:var(--ink)}
+  .f-op{align-self:center;font-size:20px;color:var(--muted);font-weight:300}
+  .f-total{margin-top:18px;border-top:2px solid var(--ink);padding-top:14px;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+  .f-total .t{font-size:14px;letter-spacing:.2em}
+  .f-total .n{font-size:30px;font-weight:900;color:var(--red);font-variant-numeric:tabular-nums}
+  footer{border-top:3px double var(--line);padding-top:22px;font-size:12.5px;color:var(--muted);line-height:2}
+  footer .nav{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+  footer .nav a{font-size:13.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="crumbs"><a href="index.html">卷宗呈现</a> · 案件之四 / CASE-0006</div>
+  <header class="case">
+    <div class="kicker">CASE FILE N°6 · 1997—1999 · 深圳龙岗</div>
+    <h1>一卷<span class="num">手写</span>的官司</h1>
+    <div class="subtitle">李启兵工伤损害赔偿案 —— 入职 21 天断腿，从赔偿计算到催款信，一个工人把自己一个字一个字写进程序里</div>
+    <div class="case-meta">
+      <span>当事人 <b>李启兵</b>（男，1967年生，四川开县人）</span>
+      <span>被告 <b>协柏塑胶厂 / 香港协柏实业公司</b></span>
+      <span>代理人 <b>周立太、周国文</b>（开县陈家法律服务所）</span>
+      <span>审级 <b>告劳动局 → 仲裁 → 一审 → 二审 → 执行和解</b></span>
+      <span>卷宗 <b>1 卷</b>（手写材料最密集的一卷）</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>案由</h2>
+    <p class="lede">以下案情依据卷宗判决书（(1998)龙法民初字第88号、(1998)深中法民终字第431号）与全卷 OCR 整理。</p>
+    <p>1997 年 2 月 18 日，30 岁的李启兵入职深圳坑梓协柏塑胶厂吹气部，日薪 12 元，没有劳动合同，没有工伤保险。<b>21 天之后</b>的 3 月 11 日下午，他在清理粉碎机时开关失控、盖板滑落，右腿被轧断。住院 30 天，鉴定丧失劳动能力 60%（六级伤残），安装国产普及型假肢。</p>
+    <p>索赔之路走了整整两年：仲裁申诉被拒收，他告龙岗区劳动局「不作为」，被裁定驳回、上诉后又撤诉转回仲裁；仲裁裁赔 26,481 元＋7 个月工资，假肢更换费没有裁；一审把假肢更换费 9480×10 次写进判项，判 123,521 元；二审改判总额 144,191 元。执行又拖了四个月——1999 年 2 月 11 日最后一笔 44,191 元付清，双方签协议，劳动关系解除。</p>
+    <p>这个案子的特别之处不在判决，在纸面：写给政府的报告、写给法院的催款信、上诉状、两份赔偿计算、执行申请——几乎全部出自李启兵本人的手写。</p>
+    <div class="stats">
+      <div class="stat"><div class="v">21 天</div><div class="k">入职到出事</div></div>
+      <div class="stat"><div class="v">六级伤残</div><div class="k">丧失劳动能力 60%</div></div>
+      <div class="stat"><div class="v">¥9480×10</div><div class="k">假肢 9480 元 · 四年一换 · 计至 70 岁</div></div>
+      <div class="stat"><div class="v">¥144,191</div><div class="k">二审改判总额（分三期付清）</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>同一道乘法题</h2>
+    <p class="lede">一次性补偿金的公式写在《深圳经济特区工伤保险条例》里，双方争的是基数——三个数算出三个世界。</p>
+    <div class="formula-card">
+      <div class="formula">
+        <div class="f-item"><div class="name">仲裁 · 一审基数</div><div class="calc">679 × 65% × 60% × 100</div><div class="amount">26,481</div></div>
+        <div class="f-item"><div class="name">他的第一份算法</div><div class="calc">1023 × 65% × 60% × 100</div><div class="amount">39,897</div></div>
+        <div class="f-item"><div class="name">上诉主张</div><div class="calc">1377 × 65% × 60% × 100</div><div class="amount">53,703</div></div>
+      </div>
+      <div class="f-total"><span class="t">二审最终总额（含假肢更换费 94,800）</span><span class="n">¥144,191</span></div>
+    </div>
+    <p class="note">两份手写赔偿计算（E10/E11）里，他把 1023 元和 679 元两种基数各算了一遍——两份草稿对照，看得出他在两种算法之间反复试算。另一道题是假肢：一只 9,480 元、寿命约四年，30 岁的人用到 70 岁要换 10 次。仲裁没有裁这项，一审把它写进了判项——「假肢不是一次开销，是跟一辈子的钱」。</p>
+  </section>
+
+  <section>
+    <h2>翻卷宗</h2>
+    <p class="lede">19 页按成文时间重排：从 1997 年 4 月的疾病证明书，到 1999 年 2 月的付清协议——顺着翻就是故事本身。图片为脱敏版，点击可看大图。</p>
+    <div class="vol" id="vol"></div>
+    <script id="vol-pages" type="application/json">{
+      "dir": "assets/liqb",
+      "title": "李启兵案 · 卷宗翻阅",
+      "parts": [
+        {"t": "出事之后", "d": "疾病证明书、他自己算的赔偿账、厂方停供食宿函与写给政府的报告", "pages": ["C33","E10","E11","C34","C32","E08","E04"]},
+        {"t": "仲裁与一审", "d": "告劳动局的插曲以撤诉收场，转回仲裁；一审判决把假肢更换费写进判项", "pages": ["G08","G09","G37","C35"]},
+        {"t": "上诉", "d": "1998.6.24 手写上诉状：基数应为 1377 元、诉讼费收多了", "pages": ["E05","E06","E07"]},
+        {"t": "执行", "d": "官司赢了钱没到：强制执行申请、缓交执行费、写给法院的催款信、最后的付清协议", "pages": ["E02","E03","G36","E01","E09"]}
+      ],
+      "titles": {
+        "C33": "疾病证明书（1997.4.10）：全休 180 天医嘱",
+        "E10": "手写赔偿计算（一）：按 1023 元基数，合计 157,897 元",
+        "E11": "手写赔偿计算（二）：按 679 元基数也算了一遍",
+        "C34": "厂方停供食宿函（1997.8.7）：繁体字打印函",
+        "C32": "请求保护伤残员工权利报告（1997.8.9）：写给两级行政区划政府",
+        "E08": "手写法律依据摘记：为告劳动局准备的法条",
+        "E04": "撤诉申请（1998.1.12）：告劳动局插曲的句点",
+        "G08": "一审判决首页：(1998)龙法民初字第88号",
+        "G09": "判决书诉辩段：月薪 600 元的自述与厂方答辩",
+        "G37": "判决书「经审理查明」：事故经过的官方版本",
+        "C35": "缓交上诉费申请（1998.6）：对 4509 元诉讼费的异议",
+        "E05": "手写民事上诉状（1998.6.24）：请求改判 53,703 元",
+        "E06": "上诉理由（一）（二）：基数之辩",
+        "E07": "上诉理由（三）-（五）：区政府无权定标准、收费违法",
+        "E02": "强制执行申请（1998.10.16）：判决生效，钱没到位",
+        "E03": "缓交执行费申请（1998.10.19）：衣食无着，靠亲友周济",
+        "G36": "催款信首页（1999.1.31）：最后一笔拖过约定",
+        "E01": "催款信末页：「流浪深圳达两年之久」",
+        "E09": "付清协议（1999.2.11）：全卷的终点"
+      }
+    }</script>
+    <script src="volume.js"></script>
+  </section>
+
+  <section>
+    <h2>卷宗里有什么</h2>
+    <div class="docs">
+      <div class="doc"><span class="no">手写</span>
+        <h3>大部分纸面出自当事人本人</h3>
+        <p>写给政府的报告、写给法院的催款信、上诉状、两份赔偿计算、执行申请——一个高中文化的工人，把自己的案情一笔一笔写满整页。</p>
+        <blockquote>因按工作致残，今早已将我赶出，食宿无着，流浪深圳达两年之久。</blockquote>
+        <div class="src">来源：催款信末页（E01，1999.1.31）</div>
+      </div>
+      <div class="doc"><span class="no">E09</span>
+        <h3>执行和解协议原件</h3>
+        <p>总额 144,191 元分三期：98.11.16 付 6 万、98.12.30 前付 4 万、余额 44,191 元 99.1.30 前付清。第三条写明：付清之后「双方之劳动关系即自行解除」。在场人：周立太。</p>
+        <div class="src">来源：卷宗材料32.png</div>
+      </div>
+      <div class="doc"><span class="no">C34</span>
+        <h3>全卷少见的厂方声音</h3>
+        <p>协柏厂 1997 年 8 月 7 日繁体字打印函：治疗与假肢「均已办妥」，赔偿应找镇劳动部门，因你多月未接洽，本厂将于 15 日停止承担租房等一切费用。——与 C32 他两天后写给政府的报告对照读。</p>
+        <div class="src">来源：卷宗材料14.png</div>
+      </div>
+      <div class="doc"><span class="no">E01</span>
+        <h3>一个字一个字把自己写进程序</h3>
+        <p>手写「元月」字形近「六月」，且六月没有三十一日——档案整理时以内容与日期互证，定为一月。这类细节是手写卷独有的褶皱。</p>
+        <div class="src">来源：卷宗材料11.png</div>
+      </div>
+    </div>
+    <div class="pull">
+      <div class="q">这一卷的阅读价值不在判决多重要，而在完整：从 1997 年 5 月的手写赔偿计算到 1999 年 2 月的付清协议，一个工伤案子的<em>全部纸面轨迹</em>，大部分出自当事人本人的手写。</div>
+      <div class="who">—— 案件说明 · 策展笔记</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>案件时间线</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="date">1997.2.18</div><div class="tt">入职协柏厂</div><div class="dd">吹气部，未签合同未投保。21 天后出事。</div></div>
+      <div class="tl-item"><div class="date">1997.3.11</div><div class="tt">清理粉碎机时右腿被轧断</div><div class="dd">住院 30 天；6.3 安装国产普及型假肢 9,480 元（厂方支付）。</div></div>
+      <div class="tl-item"><div class="date">1997.4.29</div><div class="tt">鉴定六级伤残</div><div class="dd">丧失劳动能力 60%。</div></div>
+      <div class="tl-item"><div class="date">1997.6—1998.1</div><div class="tt">仲裁被拒收 → 告劳动局 → 撤诉转仲裁</div><div class="dd">告「拒绝履行法定职责」被裁定驳回；上诉后因仲裁科口头承诺受理而撤回。</div></div>
+      <div class="tl-item"><div class="date">1998.3.10</div><div class="tt">仲裁裁赔 26,481 元＋7 个月工资</div><div class="dd">假肢更换费未裁。不服，起诉。</div></div>
+      <div class="tl-item"><div class="date">1998.6.22</div><div class="tt">一审判 123,521 元</div><div class="dd">(1998)龙法民初字第88号：假肢更换费 94,800 元首次写进判项。</div></div>
+      <div class="tl-item"><div class="date">1998.9.11</div><div class="tt">二审改判 144,191 元</div><div class="dd">(1998)深中法民终字第431号。</div></div>
+      <div class="tl-item"><div class="date">1998.10—11</div><div class="tt">强制执行 → 和解分三期</div><div class="dd">10.16 申请执行、10.19 缓交执行费、11.16 达成和解。</div></div>
+      <div class="tl-item"><div class="date">1999.1.31</div><div class="tt">写信给法院催执行</div><div class="dd">最后一笔 44,191 元过了约定日期仍没付。</div></div>
+      <div class="tl-item"><div class="date">1999.2.11</div><div class="tt">最后一笔付清</div><div class="dd">双方签协议，劳动关系解除。赔偿两清，人回四川。</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>卷宗档案信息</h2>
+    <div class="docs">
+      <div class="doc"><h3>数字化状态</h3><p>全卷扫描并完成 OCR。本页翻阅版取 19 页策展脱敏版（C31 与 G36 同页重复，弃用），按成文时间重排。</p><div class="src">档案路径：数据层/text/cases/李启兵 工伤损害赔偿</div></div>
+      <div class="doc"><h3>系列呼应</h3><p>假肢更换费首次写进判项的同期先例见彭刚中案（11,200×9 次）；本案（9,480×10 次）是同一主张在另一家法院的回声。三条卷对照着看，能看见同一个主张在不同年头、不同法院的命运。</p><div class="src">参见本系列案件之一</div></div>
+    </div>
+    <p class="note">本页为档案馆消费层演示页面。翻阅图片为脱敏版（证件号/住址/电话已遮盖，姓名以档案保真为原则保留）；OCR 文本机器生成、未经人工复核，引用请以扫描原件为准。</p>
+  </section>
+
+  <footer>
+    <div class="nav"><a href="03-陈用刚案-企业跑了谁买单.html">← 上一案 · 企业跑了谁买单</a><a href="index.html">索引</a><a href="05-王琼案-二十三岁的公式.html">下一案 · 二十三岁的公式 →</a></div>
+    周立太数字档案馆 · 消费层/卷宗呈现 · 案件档案 CASE-0006 · 引用请注明档案来源
+  </footer>
+</div>
+</body>
+</html>

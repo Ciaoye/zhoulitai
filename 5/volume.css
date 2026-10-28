@@ -1,0 +1,51 @@
+/* 卷宗呈现 · 互动翻卷组件（volume.js 配套样式）
+ * 依赖页面既有 CSS 变量：--ink --paper --card --line --red --muted（缺省有 fallback）
+ */
+.vol{background:var(--card,#fffdf9);border:1px solid var(--line,#e2dcd0);border-radius:14px;padding:20px 20px 16px;box-shadow:0 2px 10px rgba(60,50,30,.05)}
+.vol-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;margin-bottom:14px}
+.vol-title{font-size:15px;font-weight:700;letter-spacing:.06em}
+.vol-count{font-size:12px;color:var(--muted,#7a7468)}
+.vol-parts{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+.vol-part{font:12px/1 inherit;font-family:inherit;border:1px solid var(--line,#e2dcd0);background:#faf8f3;color:#4c463c;border-radius:999px;padding:5px 12px;cursor:pointer;letter-spacing:.05em;transition:all .12s}
+.vol-part:hover{border-color:var(--red,#a63d2f);color:var(--red,#a63d2f)}
+.vol-part.on{background:var(--red,#a63d2f);border-color:var(--red,#a63d2f);color:#f7f4ee}
+.vol-stage{display:grid;grid-template-columns:44px 1fr 44px;gap:10px;align-items:stretch}
+.vol-nav{border:1px solid var(--line,#e2dcd0);background:#faf8f3;border-radius:10px;cursor:pointer;font-size:22px;color:var(--muted,#7a7468);display:flex;align-items:center;justify-content:center;user-select:none;transition:all .12s;min-height:120px}
+.vol-nav:hover:not(:disabled){color:var(--red,#a63d2f);border-color:var(--red,#a63d2f)}
+.vol-nav:disabled{opacity:.25;cursor:default}
+.vol-page{display:flex;flex-direction:column;min-width:0}
+.vol-frame{position:relative;background:#efe9dd;border-radius:8px;overflow:hidden;cursor:zoom-in;box-shadow:inset 0 0 0 1px rgba(60,50,30,.08)}
+.vol-frame::after{content:"";position:absolute;inset:0;box-shadow:inset 0 1px 6px rgba(40,32,18,.18);pointer-events:none;border-radius:8px}
+.vol-frame img{display:block;width:100%;max-height:66vh;object-fit:contain;object-position:center;opacity:0;transition:opacity .25s ease}
+.vol-frame img.loaded{opacity:1}
+.vol-cap{padding:12px 4px 2px;min-height:52px}
+.vol-cap .row1{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px}
+.vol-cap .code{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--red,#a63d2f);border:1px solid currentColor;border-radius:4px;padding:1px 7px}
+.vol-cap .pt{font-size:14.5px;font-weight:700}
+.vol-cap .date{font-size:11.5px;color:var(--muted,#7a7468);letter-spacing:.08em}
+.vol-cap .d{font-size:13px;color:#4c463c;margin-top:4px;line-height:1.7}
+.vol-bar{display:flex;align-items:center;gap:14px;margin-top:10px;border-top:1px dashed var(--line,#e2dcd0);padding-top:10px}
+.vol-pos{font-size:13px;color:var(--muted,#7a7468);font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.vol-progress{flex:1;height:3px;background:var(--line,#e2dcd0);border-radius:2px;overflow:hidden;cursor:pointer;position:relative}
+.vol-progress i{position:absolute;left:0;top:0;bottom:0;background:var(--red,#a63d2f);border-radius:2px;transition:width .2s}
+.vol-zoom{font:12.5px inherit;font-family:inherit;border:1px solid var(--line,#e2dcd0);background:transparent;color:#4c463c;border-radius:6px;padding:4px 12px;cursor:pointer;letter-spacing:.08em}
+.vol-zoom:hover{border-color:var(--red,#a63d2f);color:var(--red,#a63d2f)}
+.vol-thumbs{display:flex;gap:8px;overflow-x:auto;margin-top:12px;padding:6px 2px 8px;scrollbar-width:thin}
+.vol-thumb{flex:0 0 auto;width:44px;border:1px solid var(--line,#e2dcd0);border-radius:4px;overflow:hidden;cursor:pointer;opacity:.62;transition:opacity .12s;padding:0;background:#efe9dd}
+.vol-thumb img{display:block;width:100%;height:60px;object-fit:cover;object-position:top}
+.vol-thumb:hover{opacity:1}
+.vol-thumb.on{opacity:1;border:2px solid var(--red,#a63d2f)}
+.vol-hint{font-size:11.5px;color:var(--muted,#7a7468);margin-top:6px;letter-spacing:.04em}
+/* 大图浮层 */
+.vol-lightbox{position:fixed;inset:0;background:rgba(20,16,10,.93);display:none;align-items:center;justify-content:center;z-index:99;cursor:zoom-out;padding:28px;flex-direction:column;gap:14px}
+.vol-lightbox.open{display:flex}
+.vol-lightbox img{max-width:96vw;max-height:86vh;border-radius:6px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.vol-lightbox .cap{color:#cfc8b8;font-size:13px;text-align:center;letter-spacing:.04em}
+.vol-lightbox .x{position:absolute;top:16px;right:22px;color:#cfc8b8;font-size:26px;line-height:1;cursor:pointer}
+@media(max-width:640px){
+  .vol{padding:14px 12px 12px}
+  .vol-stage{grid-template-columns:34px 1fr 34px;gap:6px}
+  .vol-nav{min-height:80px;font-size:18px}
+  .vol-frame img{max-height:52vh}
+  .vol-parts{margin-left:0}
+}

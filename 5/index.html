@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>卷宗呈现 · 周立太数字档案馆</title>
+<style>
+  :root{--ink:#1c1a17;--paper:#f7f4ee;--card:#fffdf9;--line:#e2dcd0;--muted:#7a7468;--red:#a63d2f}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:"Noto Serif SC","Source Han Serif SC","STSong","SimSun",serif;line-height:1.8}
+  .wrap{max-width:1060px;margin:0 auto;padding:56px 28px 90px}
+  .kicker{font-size:13px;letter-spacing:.4em;color:var(--muted)}
+  h1{font-size:clamp(32px,5.5vw,48px);font-weight:900;letter-spacing:.1em;margin:12px 0 8px}
+  .sub{font-size:16px;color:var(--muted);max-width:760px;margin-bottom:14px}
+  .intro{font-size:14.5px;color:#4c463c;max-width:820px;margin:22px 0 40px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+  a.card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;color:var(--ink);text-decoration:none;transition:transform .15s, box-shadow .15s}
+  a.card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(60,50,30,.12)}
+  .card .cover{height:150px;overflow:hidden;position:relative;background:#efe9dd}
+  .card .cover img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:sepia(.12)}
+  .card .stamp{position:absolute;top:12px;right:14px;font-size:11px;color:#f4efe4;letter-spacing:.15em;background:rgba(28,26,23,.55);border-radius:4px;padding:2px 8px}
+  .card .body{padding:22px 24px 18px;display:flex;flex-direction:column;flex:1}
+  .card .k{font-size:11.5px;letter-spacing:.3em;color:var(--muted);margin-bottom:8px}
+  .card h2{font-size:22px;font-weight:900;letter-spacing:.05em;margin-bottom:4px}
+  .card h2 .n{color:var(--red)}
+  .card.c2 h2 .n{color:#3d4a6b}
+  .card.c3 h2 .n{color:#2f6b5e}
+  .card.c4 h2 .n{color:#9a6b28}
+  .card.c5 h2 .n{color:#6b3a52}
+  .card.c6 h2 .n{color:#3a5568}
+  .card.c7 h2 .n{color:#7a4a2f}
+  .card.c8 h2 .n{color:#4a5d3a}
+  .card.c9 h2 .n{color:#5b3a6b}
+  .card .t{font-size:13.5px;color:#4c463c;margin:8px 0 16px;flex:1}
+  .card .meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted);border-top:1px dashed var(--line);padding-top:12px}
+  .card .go{margin-top:12px;font-size:13px;letter-spacing:.1em;color:var(--red)}
+  .card.c2 .go{color:#3d4a6b}.card.c3 .go{color:#2f6b5e}.card.c4 .go{color:#9a6b28}.card.c5 .go{color:#6b3a52}.card.c6 .go{color:#3a5568}.card.c7 .go{color:#7a4a2f}.card.c8 .go{color:#4a5d3a}.card.c9 .go{color:#5b3a6b}
+  .card .leaf{position:absolute;bottom:10px;left:14px;font-size:11px;color:#efe8d8;letter-spacing:.2em;background:rgba(166,61,47,.75);border-radius:3px;padding:1px 7px}
+  footer{margin-top:56px;border-top:3px double var(--line);padding-top:20px;font-size:12.5px;color:var(--muted);line-height:2}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">周立太数字档案馆 · 消费层</div>
+  <h1>卷宗呈现</h1>
+  <div class="sub">让卷宗自己开口——九个案件，从 12 案 34 卷 4,860 页档案中选出。每案一页：案情、判决算术、人的名字，以及一卷可以亲手翻的脱敏卷宗。</div>
+  <p class="intro">每一页呈现都取材于档案馆数据层的原始卷宗扫描与 OCR 文本，纸页图片均经脱敏处理、按叙事顺序排好，可以像翻卷宗一样逐页翻阅。九个案件构成一条跨越二十六年的叙事线——<b>一只手的定价</b>（1997，工伤赔偿标准的破题）→ <b>一小时的名称</b>（2001，人格尊严的群体诉讼）→ <b>企业跑了谁买单</b>（2000-2002，社保基金兜底先声）→ <b>一卷手写的官司</b>（1997-1999，当事人自己的笔迹从头写到尾）→ <b>二十三岁的公式</b>（1996-2002，书面决定权与基数之战）→ <b>律师成了原告</b>（2001-2002，按揭年代的格式条款之战）→ <b>判决之后</b>（2015-2021，地方文件的推倒）→ <b>二十年之后</b>（2019-2023，当代续篇）→ <b>层层转包</b>（2016-2019，工地上的断脚与两条路径的尽头）。</p>
+
+  <div class="grid">
+    <a class="card c1" href="01-彭刚中案-一只手的定价.html">
+      <div class="cover"><img src="assets/penggz/th/G17.jpg" alt="彭刚中案诉讼委托书" loading="lazy"><span class="stamp">CASE-0005</span><span class="leaf">18 页可翻</span></div>
+      <div class="body">
+        <div class="k">案 件 之 一 · 1995—2005 深圳宝安</div>
+        <h2>一只手的<span class="n">定价</span></h2>
+        <div class="t">机器压断左上肢，「行情价」33,101 元。判决书里写下了 172,320.75 元的完整算式，假肢更换费一次性支付自此有了判例。七年后，同案卷里又存进一场名誉权官司——同一件事的两种讲述。</div>
+        <div class="meta"><span>彭刚中 × 达仕文公司</span><span>翻阅 18 页</span><span>假肢费先例</span></div>
+        <div class="go">翻开卷宗 →</div>
+      </div>
+    </a>
+    <a class="card c2" href="02-56个女工案-一小时的名称.html">
+      <div class="cover"><img src="assets/nv56/th/G07.jpg" alt="女工案诉状样张" loading="lazy"><span class="stamp">CASE-0001</span><span class="leaf">12 页可翻</span></div>
+      <div class="body">
+        <div class="k">案 件 之 二 · 2001 深圳龙岗</div>
+        <h2>一小时的<span class="n">名称</span></h2>
+        <div class="t">韩资假发厂怀疑藏带假发，56 名女工被搜身一小时。962 页卷宗、56 份一字不差的诉状、一面由 OCR 找回的名字墙——还有厂方答辩状里那套「只查了 10-15 分钟」的说法。</div>
+        <div class="meta"><span>吴雪等 56 人 × 宝洋厂</span><span>翻阅 12 页</span><span>人格权群体诉讼</span></div>
+        <div class="go">翻开卷宗 →</div>
+      </div>
+    </a>
+    <a class="card c3" href="03-陈用刚案-企业跑了谁买单.html">
+      <div class="cover"><img src="assets/chenyg/th/G04.jpg" alt="陈用刚案行政诉状" loading="lazy"><span class="stamp">CASE-0009</span><span class="leaf">23 页可翻</span></div>
+      <div class="body">
+        <div class="k">案 件 之 三 · 1999—2002 深圳福田</div>
+        <h2>企业跑了，<span class="n">谁买单</span></h2>
+        <div class="t">四级伤残、判决生效，被告注销逃逸。两场行政诉讼问出制度问题：工伤保险基金是否应当先行垫付？2002 年终审改判——他胜诉了。</div>
+        <div class="meta"><span>陈用刚 × 深圳市社保局</span><span>翻阅 23 页</span><span>先行垫付先声</span></div>
+        <div class="go">翻开卷宗 →</div>
+      </div>
+    </a>
+    <a class="card c4" href="04-李启兵案-一卷手写的官司.html">
+      <div class="cover"><img src="assets/liqb/th/E10.jpg" alt="李启兵手写赔偿计算" loading="lazy"><span class="stamp">CASE-0006</span><span class="leaf">19 页可翻</span></div>
+      <div class="body">
+        <div class="k">案 件 之 四 · 1997—1999 深圳龙岗</div>
+        <h2>一卷<span class="n">手写</span>的官司</h2>
+        <div class="t">入职 21 天断腿。从赔偿计算、上诉状到催款信，这卷纸大部分出自李启兵本人的手写——一个工人怎样一个字一个字把自己写进程序里，直到 1999 年最后一笔付清。</div>
+        <div class="meta"><span>李启兵 × 协柏厂</span><span>翻阅 19 页</span><span>手写材料最密集</span></div>
+        <div class="go">翻开卷宗 →</div>
+      </div>
+    </a>
+    <a class="card c5" href="05-王琼案-二十三岁的公式.html">
+      <div class="cover"><img src="assets/wangq/th/G10.jpg" alt="王琼案行政诉状" loading="lazy"><span class="stamp">CASE-0008</span><span class="leaf">15 页可翻</span></div>
+      <div class="body">
+        <div class="k">案 件 之 五 · 1996—2000 深圳龙岗</div>
+        <h2>二十三岁的<span class="n">公式</span></h2>
+        <div class="t">23 岁啤机女工断手，参了保，争的是标准。社保局按旧口径只赔一次性残疾补偿金 34,425 元——她前后三次把社保分局告上法庭，法院两次判其限期重作。</div>
+        <div class="meta"><span>王琼（等200余人） × 龙岗社保分局</span><span>翻阅 15 页</span><span>书面决定权之战</span></div>
+        <div class="go">翻开卷宗 →</div>
+      </div>
+    </a>
+    <a class="card c6" href="06-借款合同纠纷案-律师成了原告.html">
+      <div class="cover"><img src="assets/jiekuan/th/G14.jpg" alt="借款合同案一审判决" loading="lazy"><span class="stamp">CASE-0003</span><span class="leaf">5 页可翻</span></div>
+      <div class="body">
+        <div class="k">案 件 之 六 · 2001—2002 重庆渝中</div>
+        <h2>律师成了<span class="n">原告</span></h2>
+        <div class="t">同一档案里的人，也会作为消费者走进法庭、也会败诉。周立太按揭购房，起诉银行请求确认强制保险的格式条款无效——两审均被驳回。</div>
+        <div class="meta"><span>周立太 × 建行中山路支行</span><span>翻阅 5 页</span><span>按揭变革年代</span></div>
+        <div class="go">翻开卷宗 →</div>
+      </div>
+    </a>
+    <a class="card c7" href="07-伍锡梅案-判决之后.html">
+      <div class="cover"><img src="assets/wuxm/th/卷二行政1.jpg" alt="伍锡梅案行政卷" loading="lazy"><span class="stamp">CASE-0002</span></div>
+      <div class="body">
+        <div class="k">案 件 之 七 · 2015—2021 重庆</div>
+        <h2>判决<span class="n">之后</span></h2>
+        <div class="t">114 万判决生效，公司注销，社保局拒付——官司从区法院一路打到省人大，挡路的《解答》第 24 条终被废止。</div>
+        <div class="meta"><span>伍锡梅 × 南岸区社保局</span><span>3 卷 369 页</span><span>人大监督纠文件</span></div>
+        <div class="go">翻开卷宗 →</div>
+      </div>
+    </a>
+    <a class="card c8" href="08-刘胜青案-二十年之后.html">
+      <div class="cover"><img src="assets/liusq-v3/th/F23.jpg" alt="刘胜青案询问笔录" loading="lazy"><span class="stamp">CASE-0004</span><span class="leaf">29 页可翻</span></div>
+      <div class="body">
+        <div class="k">案 件 之 八 · 2019—2023 山东 → 重庆</div>
+        <h2>二十年<span class="n">之后</span></h2>
+        <div class="t">洗澡间触电身亡、无合同无社保、社保中心垫付 100 万+——先证明他是员工，再证明这是工伤。五年五卷 1022 页，末尾还夹着一张把全程倒着讲一遍的证据清单。</div>
+        <div class="meta"><span>郭小平/刘胜青 × 木之家公司</span><span>翻阅 29 页</span><span>当代续篇</span></div>
+        <div class="go">翻开卷宗 →</div>
+      </div>
+    </a>
+    <a class="card c9" href="09-郑能必案-层层转包.html">
+      <div class="cover"><img src="assets/zhengnb/th/G16.jpg" alt="郑能必案认定工伤决定书" loading="lazy"><span class="stamp">CASE-0011</span><span class="leaf">5 页可翻</span></div>
+      <div class="body">
+        <div class="k">案 件 之 九 · 2016—2019 重庆开州</div>
+        <h2>层层<span class="n">转包</span></h2>
+        <div class="t">52 岁搅拌工清洗搅拌机被误开电闸卷入右腿，当日截肢。工地层层转包、无人投保——工伤认定下来了，钱还是要一场场打：仲裁、一审、二审、再审，再到民事侵权之诉被驳回。一个伤，两条路径的尽头。</div>
+        <div class="meta"><span>郑能必 × 科茂公司等</span><span>翻阅 5 页</span><span>用工主体责任</span></div>
+        <div class="go">翻开卷宗 →</div>
+      </div>
+    </a>
+  </div>
+
+  <footer>
+    档案来源：周立太档案馆数据层（text/cases · CASE-0001/0002/0003/0004/0005/0006/0008/0009/0011；典型案例汇编 CS-0003/0005/0008/0009/0020）。翻阅页为策展脱敏版（个人身份证号、住址、电话等已遮盖；姓名以档案保真为原则保留），原图存 瓶行宇宙/03-真实卷宗候选；点击图片可放大，OCR 文本机器生成、未经人工复核，引用请以扫描原件为准。<br>
+    周立太数字档案馆 · 消费层/卷宗呈现 · 2026
+  </footer>
+</div>
+</body>
+</html>

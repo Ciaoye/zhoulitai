@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>层层转包 · 郑能必案卷宗</title>
+<link rel="stylesheet" href="volume.css">
+<style>
+  :root{
+    --ink:#1c1a17; --paper:#f7f4ee; --card:#fffdf9; --line:#e2dcd0;
+    --red:#a63d2f; --red-soft:#f3e3df; --gold:#8a6d3b; --muted:#7a7468;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:"Noto Serif SC","Source Han Serif SC","STSong","SimSun",serif;line-height:1.8}
+  .wrap{max-width:960px;margin:0 auto;padding:48px 28px 80px}
+  a{color:var(--red);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .kicker{font-size:13px;letter-spacing:.35em;color:var(--muted);text-transform:uppercase}
+  .crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+  header.case{border-bottom:3px double var(--line);padding-bottom:28px;margin-bottom:40px}
+  h1{font-size:clamp(34px,6vw,52px);font-weight:900;letter-spacing:.06em;line-height:1.25;margin:10px 0 6px}
+  h1 .num{color:var(--red)}
+  .subtitle{font-size:17px;color:var(--muted);margin-top:8px}
+  .case-meta{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:13.5px;color:var(--muted);margin-top:18px}
+  .case-meta b{color:var(--ink);font-weight:600}
+  section{margin-bottom:64px}
+  h2{font-size:22px;font-weight:700;letter-spacing:.12em;margin-bottom:6px}
+  h2::before{content:"§";color:var(--red);margin-right:10px;font-weight:400}
+  .lede{color:var(--muted);font-size:14.5px;margin-bottom:26px}
+  p{margin-bottom:1em}
+  .note{font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:14px;margin-top:28px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:34px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .stat .v{font-size:26px;font-weight:900;color:var(--red);font-variant-numeric:tabular-nums}
+  .stat .k{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .timeline{border-left:2px solid var(--line);margin:26px 0 6px 8px;padding-left:26px}
+  .tl-item{position:relative;margin-bottom:26px}
+  .tl-item::before{content:"";position:absolute;left:-33px;top:8px;width:11px;height:11px;border-radius:50%;background:var(--paper);border:3px solid var(--red)}
+  .tl-item .date{font-size:12.5px;letter-spacing:.15em;color:var(--red);font-weight:700}
+  .tl-item .tt{font-weight:700;margin:2px 0}
+  .tl-item .dd{font-size:14px;color:#4c463c}
+  .docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .doc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;position:relative}
+  .doc .no{position:absolute;top:14px;right:16px;font-size:11px;color:var(--muted);letter-spacing:.1em}
+  .doc h3{font-size:15.5px;margin-bottom:8px;letter-spacing:.05em}
+  .doc blockquote{font-size:13.5px;color:#4c463c;border-left:3px solid var(--red);padding-left:12px;margin:10px 0;font-style:normal}
+  .doc .src{font-size:11.5px;color:var(--muted);margin-top:10px}
+  .pull{background:var(--ink);color:#f2ede2;border-radius:14px;padding:40px 36px;margin:34px 0}
+  .pull .q{font-size:clamp(19px,2.6vw,24px);line-height:1.9;font-weight:600}
+  .pull .q em{color:#e8b4a8;font-style:normal}
+  .pull .who{margin-top:16px;font-size:13px;color:#b8b0a0;letter-spacing:.15em}
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:20px 0 8px}
+  .chain .node{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 16px;font-size:13.5px;text-align:center;flex:1 1 120px}
+  .chain .node b{display:block;font-size:14.5px}
+  .chain .node small{color:var(--muted);font-size:11.5px}
+  .chain .node.worker{border-color:var(--red);background:var(--red-soft)}
+  .chain .arrow{color:var(--muted);font-size:18px}
+  footer{border-top:3px double var(--line);padding-top:22px;font-size:12.5px;color:var(--muted);line-height:2}
+  footer .nav{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+  footer .nav a{font-size:13.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="crumbs"><a href="index.html">卷宗呈现</a> · 案件之九 / CASE-0011</div>
+  <header class="case">
+    <div class="kicker">CASE FILE N°11 · 2016—2019 · 重庆开州</div>
+    <h1>层层<span class="num">转包</span></h1>
+    <div class="subtitle">郑能必工伤案 —— 工地上的断脚、用工主体责任，与两条路径的尽头</div>
+    <div class="case-meta">
+      <span>当事人 <b>郑能必</b>（女，1964年生，重庆开州人，搅拌工）</span>
+      <span>对方 <b>科茂建筑劳务公司 / 邓某 / 罗某个人的包工队</b></span>
+      <span>程序 <b>工伤认定 → 仲裁 → 一审 → 二审 → 再审申请 → 民事侵权之诉</b></span>
+      <span>卷宗 <b>1 卷 5 页策展页</b></span>
+    </div>
+  </header>
+
+  <section>
+    <h2>案由</h2>
+    <p class="lede">以下案情依据认定工伤决定书（开州人社伤险认决字〔2016〕1030号）与全卷 OCR 整理。</p>
+    <p>2016 年 8 月 8 日傍晚，52 岁的混凝土搅拌工郑能必在开州汉丰湖工地清洗搅拌机时，被人误开电闸，右腿被卷入。消防救出后诊断为右踝毁损型离断伤，当日截肢，鉴定五级伤残。</p>
+    <p>工地是层层转包的：科茂公司承建 → 护坡转给邓某 → 混凝土再转给罗某。郑能必受雇于罗某个人的包工队，没有劳动合同，更没有工伤保险——链条上没有任何一方给她签过合同、投过保。</p>
+    <div class="chain">
+      <div class="node"><b>科茂公司</b><small>承建方 · 被认定担责</small></div>
+      <div class="arrow">→转包</div>
+      <div class="node"><b>邓某</b><small>护坡工程</small></div>
+      <div class="arrow">→再转包</div>
+      <div class="node"><b>罗某</b><small>混凝土包工头 · 雇主</small></div>
+      <div class="arrow">→雇用</div>
+      <div class="node worker"><b>郑能必</b><small>搅拌工 · 无合同无保险</small></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="v">2016.8.8</div><div class="k">清洗搅拌机被误开电闸卷入</div></div>
+      <div class="stat"><div class="v">五级伤残</div><div class="k">右踝毁损型离断伤 · 当日截肢</div></div>
+      <div class="stat"><div class="v">59 天</div><div class="k">住院（出院方式：自动出院）</div></div>
+      <div class="stat"><div class="v">¥721,070</div><div class="k">再审请求的待遇总额（未全支持）</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>翻卷宗</h2>
+    <p class="lede">5 页按故事顺序：先出院证（伤情），再认定书（谁负责），再仲裁自述（她自己的话），最后再审申请首页与末页（要多少钱、程序哪里不服）。图片为脱敏版，点击可看大图。</p>
+    <div class="vol" id="vol"></div>
+    <script id="vol-pages" type="application/json">{
+      "dir": "assets/zhengnb",
+      "title": "郑能必案 · 卷宗翻阅",
+      "parts": [
+        {"t": "伤情与认定", "d": "", "pages": ["C49","G16","G43"]},
+        {"t": "再审", "d": "", "pages": ["G44","E20"]}
+      ],
+      "titles": {
+        "C49": "骨科医院出院证：当日截肢、住院 59 天",
+        "G16": "认定工伤决定书：转包链怎么写进公文",
+        "G43": "仲裁申请的事故经过：她自己的话",
+        "G44": "民事再审申请书首页：721,070 元的账",
+        "E20": "再审申请末页：程序争议与请求"
+      }
+    }</script>
+    <script src="volume.js"></script>
+  </section>
+
+  <section>
+    <h2>谁替没有合同的工人负责</h2>
+    <p class="lede">认定书的「经查」一段把链条写全——这一页是全卷的支点。</p>
+    <p>人社局 2016 年 10 月 9 日向科茂发出举证通知书，科茂在规定期限内一份材料也没交。11 月 7 日认定作出：郑能必为工伤，由具备用工主体责任的<b>科茂公司</b>承担工伤保险责任——依据的是「违法转包、由有用工主体资格的发包方担责」的规则，<b>不要求证明她与科茂之间存在劳动关系</b>。</p>
+    <p>此后仲裁、一审、二审（(2017)渝02民终1937号）争的都是待遇算多少，而「由科茂担责」这个前提，就是从认定书来的。二审判决后她仍不服，2018 年 1 月 6 日向重庆高院申请再审（(2018)渝民申268号立案审查）——首页列请求：撤销一、二审判决，改判支持 721,070 元（含一次性伤残就业补助金 310,500 元等）；末页换了一套理由：一审承办人未进入员额却独任审判，程序违法。</p>
+    <p>2019 年 2 月，她又以「提供劳务者受害责任纠纷」起诉科茂、邓某、罗某要求民事赔偿——法院认定科茂是用人单位而非第三人，驳回。一个伤，两条法律路径，都走到底了。</p>
+  </section>
+
+  <section>
+    <h2>卷宗里有什么</h2>
+    <div class="docs">
+      <div class="doc"><span class="no">C49</span>
+        <h3>出院证里的四个字</h3>
+        <p>入院当日 19 时急诊行右小腿中下段截肢术，住院 59 天；出院方式一栏写「自动出院」——这四个字后面通常是费用问题。</p>
+        <div class="src">来源：郑能必案/images/卷一/zhengbin0096.png</div>
+      </div>
+      <div class="doc"><span class="no">G16</span>
+        <h3>认定书怎么读</h3>
+        <p>看三处：转包链（科茂→邓某→罗某）；举证通知与「未提供举证材料」一句；结论落点——工伤保险责任落在科茂，依据是用工主体责任，不是劳动关系。</p>
+        <blockquote>郑能必同志于2016年8月8日受到的伤害，认定为工伤。</blockquote>
+        <div class="src">来源：开州人社伤险认决字〔2016〕1030号</div>
+      </div>
+      <div class="doc"><span class="no">E20</span>
+        <h3>事实她认了，程序她不认</h3>
+        <p>再审申请里有一个表述：「原一、二审查明以下事实清楚，请求予以确认」。她争的不是事实，是钱的算法与审判的程序。</p>
+        <div class="src">来源：郑能必案/images/卷一/zhengbin0035.png</div>
+      </div>
+      <div class="doc"><span class="no">对照</span>
+        <h3>与彭刚中案并排读</h3>
+        <p>认定从数月的中止拉锯变成两个月内作出，制度确实快了；但「未参保、包工头、层层转包」的结构性困境，从 1997 到 2016 几乎没有变。这个案子是本展区年代跨度最大的一头。</p>
+        <div class="src">参见本系列案件之一、之八</div>
+      </div>
+    </div>
+    <div class="pull">
+      <div class="q">工地层层转包，她没有劳动合同、没有工伤保险。谁该为这只断脚买单——是这一卷全部五页纸<em>共同回答的问题</em>。</div>
+      <div class="who">—— 案件说明 · 策展笔记</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>案件时间线</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="date">2016.5.18</div><div class="tt">受雇于包工头罗某</div><div class="dd">汉丰湖整治工程，做混凝土搅拌。</div></div>
+      <div class="tl-item"><div class="date">2016.8.8 17时</div><div class="tt">清洗搅拌机时被误开电闸卷入右腿</div><div class="dd">消防救出、当日急诊截肢。住院 59 天。</div></div>
+      <div class="tl-item"><div class="date">2016.10.9</div><div class="tt">人社局受理认定申请</div><div class="dd">向科茂发出举证通知书——期限内未举证。</div></div>
+      <div class="tl-item"><div class="date">2016.11.7</div><div class="tt">认定工伤</div><div class="dd">12.21 鉴定五级伤残。责任落在科茂公司。</div></div>
+      <div class="tl-item"><div class="date">2017.4.12</div><div class="tt">申请劳动仲裁 → 一审 → 二审</div><div class="dd">(2017)渝02民终1937号。她主张 721,070 元，法院未全支持。</div></div>
+      <div class="tl-item"><div class="date">2018.1.6</div><div class="tt">向重庆高院申请再审</div><div class="dd">(2018)渝民申268号立案审查。</div></div>
+      <div class="tl-item"><div class="date">2019.2</div><div class="tt">民事侵权之诉被驳回</div><div class="dd">以提供劳务者受害责任纠纷再诉科茂、邓、罗——法院认定科茂非「第三人」。两条路径都走到了尽头。</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>卷宗档案信息</h2>
+    <div class="docs">
+      <div class="doc"><h3>数字化状态</h3><p>全卷扫描并完成 OCR。本页翻阅版取 5 页策展脱敏版。</p><div class="src">档案路径：数据层/text/cases/郑能必案</div></div>
+      <div class="doc"><h3>系列呼应</h3><p>与刘胜青案并排读：一个「认定了工伤再争待遇」的截肢案，一个「先确认劳动关系再认定工伤」的死亡案——相隔三年、相距一省，程序的结构几乎一样。</p><div class="src">参见本系列案件之八</div></div>
+    </div>
+    <p class="note">本页为档案馆消费层演示页面。翻阅图片为脱敏版（证件号等已遮盖）；OCR 文本机器生成、未经人工复核，引用请以扫描原件为准。</p>
+  </section>
+
+  <footer>
+    <div class="nav"><a href="08-刘胜青案-二十年之后.html">← 上一案 · 二十年之后</a><a href="index.html">返回索引</a></div>
+    周立太数字档案馆 · 消费层/卷宗呈现 · 案件档案 CASE-0011 · 引用请注明档案来源
+  </footer>
+</div>
+</body>
+</html>

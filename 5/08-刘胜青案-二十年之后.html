@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>二十年之后 · 刘胜青案卷宗</title>
+<link rel="stylesheet" href="volume.css">
+<style>
+  :root{
+    --ink:#1c1a17; --paper:#f7f4ee; --card:#fffdf9; --line:#e2dcd0;
+    --steel:#3a5568; --steel-soft:#e3ebee; --muted:#7a7468; --red:#a63d2f;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:"Noto Serif SC","Source Han Serif SC","STSong","SimSun",serif;line-height:1.8}
+  .wrap{max-width:960px;margin:0 auto;padding:48px 28px 80px}
+  a{color:var(--steel);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .kicker{font-size:13px;letter-spacing:.35em;color:var(--muted)}
+  .crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+  header.case{border-bottom:3px double var(--line);padding-bottom:28px;margin-bottom:40px}
+  h1{font-size:clamp(32px,5.6vw,50px);font-weight:900;letter-spacing:.06em;line-height:1.3;margin:10px 0 6px}
+  h1 .num{color:var(--steel)}
+  .subtitle{font-size:17px;color:var(--muted);margin-top:8px}
+  .case-meta{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:13.5px;color:var(--muted);margin-top:18px}
+  .case-meta b{color:var(--ink);font-weight:600}
+  section{margin-bottom:64px}
+  h2{font-size:22px;font-weight:700;letter-spacing:.12em;margin-bottom:6px}
+  h2::before{content:"§";color:var(--steel);margin-right:10px;font-weight:400}
+  .lede{color:var(--muted);font-size:14.5px;margin-bottom:26px}
+  p{margin-bottom:1em}
+  .note{font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:14px;margin-top:28px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:34px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .stat .v{font-size:23px;font-weight:900;color:var(--steel);font-variant-numeric:tabular-nums}
+  .stat .k{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+  .mirror{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:26px 0}
+  @media(max-width:640px){.mirror{grid-template-columns:1fr}}
+  .m-box{border-radius:12px;padding:20px 22px;border:1px solid var(--line)}
+  .m-box.then{background:#f1ede4}
+  .m-box.now{background:var(--steel-soft);border-color:#cbdce3}
+  .m-box .tag{font-size:12px;letter-spacing:.25em;color:var(--muted)}
+  .m-box h3{font-size:16.5px;margin:6px 0 8px}
+  .m-box .d{font-size:13.5px;color:#4c463c}
+
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin:22px 0}
+  figure.shot{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  figure.shot img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top;filter:sepia(.05)}
+  figure.shot figcaption{padding:12px 14px;font-size:12.5px;color:var(--muted);line-height:1.6}
+  figure.shot figcaption b{color:var(--ink);font-weight:700;display:block;font-size:13.5px;margin-bottom:2px}
+  .lightbox{position:fixed;inset:0;background:rgba(20,16,10,.92);display:none;align-items:center;justify-content:center;z-index:99;cursor:zoom-out;padding:24px}
+  .lightbox:target{display:flex}
+  .lightbox img{max-width:96vw;max-height:92vh;border-radius:6px}
+  .lightbox .cap{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#cfc8b8;font-size:13px}
+
+  .docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .doc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;position:relative}
+  .doc .no{position:absolute;top:14px;right:16px;font-size:11px;color:var(--muted);letter-spacing:.1em}
+  .doc h3{font-size:15.5px;margin-bottom:8px;letter-spacing:.05em}
+  .doc blockquote{font-size:13.5px;color:#4c463c;border-left:3px solid var(--steel);padding-left:12px;margin:10px 0;font-style:normal}
+  .doc .src{font-size:11.5px;color:var(--muted);margin-top:10px}
+  .pull{background:var(--ink);color:#f2ede2;border-radius:14px;padding:40px 36px;margin:34px 0}
+  .pull .q{font-size:clamp(18px,2.5vw,23px);line-height:1.9;font-weight:600}
+  .pull .q em{color:#a9c2d2;font-style:normal}
+  .pull .who{margin-top:16px;font-size:13px;color:#b8b0a0;letter-spacing:.15em}
+  .timeline{border-left:2px solid var(--line);margin:26px 0 6px 8px;padding-left:26px}
+  .tl-item{position:relative;margin-bottom:24px}
+  .tl-item::before{content:"";position:absolute;left:-33px;top:8px;width:11px;height:11px;border-radius:50%;background:var(--paper);border:3px solid var(--steel)}
+  .tl-item .date{font-size:12.5px;letter-spacing:.15em;color:var(--steel);font-weight:700}
+  .tl-item .tt{font-weight:700;margin:2px 0}
+  .tl-item .dd{font-size:14px;color:#4c463c}
+  footer{border-top:3px double var(--line);padding-top:22px;font-size:12.5px;color:var(--muted);line-height:2}
+  footer .nav{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+  footer .nav a{font-size:13.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="crumbs"><a href="index.html">卷宗呈现</a> · 案件之八 / CASE-0004</div>
+  <header class="case">
+    <div class="kicker">CASE FILE N°4 · 2019—2023 · 山东聊城 → 重庆江北</div>
+    <h1>二十年<span class="num">之后</span></h1>
+    <div class="subtitle">刘胜青委托代理合同纠纷案 —— 同一类断臂工伤从深圳换到内地，律师从代理人变成原告：1022 页卷宗的当代续篇</div>
+    <div class="case-meta">
+      <span>委托人 <b>刘胜青</b>（女，1984年生，重庆开州人；其夫郭小平触电工亡）</span>
+      <span>被告 <b>刘胜青等人</b> ← 原告 <b>重庆周立太律师事务所</b></span>
+      <span>承办 <b>周立太</b></span>
+      <span>卷宗 <b>5 卷 1022 页</b>（2019-2023）</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>案由</h2>
+    <p class="lede">依据卷宗 OCR（CASE-0004）整理——本卷是档案中最新的一批实体卷宗，装订于 2023 年 10 月。</p>
+    <p>2019 年 3 月，重庆开州人郭小平经人介绍进入山东聊城茌平县「木之家」家具公司做喷漆工，未签劳动合同、未缴社保，月薪约 12,000 元（计件）。8 月 6 日上午 11 点 30 分，郭小平像往常一样在午饭前到厂区淋浴室冲洗身上油漆，<b>触电身亡</b>。尸体在茌平县殡仪馆放了很久——家属不同意火化，成了谈判的筹码，也是伤疤。</p>
+    <p>2019 年 9 月 3 日，遗孀刘胜青在重庆周立太（开州）律师事务所做了委托笔录。周立太接手后：促成厂方先付 15 万元火化安葬费、申报工伤认定、仲裁确认劳动关系、行政诉讼——最终法院判决茌平县社保中心<b>垫付死亡赔偿金 100 余万元</b>，另三人按月支付 1000 余元。（又是「垫付」——2002 年陈用刚案的回声。）</p>
+    <p>但这一卷的主角是「之后」：刘胜青未按《风险代理合同》支付律师费，2023 年，重庆周立太律师事务所把她告上法庭——<b>卷宗一第一份文件就是「证据清单」，案由：委托代理合同纠纷，原告：重庆周立太律师事务所，被告：刘胜青等人</b>。曾经替彭刚中、刘朝政们打官司的律师，又一次坐在了当事人的对面。</p>
+    <div class="stats">
+      <div class="stat"><div class="v">2019.8.6</div><div class="k">触电工亡（午前淋浴）</div></div>
+      <div class="stat"><div class="v">¥12000/月</div><div class="k">计件工资（卷内查实）</div></div>
+      <div class="stat"><div class="v">¥100万+</div><div class="k">判决社保中心垫付</div></div>
+      <div class="stat"><div class="v">1022 页</div><div class="k">5 卷档案（2019-2023）</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>一面镜子：1997 ⇄ 2019</h2>
+    <p class="lede">把彭刚中案与本卷并排放，二十多年间变了什么、没变什么，一目了然。</p>
+    <div class="mirror">
+      <div class="m-box then">
+        <div class="tag">1997 · 深圳宝安</div>
+        <h3>彭刚中案</h3>
+        <div class="d">断臂工人告港资厂：无合同无保险，赔偿「行情价」3.3 万；周立太争来 17.2 万与假肢费先例。律师为当事人垫差旅，赢了案子，收不到律师费。</div>
+      </div>
+      <div class="m-box now">
+        <div class="tag">2019 · 山东聊城</div>
+        <h3>郭小平 / 刘胜青案</h3>
+        <div class="d">工亡家属告内地民企：无合同无社保，赔偿靠「垫付」制度兜底，判赔 100 万+。律师风险代理打赢行政官司，代理费又成讼——<b>制度进步了，诚信困局还在</b>。</div>
+      </div>
+    </div>
+    <p>变了的：工伤有法可依了（国务院《工伤保险条例》2004 施行、《社会保险法》2011 施行），先行支付有了明文，内地县城也能打行政官司。没变的：不签合同不缴保的用工惯性、执行不能的幽灵、以及风险代理的回款之难——卷宗一里那张证据清单，与彭刚中卷里 2004 年的《纪事》剪报，讲的是同一个故事的两个年代。</p>
+  </section>
+
+  <section>
+    <h2>翻卷宗</h2>
+    <p class="lede">29 页按五段叙事排：接案与工伤认定申请 → 中止（先证明他是员工）→ 确认劳动关系仲裁全卷 → 恢复认定与工伤决定 → 待遇之诉，末尾是那张把五年程序倒着讲一遍的证据清单。1022 页、5 卷、2019-2023——档案里体量最大的当代案卷，从此处翻起。图片为脱敏版（证件号等已遮盖），点击可看大图。</p>
+    <div class="vol" id="vol"></div>
+    <script id="vol-pages" type="application/json">{
+      "dir": "assets/liusq-v3",
+      "title": "刘胜青案 · 卷宗翻阅",
+      "parts": [
+        {"t": "委托与认定申请", "d": "2019.9：四页询问笔录问清事故与家底，遗孀刘胜青递交工伤认定申请", "pages": ["F23","F24","F25","F04","F05","F06","F07","F08","F09","F10","F11"]},
+        {"t": "中止", "d": "单位否认劳动关系——死者先要「被证明是员工」，才能「被认定为工伤」", "pages": ["G27"]},
+        {"t": "劳动关系仲裁", "d": "茌劳人仲案字〔2019〕第90号：收条、欠条、考勤表、证人——双方怎么争「他是不是员工」", "pages": ["F12","F13","F14","F15","F16","F17","F18","F19","F20","F21","F22"]},
+        {"t": "恢复认定与待遇之诉", "d": "中院确认事实劳动关系，认定程序重启；五名家人一个原告席", "pages": ["G28","G12","G29","G41","G42"]},
+        {"t": "案件之后的案件", "d": "2023：律所诉刘胜青委托代理合同纠纷的证据清单——五年程序被一张清单倒着讲了一遍", "pages": ["G13"]}
+      ],
+      "titles": {
+        "F23": "询问笔录首页：事故与家庭（2019.9.3）",
+        "F24": "询问笔录：家庭情况与风险代理",
+        "F25": "询问笔录：工资数额（月薪约 12,000 元）",
+        "F04": "询问笔录末页：火化建议",
+        "F05": "工伤认定证据目录",
+        "F06": "工伤认定申请表：申请人刘胜青，受伤害职工郭小平",
+        "F07": "工伤认定申请表填表说明",
+        "F08": "申请事项手写批注页",
+        "F09": "工资收条：厂方结清 6-8 月工资 24,031 元",
+        "F10": "居民身份证复印原页甲（证号已遮）",
+        "F11": "居民身份证复印原页乙（证号已遮）",
+        "G27": "工伤认定中止通知：先证明他是员工",
+        "F12": "劳动关系仲裁案档案袋：以刘胜青名义立卷的子卷",
+        "F13": "仲裁申请书：确认劳动关系",
+        "F14": "仲裁庭组成与开庭通知",
+        "F15": "仲裁受理通知书",
+        "F16": "仲裁调解建议书：没走成的捷径",
+        "F17": "仲裁庭审笔录一：申请与答辩",
+        "F18": "仲裁庭审笔录二：举证（收条＋欠条打头）",
+        "F19": "仲裁庭审笔录三：质证（「三角债代垫付」之说）",
+        "F20": "仲裁庭审笔录四：被申请人举证",
+        "F21": "仲裁庭审笔录五：证人（「厂里的人都知道……听说的」）",
+        "F22": "仲裁庭审笔录六：辩论与闭庭",
+        "G28": "工伤认定恢复通知",
+        "G12": "认定工伤决定书：郭小平电击死亡（茌人社工认字〔2020〕136号）",
+        "G29": "诉讼费缴费通知：入场券 10 元",
+        "G41": "民事判决首页：五个原告一个家",
+        "G42": "二审判决首页：中院维持（2022.6.25）",
+        "G13": "证据清单：这起案件后来为什么还在法院（2023.10）"
+      }
+    }</script>
+    <script src="volume.js"></script>
+  </section>
+
+  <section>
+    <h2>卷宗里有什么</h2>
+    <div class="docs">
+      <div class="doc"><span class="no">卷一 · 248页</span>
+        <h3>委托与办案全记录</h3>
+        <p>证据清单、询问笔录（4 页）、致省委书记信、先行支付 15 万元协议、工伤认定申报、仲裁申请与裁决、行政诉讼一审二审——每一步都有书面痕。</p>
+        <div class="src">证据清单载明：提交人 周立太 2023年10月16日</div>
+      </div>
+      <div class="doc"><span class="no">卷一 · P2</span>
+        <h3>那份「给省委书记的信」</h3>
+        <p>信中直陈：有关部门「不闻不问」，家属多次上访后应急管理局才设调查组。周立太以「我和你的共同老乡」开头——1997 年他靠同乡法官推荐接案，2019 年他给同乡书记写信。</p>
+        <blockquote>郭小平……在公司的淋浴室进行冲洗油漆时触电身亡。尸体至今存放于茌平县殡仪馆。</blockquote>
+        <div class="src">卷宗一8.png（OCR）</div>
+      </div>
+      <div class="doc"><span class="no">卷一 · P6</span>
+        <h3>工资查证细节</h3>
+        <p>「厂方给我结算过郭小平 6月、7月、8月份工资，8月份只做了 3 天，总金额为 24000 元，足以说明每月工资 12000 元。」——计件工资的证据链，是死亡赔偿金计算的地基。</p>
+        <div class="src">询问笔录（2019.9.3）</div>
+      </div>
+      <div class="doc"><span class="no">全卷 · 5卷1022页</span>
+        <h3>体量本身即证词</h3>
+        <p>一个内地工亡案，四年、五卷、1022 页——比 1997 年彭刚中案（143 页）多了七倍纸。程序更完备，纸也更多；「垫付」两字再次出现，跨越二十年。</p>
+        <div class="src">案卷 ID：CASE-0004（VOL-01~05）</div></div>
+    </div>
+    <div class="pull">
+      <div class="q">深圳的铁皮房换成了开州的律所，断臂换成了触电，「先行垫付」从特区判例变成了全国法条——但律师递给法庭的第一份文件，仍然是<em>「请判令支付代理费」</em>。</div>
+      <div class="who">—— 卷宗呈现 · 编者按</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>案件时间线</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="date">2019.03</div><div class="tt">入职「木之家」</div><div class="dd">喷漆工，计件月薪约 12,000 元，无合同无社保。</div></div>
+      <div class="tl-item"><div class="date">2019.08.06 11:30</div><div class="tt">触电身亡</div><div class="dd">午饭前在厂区淋浴室冲洗油漆时触电；排除他杀。家属赴鲁，厂方仅付 3,500 元生活费。</div></div>
+      <div class="tl-item"><div class="date">2019.09.03</div><div class="tt">委托周立太</div><div class="dd">询问笔录确认委托与风险代理；随后促成厂方先付 15 万元火化安葬费。</div></div>
+      <div class="tl-item"><div class="date">2019—2020</div><div class="tt">工伤认定 + 仲裁 + 行政诉讼</div><div class="dd">确认劳动关系、认定工亡；其间致信山东省委书记推动调查。</div></div>
+      <div class="tl-item"><div class="date">—2022</div><div class="tt">判决社保中心垫付</div><div class="dd">法院判决茌平县社保中心垫付死亡赔偿金 100 余万元，另三人按月支付 1000 余元。</div></div>
+      <div class="tl-item"><div class="date">2023.10</div><div class="tt">律所诉刘胜青</div><div class="dd">委托代理合同纠纷起诉，证据清单提交重庆江北区法院；卷宗装订，1022 页。</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>卷宗档案信息</h2>
+    <div class="docs">
+      <div class="doc"><h3>数字化状态</h3><p>5 卷 1022 页全部扫描 OCR（数据层体量最大案卷之一）。卷一程序记录、卷二行政、卷三仲裁、卷四五民事诉讼。</p><div class="src">档案路径：数据层/text/cases/刘胜青案</div></div>
+      <div class="doc"><h3>系列呼应</h3><p>与 01 彭刚中案（案外之案：律师费）、《挣扎》剪报、13 号典型案（诉刘朝政）互为镜像——「维权者的维权」是贯穿周立太执业史的一条暗线。</p><div class="src">参见本系列案件之一</div></div>
+    </div>
+    <p class="note">本页为档案馆消费层演示页面。OCR 文本均为机器生成、未经人工复核；涉案在诉事项仅呈现卷面记载，不作评判。人物信息以档案保真为原则呈现。</p>
+  </section>
+
+  <footer>
+    <div class="nav"><a href="07-伍锡梅案-判决之后.html">← 上一案 · 判决之后</a><a href="index.html">索引</a><a href="09-郑能必案-层层转包.html">下一案 · 层层转包 →</a></div>
+    周立太数字档案馆 · 消费层/卷宗呈现 · 案件档案 CASE-0004 · 引用请注明档案来源
+  </footer>
+</div>
+</body>
+</html>

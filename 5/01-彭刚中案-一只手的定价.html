@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一只手的定价 · 彭刚中案卷宗</title>
+<link rel="stylesheet" href="volume.css">
+<style>
+  :root{
+    --ink:#1c1a17; --paper:#f7f4ee; --card:#fffdf9; --line:#e2dcd0;
+    --red:#a63d2f; --red-soft:#f3e3df; --gold:#8a6d3b; --muted:#7a7468;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:"Noto Serif SC","Source Han Serif SC","STSong","SimSun",serif;line-height:1.8}
+  .wrap{max-width:960px;margin:0 auto;padding:48px 28px 80px}
+  a{color:var(--red);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .kicker{font-size:13px;letter-spacing:.35em;color:var(--muted);text-transform:uppercase}
+  .crumbs{font-size:13px;color:var(--muted);margin-bottom:22px}
+  header.case{border-bottom:3px double var(--line);padding-bottom:28px;margin-bottom:40px}
+  h1{font-size:clamp(34px,6vw,52px);font-weight:900;letter-spacing:.06em;line-height:1.25;margin:10px 0 6px}
+  h1 .num{color:var(--red)}
+  .subtitle{font-size:17px;color:var(--muted);margin-top:8px}
+  .case-meta{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:13.5px;color:var(--muted);margin-top:18px}
+  .case-meta b{color:var(--ink);font-weight:600}
+
+  section{margin-bottom:64px}
+  h2{font-size:22px;font-weight:700;letter-spacing:.12em;margin-bottom:6px}
+  h2::before{content:"§";color:var(--red);margin-right:10px;font-weight:400}
+  .lede{color:var(--muted);font-size:14.5px;margin-bottom:26px}
+  p{margin-bottom:1em}
+  .note{font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:14px;margin-top:28px}
+
+  /* 关键数字条 */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:34px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .stat .v{font-size:26px;font-weight:900;color:var(--red);font-variant-numeric:tabular-nums}
+  .stat .k{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+  /* 赔偿公式 */
+  .formula-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px 26px;margin-bottom:26px}
+  .formula{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px}
+  .f-item{flex:1 1 150px;border:1px dashed var(--line);border-radius:8px;padding:14px 12px;text-align:center;background:#faf8f3}
+  .f-item .name{font-size:13px;color:var(--ink)}
+  .f-item .calc{font-size:11.5px;color:var(--muted);margin:4px 0;font-variant-numeric:tabular-nums}
+  .f-item .amount{font-size:20px;font-weight:800;color:var(--ink)}
+  .f-op{align-self:center;font-size:20px;color:var(--muted);font-weight:300}
+  .f-total{margin-top:18px;border-top:2px solid var(--ink);padding-top:14px;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+  .f-total .t{font-size:14px;letter-spacing:.2em}
+  .f-total .n{font-size:30px;font-weight:900;color:var(--red);font-variant-numeric:tabular-nums}
+
+  /* 对比条 */
+  .versus{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:26px 0}
+  @media(max-width:640px){.versus{grid-template-columns:1fr}}
+  .v-box{border-radius:12px;padding:20px 22px;border:1px solid var(--line)}
+  .v-box.before{background:#f1ede4}
+  .v-box.after{background:var(--red-soft);border-color:#e3c6bf}
+  .v-box .tag{font-size:12px;letter-spacing:.25em;color:var(--muted)}
+  .v-box .big{font-size:30px;font-weight:900;margin:4px 0;font-variant-numeric:tabular-nums}
+  .v-box.after .big{color:var(--red)}
+  .v-box .d{font-size:13px;color:var(--muted)}
+  .times{ text-align:center;font-size:14px;color:var(--gold);margin-top:6px;letter-spacing:.1em}
+
+  /* 时间线 */
+  .timeline{border-left:2px solid var(--line);margin:26px 0 6px 8px;padding-left:26px}
+  .tl-item{position:relative;margin-bottom:26px}
+  .tl-item::before{content:"";position:absolute;left:-33px;top:8px;width:11px;height:11px;border-radius:50%;background:var(--paper);border:3px solid var(--red)}
+  .tl-item .date{font-size:12.5px;letter-spacing:.15em;color:var(--red);font-weight:700}
+  .tl-item .tt{font-weight:700;margin:2px 0}
+  .tl-item .dd{font-size:14px;color:#4c463c}
+
+  /* 卷宗实物卡片 */
+  .docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin:22px 0}
+  figure.shot{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  figure.shot img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top;filter:sepia(.08)}
+  figure.shot figcaption{padding:12px 14px;font-size:12.5px;color:var(--muted);line-height:1.6}
+  figure.shot figcaption b{color:var(--ink);font-weight:700;display:block;font-size:13.5px;margin-bottom:2px}
+  .lightbox{position:fixed;inset:0;background:rgba(20,16,10,.92);display:none;align-items:center;justify-content:center;z-index:99;cursor:zoom-out;padding:24px}
+  .lightbox:target{display:flex}
+  .lightbox img{max-width:96vw;max-height:92vh;border-radius:6px}
+  .lightbox .cap{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#cfc8b8;font-size:13px}
+  .doc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px;position:relative}
+  .doc .no{position:absolute;top:14px;right:16px;font-size:11px;color:var(--muted);letter-spacing:.1em}
+  .doc h3{font-size:15.5px;margin-bottom:8px;letter-spacing:.05em}
+  .doc blockquote{font-size:13.5px;color:#4c463c;border-left:3px solid var(--red);padding-left:12px;margin:10px 0;font-style:normal}
+  .doc .src{font-size:11.5px;color:var(--muted);margin-top:10px}
+  .doc .ocr{font-size:11px;color:#a39c8d;margin-top:4px}
+
+  /* 大字引文 */
+  .pull{background:var(--ink);color:#f2ede2;border-radius:14px;padding:40px 36px;margin:34px 0}
+  .pull .q{font-size:clamp(19px,2.6vw,24px);line-height:1.9;font-weight:600}
+  .pull .q em{color:#e8b4a8;font-style:normal}
+  .pull .who{margin-top:16px;font-size:13px;color:#b8b0a0;letter-spacing:.15em}
+
+  footer{border-top:3px double var(--line);padding-top:22px;font-size:12.5px;color:var(--muted);line-height:2}
+  footer .nav{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+  footer .nav a{font-size:13.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="crumbs"><a href="index.html">卷宗呈现</a> · 案件之一 / CASE-0005</div>
+  <header class="case">
+    <div class="kicker">CASE FILE N°5 · 1996—1997 · 深圳宝安</div>
+    <h1>一只手的<span class="num">定价</span></h1>
+    <div class="subtitle">彭刚中工伤索赔案 —— 从 33,101 元到 172,320 元，一只断臂如何被重新计算</div>
+    <div class="case-meta">
+      <span>当事人 <b>彭刚中</b>（男，1963年生，四川资中人）</span>
+      <span>被告 <b>达仕文塑料工业（深圳）有限公司</b></span>
+      <span>代理人 <b>周立太</b></span>
+      <span>审级 <b>仲裁 → 一审 → 二审（终审）</b></span>
+      <span>卷宗 <b>2 卷 143 页</b>（卷宗材料 115 页 + 工伤索赔卷 28 页）</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>案由</h2>
+    <p class="lede">以下案情依据周立太律师事务所典型案例汇编（档案 CS-0003）与卷宗判决书（CASE-0005-VOL-02）整理。</p>
+    <p>1995 年 7 月，四川资中农民彭刚中受聘于深圳宝安石岩镇一家塑胶厂——达仕文塑料工业（深圳）有限公司，做塑料工。没有劳务合同，没有工伤保险。1996 年 8 月 29 日下午，机器压断了他的左上肢。住院四个月，厂方付了医疗费；此后，厂方坚持只按旧规赔偿 <b>38,000 元</b>。此前深圳断一只手的「行情价」，是 <b>33,101.25 元</b>。</p>
+    <p>彭刚中先委托了老家资中的律师赴深圳交涉，无果——律师算了一笔账：赔下来扣掉差旅费和律师费，所剩无几，回川。经龙岗区法院大鹏法庭一位四川同乡法官推荐，刚到深圳落脚的周立太接下这个案子。他的主张只有两条：其一，赔偿基数不能按 1993 年的全市职工月平均工资 679 元，应按<b>工伤上年度</b>（1995 年度）深圳职工月平均工资 <b>1023 元</b>；其二，法律虽未规定假肢更换费，但断臂者要装假肢、假肢有寿命，厂方应<b>参照《广东省道路交通事故处理规定》第二十一条</b>，一次性支付换到 70 岁的假肢费。</p>
+    <p>仲裁未支持。起诉。1997 年 5 月 15 日，宝安区人民法院一审判决全额支持；厂方上诉，6 月 4 日深圳中院驳回上诉、维持原判。此案开了中国工伤赔偿「假肢更换费一次性支付」的先例，后来深圳特区工伤保险条例修订、国务院《工伤保险条例》均对假肢更换费作出规定。</p>
+    <div class="stats">
+      <div class="stat"><div class="v">1996.8.29</div><div class="k">左上肢被机器压断</div></div>
+      <div class="stat"><div class="v">五级伤残</div><div class="k">丧失劳动能力 85%</div></div>
+      <div class="stat"><div class="v">¥11200</div><div class="k">国产机械手单价（每次）</div></div>
+      <div class="stat"><div class="v">9 次</div><div class="k">假肢更换计至 70 岁（每4年）</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>判决书里的算术</h2>
+    <p class="lede">一审法院在判决书里逐项写明了每一分钱的来处——这份「算术」本身就是时代的证物。资料：卷宗 CASE-0005-VOL-02 第 17、20 页，(1997)深宝法民字第83号。</p>
+    <div class="formula-card">
+      <div class="formula">
+        <div class="f-item"><div class="name">一次性补偿金</div><div class="calc">1023元 × 65% × 85% × 100</div><div class="amount">56,520.75</div></div>
+        <div class="f-op">＋</div>
+        <div class="f-item"><div class="name">继续医疗费</div><div class="calc">宝安医院评定</div><div class="amount">15,000</div></div>
+        <div class="f-op">＋</div>
+        <div class="f-item"><div class="name">假肢安装费</div><div class="calc">11,200元 × 9 次</div><div class="amount">100,800</div></div>
+      </div>
+      <div class="f-total"><span class="t">一审判决赔偿总额</span><span class="n">¥172,320.75</span></div>
+    </div>
+    <div class="versus">
+      <div class="v-box before"><div class="tag">此前「行情」· 按旧基数 679 元</div><div class="big">¥33,101</div><div class="d">厂方最初坚持的赔偿口径：38,000 元，甚至主张伤者「对事故也有一定责任」</div></div>
+      <div class="v-box after"><div class="tag">本案判决 · 按新基数 1023 元＋假肢 9 次</div><div class="big">¥172,320</div><div class="d">深圳中院终审维持：(1997)深中法民终字第270号，1997年6月4日</div></div>
+    </div>
+    <div class="times">—— 判决金额约为旧「行情价」的 5.2 倍 ——</div>
+    <p class="note">计算口径之争是本案核心：原告主张按发生工伤<b>上年度</b>（1995 年度）职工月平均工资 1023 元计发；厂方及仲裁沿用 1993 年度 679 元。判决采纳前者——此后「按上年度社平工资计发」成为深圳乃至全国工伤赔偿的通行标准。</p>
+  </section>
+
+  <section>
+    <h2>翻卷宗</h2>
+    <p class="lede">18 页按叙事时间线重排：委托 → 打官司 → 二审 → 七年后的名誉权反诉。牛皮纸封面、蓝黑钢笔、判决书的骑缝章——卷宗的质感本身就是历史证物。图片为脱敏版，点击可看大图。</p>
+    <div class="vol" id="vol"></div>
+    <script id="vol-pages" type="application/json">{
+      "dir": "assets/penggz",
+      "title": "彭刚中案 · 卷宗翻阅",
+      "parts": [
+        {"t": "起点", "d": "官司怎么托付出去：风险代理的委托书、司法局任免通知、法律服务所更名通知", "pages": ["G17","D01","D05"]},
+        {"t": "打官司", "d": "先仲裁，再起诉：缓交诉讼费的手写陈述、仲裁裁决、手写诉状、一审判决与判赔公式", "pages": ["D02","D03","G18","C05","G48","G01","G02","G03","D04"]},
+        {"t": "二审", "d": "厂方上诉的三条理由，与法院的逐条驳回", "pages": ["G47","C06","C07"]},
+        {"t": "七年后", "d": "央视《挣扎》的采访节录、双方的陈述、名誉权判决——同一个案子的两种讲述", "pages": ["G33","G46","G34"]}
+      ],
+      "titles": {
+        "G17": "诉讼委托书（1997.3）：风险代理的起点",
+        "D01": "司法局任免通知：周立太任陈家法律服务所副所长",
+        "D05": "法律服务所更名通知：委托书上的那个所，后来连名字都没留下",
+        "D02": "诉讼费缓交减免呈批表：5080 元",
+        "D03": "缓交诉讼费申请书：生活困难的手写陈述",
+        "G18": "仲裁裁决书首页：先走仲裁",
+        "C05": "仲裁裁决款项与落款：47,485 元",
+        "G48": "手写民事诉状：他把官司写在信笺上",
+        "G01": "一审判决首页：断手索赔的开场",
+        "G02": "一审判决：判赔构成 172,320.75 元",
+        "G03": "宣判笔录：当事人表示不上诉",
+        "D04": "判决末页：诉讼费与落款",
+        "G47": "二审判决正本首页：厂方上诉被驳回",
+        "C06": "二审文书首页：编号与文书名对不上的原件",
+        "C07": "二审文书续页：三条上诉理由与逐条回应",
+        "G33": "央视《挣扎》采访笔录节录：彭刚中的说法",
+        "G46": "周立太的陈述：风险代理与同住",
+        "G34": "名誉权判决：法院怎么说"
+      }
+    }</script>
+    <script src="volume.js"></script>
+  </section>
+
+  <section>
+    <h2>卷宗里有什么</h2>
+    <p class="lede">档案现存 2 卷共 143 页扫描件，全部完成 OCR。以下为卷内实物摘录（OCR 原文，未经人工复核，错漏如实保留）。</p>
+    <div class="docs">
+      <div class="doc"><span class="no">VOL-02 · P1</span>
+        <h3>律师事务所卷宗封面</h3>
+        <p>牛皮纸封面表格：「案由 工伤索赔 / 审理法院 深圳市宝安区人民法院 / 委托人 彭刚中」——委托人一栏之后被钢笔填上承办人「周立太」（OCR 误作「周云太」）。</p>
+        <blockquote>案由 工伤索赔｜委托人 彭刚中｜承办人 周立太</blockquote>
+        <div class="src">来源：卷宗材料1.png / 工伤索赔卷1.png（SC-3076 等）</div>
+      </div>
+      <div class="doc"><span class="no">VOL-02 · P12</span>
+        <h3>诉讼费缓交申请书（彭刚中亲笔）</h3>
+        <p>「左上肢残废后，厂方仅仅只给几百元工资，我只能维持我的基本生活，经济十分困难，故提出申请，缓交诉讼费。」落款处签名稚拙。一页纸，道尽一个断臂工人打官司前的一切。</p>
+        <blockquote>我因工伤索赔一案，因左上肢残废后，厂方仅仅只给几百元工资，我只能维持我的基本生活，经济十分困难，故提出申请，缓交诉讼费，请求予以批准。</blockquote>
+        <div class="src">来源：工伤索赔卷12.png</div>
+      </div>
+      <div class="doc"><span class="no">VOL-02 · P2</span>
+        <h3>卷内目录</h3>
+        <p>28 页的「工伤索赔卷」按序收录：授权委托书与证明、来料加工协议备案证明书、诉讼费缓交申请、证据清单、一审判决书、二审判决书。装订日期：02年3月7日。</p>
+        <blockquote>1 授权委托书、证明 1-2｜2 备案证明书、协议书 3-10｜3 续交申请、证据清单、判决书 11-16｜4 民事判决书 17-19｜本卷宗连面带底共19页</blockquote>
+        <div class="src">来源：工伤索赔卷2.png</div>
+      </div>
+      <div class="doc"><span class="no">VOL-02 · P3-11</span>
+        <h3>「三来一补」合同与设备清单</h3>
+        <p>为什么没有工伤保险？卷宗里 9 页「协议(合同)备案证明书」给出背景：被告厂是港商「不作价提供设备、工人 75-80 名」的来料加工厂，厂房 800 平方米，设备价值约 1000 万港元——机器有价，工人无保。</p>
+        <blockquote>乙方不作价提供加工、生产所需之设备……设备价值约 1000万港元，其产权归乙方所有。</blockquote>
+        <div class="src">来源：工伤索赔卷3-11.png（深宝外引字〔9〕第1439号）</div>
+      </div>
+      <div class="doc"><span class="no">VOL-02 · P16-21</span>
+        <h3>一审判决书（全文入卷）</h3>
+        <p>(1997)深宝法民字第83号。判决书罕见地写出完整计算式「1023元×65%×85%×100」；理由部分直接「参照《广东省道路交通事故处理规定》第二十一条」。审判长张光亚，审判员冯健、查桂芳。</p>
+        <blockquote>被告达仕文塑料工业（深圳）有限公司在本判决书生效后三日内支付原告彭刚中工伤事故赔偿款共人民币172320.75元。</blockquote>
+        <div class="src">来源：工伤索赔卷16-21.png</div>
+      </div>
+      <div class="doc"><span class="no">VOL-02 · P23-28</span>
+        <h3>二审终审判决书</h3>
+        <p>(1997)深中法民终字第270号。厂方以「已投保雇主责任险」「计算偏高」上诉，被驳回。注意二审判决书出现两份不同版本（P23-25 与 P26-28 案号一作83号一作88号）——卷宗保存了草拟与更正的过程痕迹。</p>
+        <blockquote>驳回上诉，维持原判。……本判决为终审判决。</blockquote>
+        <div class="src">来源：工伤索赔卷23-28.png，1997年6月4日</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>案件时间线</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="date">1995.07</div><div class="tt">入厂，无合同、无保险</div><div class="dd">彭刚中受聘达仕文公司，双方形成「事实劳动关系」。</div></div>
+      <div class="tl-item"><div class="date">1996.08.29</div><div class="tt">工伤</div><div class="dd">工作中机器压断左上肢，住院治疗四个月，医疗费由厂方支付。</div></div>
+      <div class="tl-item"><div class="date">1996.12.25</div><div class="tt">五级伤残鉴定</div><div class="dd">宝安区医务劳动鉴定委员会：五级伤残，丧失劳动能力 85%，需装假肢并继续治疗。</div></div>
+      <div class="tl-item"><div class="date">1997.01.18</div><div class="tt">委托周立太，缓交诉讼费起诉</div><div class="dd">同日提交授权委托书与亲笔缓交申请；此前仲裁只肯按旧口径赔 47,485 元。</div></div>
+      <div class="tl-item"><div class="date">1997.05.15</div><div class="tt">一审胜诉</div><div class="dd">宝安区法院判赔 172,320.75 元，假肢费按 9 次一次性支付。</div></div>
+      <div class="tl-item"><div class="date">1997.06.04</div><div class="tt">二审维持，终审</div><div class="dd">深圳中院驳回厂方上诉。受理费一、二审共 5,180 元全部由厂方负担。</div></div>
+      <div class="tl-item"><div class="date">此后</div><div class="tt">先例生效</div><div class="dd">假肢更换费一次性支付渐成制度，写入后来的深圳特区工伤保险条例与国务院《工伤保险条例》。</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>案外之案</h2>
+    <p class="lede">卷宗材料卷（115 页）里还夹着这个故事的「后传」与「前传」。</p>
+    <p><b>后传：律师费官司。</b>胜诉后彭刚中未付风险代理律师费，还将法院向厂方收取的 2000 余元执行费「骗走」（他申请执行时经批准缓交了执行费，执行法官误以为他已交）。央视《纪事》栏目 2004 年追踪报道《挣扎》记录了这场反转：为 161 名民工垫资办案、被欠 500 万元律师费的周立太，第一次把当事人告上法庭；镜头前的彭刚中在资中镇上开废品收购站，坚称「付了四万八」。同卷还存有周立太诉彭刚中名誉权纠纷的《延长举证期间申请书》（2004）。</p>
+    <p><b>底色：铁皮房与欠账单。</b>同一批报道还原了办案年代的细节——周立太初到深圳，在龙岗一间招待所顶楼以月租 350 元租下不到两米高的铁皮房，「床是捡来的」。而卷宗材料卷里那份 1995 年开县司法局任免通知（周立太任陈家法律服务所副所长）、1995 年律师执业证收据，正是他从重庆到深圳的起点物证。</p>
+    <div class="pull">
+      <div class="q">「在这个案子之前，按照深圳市的相关规定，一个断臂民工只能获得 33101 元的赔偿。但是，周立太却为彭刚中争取到了高达 <em>17.8 万元</em>的赔偿，它甚至改变了深圳市延续了 5 年的地方性法规。」</div>
+      <div class="who">—— 卷宗材料卷存档 · 央视《纪事》报道剪报（OCR）</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>卷宗档案信息</h2>
+    <div class="docs">
+      <div class="doc"><h3>工伤索赔卷（CASE-0005-VOL-02）</h3><p>28 页。封面→卷内目录→三来一补协议及设备清单（9页）→缓交申请→证据清单→授权委托书→身份证明→一审判决（两版）→二审终审判决。装订于 2002年3月7日。</p><div class="src">SC-3076 ~ SC-3103 · OCR-02581 起</div></div>
+      <div class="doc"><h3>卷宗材料卷（CASE-0005-VOL-01）</h3><p>115 页。除本案文书外，混编保存了央视报道剪报、律师费纠纷与名誉权案材料、1995 年执业证件等，构成案件的「案外档案」。</p><div class="src">档案路径：数据层/text/cases/彭刚中案（断手赔偿）</div></div>
+    </div>
+    <p class="note">本页为档案馆消费层演示页面。OCR 文本均为机器生成、未经人工复核（text_status: generated_unreviewed）；涉及个人信息以档案保真为原则呈现，出版级引用请以扫描原件为准。</p>
+  </section>
+
+  <footer>
+    <div class="nav"><a href="index.html">← 返回 · 卷宗呈现索引</a><a href="02-56个女工案-一小时的名称.html">下一案 · 五十六个名字 →</a></div>
+    周立太数字档案馆 · 消费层/卷宗呈现 · 案件档案 CASE-0005 · 引用请注明档案来源
+  </footer>
+</div>
+</body>
+</html>
