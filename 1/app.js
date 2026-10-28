@@ -228,6 +228,10 @@
       .filter((chain) => chain.nodeIds.includes(item.id))
       .map((chain) => chain.kicker)
       .join("、");
+    const detail = (typeof TIMELINE_DETAILS !== "undefined" && TIMELINE_DETAILS[item.id]) || null;
+    const detailBlock = detail
+      ? `<h3>详细叙述</h3><div class="detail-narrative">${detail.paras.map((p) => `<p>${p}</p>`).join("")}</div><p class="detail-ref">叙述据 ${detail.ref} 整理；多来源口径冲突并列保留，不作裁决。</p>`
+      : "";
     $("#drawer-content").innerHTML = `
       ${image}
       <div class="detail-meta"><i style="background:${info.color}"></i><span>${formatDate(item)} · ${info.label}</span></div>
@@ -236,9 +240,9 @@
       <h3>为什么重要</h3>
       <p class="detail-impact">${item.impact}</p>
       ${relatedChains ? `<h3>所在关系链</h3><p>${relatedChains}</p>` : ""}
+      ${detailBlock}
       <h3>资料状态</h3>
-      <p class="detail-status">${item.status}</p>
-      <a class="detail-source" href="../../LLM%20wiki/wiki/${item.source}" target="_blank" rel="noreferrer">打开对应 Wiki 页面 ↗</a>`;
+      <p class="detail-status">${item.status}</p>`;
     drawer.classList.add("is-open");
     drawer.setAttribute("aria-hidden", "false");
     backdrop.hidden = false;

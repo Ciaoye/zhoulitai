@@ -777,6 +777,20 @@ img { display: block; max-width: 100%; }
   font-weight: 700;
 }
 .detail-status { color: var(--muted); font-size: 13px; }
+.detail-narrative { display: grid; gap: 12px; }
+.detail-narrative p {
+  line-height: 1.85;
+  font-size: 14px;
+  text-align: justify;
+}
+.detail-narrative p + p { text-indent: 0; }
+.detail-ref {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  border-top: 1px dashed var(--ink);
+  padding-top: 10px;
+}
 .detail-source {
   display: inline-block;
   margin-top: 28px;
