@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>又一群“狗日的”跑了｜档案阅读</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;color:#1a1a1a;background:#fff}
+body{font-family:SimSun,"Songti SC",serif}
+p{margin:0 0 9px;text-align:justify}h1,h2,h3{font-weight:700;margin:0}
+.page{width:794px;min-height:1123px;padding:40px 48px 34px;margin:14px auto;position:relative;
+  background:#fff;
+  display:flex;flex-direction:column}
+.masthead{display:flex;justify-content:space-between;align-items:end;
+  border-top:3px solid #1a1a1a;border-bottom:1px solid #1a1a1a;padding:11px 0 10px}
+.brand{font-size:24px;letter-spacing:4px}
+.mast-right{font-size:11px;line-height:1.7;text-align:right;letter-spacing:1px;color:#555}
+.edition{display:flex;justify-content:space-between;border-bottom:2px double #444;
+  padding:6px 0;font-size:12px;letter-spacing:2px;color:#333}
+h1.headline{font-size:32px;line-height:1.35;letter-spacing:1px;margin:20px auto 0;max-width:660px;text-align:center}
+h1.headline .l2{display:block;font-size:25px;margin-top:6px;color:#333}
+.deck{font-size:14px;line-height:1.75;margin:12px 0 12px;padding-bottom:10px;
+  border-bottom:1px solid #999;color:#555}
+.deck .from{display:block;font-size:12px;color:#777;letter-spacing:2px;margin-top:5px}
+.body{font-size:15px;line-height:2.1;flex:1;columns:1;margin-top:6px;overflow-wrap:anywhere}
+.body h4{font-size:16px;font-weight:700;letter-spacing:2px;margin:14px 0 6px;padding-left:9px;
+  border-left:3px solid #8b1a1a;break-after:avoid}
+.body p.src{font-size:12.5px;color:#777;letter-spacing:1px}
+.body p.qa{font-weight:700;margin-top:12px}
+.body p.qa::before{content:"◆ ";color:#8b1a1a;font-size:12px}
+.body p.sign{font-weight:700;letter-spacing:6px;color:#333;margin-bottom:10px}
+.body p b.no{color:#8b1a1a}
+.body .roster{font-size:13.5px;line-height:1.85;break-inside:auto}
+.body p.caption{font-size:12px;color:#666;border-bottom:1px dashed #bbb;padding-bottom:6px;margin-bottom:10px}
+.page.compact .body{font-size:14px;line-height:1.9}
+.page.compact2 .body{font-size:13.5px;line-height:1.82}
+.page.short h1.headline{font-size:30px;margin:14px auto 0}
+.page.short .deck{margin:8px 0 10px}
+.page.short .body{font-size:14px;line-height:1.95}
+.page.short .limit{margin-top:10px}
+.page.short footer{margin-top:8px}
+.body p:first-child{font-size:15.5px;line-height:2.1}
+.body p:first-child::first-letter{font-size:15.5px;font-weight:400;line-height:inherit;padding-right:0;color:inherit}
+.limit{margin-top:16px;border:1px solid #bbb;padding:12px 15px;background:#f7f7f7;font-size:12px;line-height:1.8}
+.limit b{font-size:13px;letter-spacing:1px}
+.limit p{margin:6px 0 0;font-size:12px}
+footer{font-size:10.5px;line-height:1.7;border-top:1px solid #999;padding-top:8px;margin-top:14px;flex-shrink:0}
+footer p{margin:0 0 3px;text-align:left;overflow-wrap:anywhere;color:#555}
+.folio{display:flex;justify-content:space-between;margin-top:5px;font-size:11px;letter-spacing:1px}
+@page{size:A4 portrait;margin:14mm 13mm 12mm}
+@media print{
+  html,body{background:none}
+  .page{width:210mm;min-height:0;padding:0;margin:0 auto;break-inside:auto;page-break-inside:auto;break-after:page;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .page:last-child{break-after:auto}
+}
+</style>
+<style>
+/* ---- 纸色重着色（构建脚本注入，卷宗呈现配色） ---- */
+:root{--ink:#1c1a17;--paper:#f7f4ee;--card:#fffdf9;--line:#e2dcd0;--muted:#7a7468;--red:#a63d2f}
+html,body{background:var(--paper) !important;color:var(--ink) !important}
+body{font-family:'Noto Serif SC','Source Han Serif SC','STSong','SimSun',serif}
+.page{background:var(--card) !important;border:1px solid var(--line);border-radius:6px;
+  box-shadow:0 2px 12px rgba(60,50,30,.10)}
+.masthead{border-top:3px solid var(--ink) !important;border-bottom:1px solid var(--ink) !important}
+.brand{color:var(--ink)}
+.mast-right{color:var(--muted)}
+.edition{border-bottom:2px double #8a8272 !important;color:#4c463c}
+h1.headline{color:var(--ink)}
+.reason{color:var(--muted)}
+.body h3{color:var(--red) !important}
+.body{border-top:1px solid #b7ad9a !important;column-rule:1px solid var(--line) !important}
+.limit{background:rgba(226,220,208,.22) !important;border:1px dashed var(--line) !important;color:#4c463c}
+footer{border-top:1px solid #b7ad9a !important}
+footer p,.folio{color:var(--muted) !important}
+.reading-top{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;padding:8px 16px;
+  background:rgba(28,26,23,.93);color:#ddd;font:12px/1.5 system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.reading-top a{color:#f0f0f0;text-decoration:none;font-weight:600}
+.reading-top .crumb{color:#9a9a9a;letter-spacing:.08em;font-weight:600}
+.reading-top .sp{margin-left:auto}
+@media screen{
+  .page{margin:26px auto;padding:34px 30px}
+  .reading-wrap{max-width:960px;margin:0 auto;padding:0 12px}
+  .body{columns:1}
+  .body p{font-size:16px;line-height:2.05}
+  .reading-nav{display:flex;justify-content:space-between;gap:12px;max-width:960px;margin:4px auto 30px;padding:0 12px;
+    font:13px/1.6 system-ui,sans-serif}
+  .reading-nav a{color:#7a4a22;text-decoration:none;font-weight:600}
+  .reading-nav a:hover{text-decoration:underline}
+  .reading-nav span{color:#999}
+}
+@media screen and (max-width:920px){
+  .page{width:auto;max-width:none;min-height:0;padding:26px 18px}
+  h1.headline{font-size:26px}
+  .brand{font-size:19px;letter-spacing:2px}
+}
+@media screen and (min-width:921px){
+  .body{columns:2;column-gap:26px;column-rule:1px solid var(--line)}
+  .body p{font-size:15px}
+}
+@media print{
+  .reading-top,.reading-nav{display:none}
+  .reading-wrap{max-width:none;margin:0;padding:0}
+  html,body{background:#fff !important}
+  .page{border:none;box-shadow:none}
+}
+</style>
+
+</head><body>
+<div class="reading-top">
+  <a href="../index.html">← 阅读站主页</a>
+  <span class="crumb">周立太档案馆 · 档案阅读</span>
+  <a class="sp" href="../reading-pdf/bk-04.pdf">打印版 PDF ↗</a>
+</div>
+<div class="reading-wrap">
+
+<div class="page" id="p1">
+  <div class="masthead">
+    <div class="brand">周立太数字档案馆</div>
+    <div class="mast-right">新浪博客打印版 · 第 04/11 篇<br>在线阅读版 · 周立太档案馆</div>
+  </div>
+  <div class="edition"><span>档号 BK-SUP-01</span><span>周立太新浪博客 · 2007.08.16</span><span>亲笔·风波原帖</span></div>
+  <h1 class="headline">又一群“狗日的”跑了</h1>
+  <div class="deck"><span class="from">入选理由：2007.8.16 博客原帖：王天松等60余人领款即散，7万律师费化为泡影——“狗日的”风波的起点文本，原帖早于馆藏抓取范围，全文据当年媒体完整转引复原</span></div>
+  <div class="body">
+<p>王天松等六十余人，是分别来自四川、重庆、广东、江西等不同地方的农民工。</p>
+<p>王天松等六十余人于1991年5月至2004年5月先后应聘到东莞利兴塑胶五金制品有限公司，分别从事模具、仓管等不同工作。</p>
+<p>2005年11月2日，该公司老板携款逃逸，公司停产。</p>
+<p>2005年11月5日，本人接到员工代表余代中等人电话，称公司老板逃逸，还尚欠员工工资百万余元，希望我们律师事务所为其提供法律帮助。60余名员工推荐余代中等5人为诉讼代表，并与重庆周立太律师事务所签订委托代理合同，指派周立太律师及唐毅律师担任其代理人。合同约定：签订合同时，支付律师办案差旅费25000元，案结后，按实际赔偿数额的15%支付律师费。签定合同时交纳的25000元在应交纳的律师费中予以扣除。办案所需差旅费由律师事务所承担。</p>
+<p>接受委托后，我们于2005年11月9日即向东莞市劳动争议仲裁委申请仲裁。该委经开庭审理后，作出了裁决：由用人单位支付王天松等人工资及相关补偿金14万余元。</p>
+<p>我们认为，东莞市劳动争议仲裁委员会裁决的经济补偿金计发基数及工资金额与实际情况不符，便支持当事人向东莞市人民法院提起诉讼。</p>
+<p>案经东莞市中级人民法院审理后作出判决，由用人单位支付王天松等人70余万元经济补偿金及拖欠工资。</p>
+<p>经过我们一年多的艰苦努力，东莞市人民法院的判决生效后，案件最终得以全部执行。接到法院的通知后，王天松等60余名当事人于2007年8月15日上午赶到东莞市人民法院执行局领取赔偿款。</p>
+<p>得到诉讼代表的通知后，律师事务所即安排深圳分所财务人员谭英建前往东莞法院，协助各当事人领取执行款，同时收取约定的律师费。</p>
+<p>在法院分发款项的现场，各当事人应领取的款项全部由法院及相关人员划拨至当事人提供的银行帐号，并未分发现金。王天松等60余名当事人全部领到赔偿款以后，即各散五方，对于律师所派去的财务人员提出的按照合同约定收取应收的律师费请求根本不予理会，当事人应当缴付的7万元律师费化为泡影。</p>
+<p>员工代表余代中为了方便大家尽早到达法院领取补偿款项，自己出钱租了两辆中巴车，另外，为了在所有人员拿到补偿金后能聚集一起庆祝一年多来官司的胜利，余代中自己垫资在东莞市清溪镇某餐厅预订了6桌饭菜，结果在这些当事人领到所有款项后，连余代中垫付的包车费也没有支付，预订的6桌饭菜更不会去吃。</p>
+<p>余代中和我一样气得要跳楼。</p>
+<p>重庆周立太律师事务所及深圳分所主要面向全国范围为居于弱势的民工提供法律帮助，维护农民工的合法权益。但是现实的情况是，农民工要是输了官司，就会向司法行政机关投诉，称律师事务所的律师未能维护其合法权益，如果赢了官司，得到赔偿款项，他们就会拿了钱就开溜，至于社会提倡的什么诚信、道德全然不顾。</p>
+<p>对于那些输了官司就投诉的农民工，我不想做什么评价，而对于象王天松等人这样拿了钱就开溜的当事人，我只能说：真是他妈帮畜生！</p>
+  </div>
+  <aside class="limit"><b>使用说明</b><p>本文为馆藏周立太新浪博客（blog.sina.com.cn，2007–2016）文章的数字化转写件，非博客页面复制品。著作权归周立太及原引媒体所有；部分篇目含当事人真实姓名与案件细节，公开陈列前须核对隐私与权利状态；正文内容以原始档案为准，未经事实复核。</p></aside>
+  <footer>
+    <p>原文：https://blog.sina.com.cn/s/blog_4e4848c0.html（原帖，早于馆藏抓取起点2007-08-29）</p>
+    <div class="folio"><span>04 / 11</span><span>周立太数字档案馆 · 新浪博客打印集 · 2026-10</span></div>
+  </footer>
+</div>
+</div><!-- /reading-wrap -->
+<div class="reading-nav">
+  <a href="2007-07-15a.html">← 上一篇：“民工保护神”周立太的苦恼</a>
+  <span>第 15 / 63 篇 · <a href="../index.html">回主页</a></span>
+  <a href="2007-08-24a.html">下一篇：维权律师撰文辱骂农民工 讨薪成功 →</a>
+</div>
+</body></html>

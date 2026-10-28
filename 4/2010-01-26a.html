@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>周立太：底层滚出来的律师｜档案阅读</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;color:#1a1a1a;background:#fff}
+body{font-family:SimSun,"Songti SC",serif}
+p{margin:0 0 9px;text-align:justify}h1,h2,h3{font-weight:700;margin:0}
+.page{width:794px;min-height:1123px;padding:40px 48px 34px;margin:14px auto;position:relative;
+  background:#fff;display:flex;flex-direction:column}
+.masthead{display:flex;justify-content:space-between;align-items:end;
+  border-top:3px solid #1a1a1a;border-bottom:1px solid #1a1a1a;padding:11px 0 10px}
+.brand{font-size:24px;letter-spacing:4px}
+.mast-right{font-size:11px;line-height:1.7;text-align:right;letter-spacing:1px;color:#555}
+.edition{display:flex;justify-content:space-between;border-bottom:2px double #444;
+  padding:6px 0;font-size:12px;letter-spacing:2px;color:#333}
+h1.headline{font-size:34px;line-height:1.35;letter-spacing:1px;margin:22px auto 0;max-width:660px;text-align:center}
+.reason{font-size:12px;color:#777;letter-spacing:1.5px;text-align:center;line-height:1.8;
+  margin:13px auto 0;max-width:600px}
+.body{font-size:14.5px;line-height:2.0;flex:1;columns:2;column-gap:26px;column-rule:1px solid #ddd;
+  margin-top:14px;border-top:1px solid #999;padding-top:13px}
+.body h3{font-size:15px;font-weight:700;letter-spacing:1px;margin:14px 0 8px;color:#8b1a1a;
+  break-after:avoid;page-break-after:avoid}
+.body h3::before{content:"■";font-size:9px;margin-right:7px;vertical-align:2px}
+.body p+h3{margin-top:16px}
+h1.headline br{display:block;margin:6px 0}
+.limit{margin-top:16px;border:1px solid #bbb;padding:12px 15px;background:#f7f7f7;font-size:12px;line-height:1.8}
+.limit b{font-size:13px;letter-spacing:1px}
+.limit p{margin:6px 0 0;font-size:12px}
+footer{font-size:10.5px;line-height:1.7;border-top:1px solid #999;padding-top:8px;margin-top:14px;flex-shrink:0}
+footer p{margin:0 0 3px;text-align:left;overflow-wrap:anywhere;color:#555}
+.folio{display:flex;justify-content:space-between;margin-top:5px;font-size:11px;letter-spacing:1px}
+@page{size:A4 portrait;margin:14mm 13mm 12mm}
+@media print{
+  html,body{background:none}
+  .page{width:210mm;min-height:0;padding:0;margin:0 auto;border:none;break-inside:auto;page-break-inside:auto;break-after:page;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .page:last-child{break-after:auto}
+}
+</style>
+<style>
+/* ---- 纸色重着色（构建脚本注入，卷宗呈现配色） ---- */
+:root{--ink:#1c1a17;--paper:#f7f4ee;--card:#fffdf9;--line:#e2dcd0;--muted:#7a7468;--red:#a63d2f}
+html,body{background:var(--paper) !important;color:var(--ink) !important}
+body{font-family:'Noto Serif SC','Source Han Serif SC','STSong','SimSun',serif}
+.page{background:var(--card) !important;border:1px solid var(--line);border-radius:6px;
+  box-shadow:0 2px 12px rgba(60,50,30,.10)}
+.masthead{border-top:3px solid var(--ink) !important;border-bottom:1px solid var(--ink) !important}
+.brand{color:var(--ink)}
+.mast-right{color:var(--muted)}
+.edition{border-bottom:2px double #8a8272 !important;color:#4c463c}
+h1.headline{color:var(--ink)}
+.reason{color:var(--muted)}
+.body h3{color:var(--red) !important}
+.body{border-top:1px solid #b7ad9a !important;column-rule:1px solid var(--line) !important}
+.limit{background:rgba(226,220,208,.22) !important;border:1px dashed var(--line) !important;color:#4c463c}
+footer{border-top:1px solid #b7ad9a !important}
+footer p,.folio{color:var(--muted) !important}
+.reading-top{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;padding:8px 16px;
+  background:rgba(28,26,23,.93);color:#ddd;font:12px/1.5 system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.reading-top a{color:#f0f0f0;text-decoration:none;font-weight:600}
+.reading-top .crumb{color:#9a9a9a;letter-spacing:.08em;font-weight:600}
+.reading-top .sp{margin-left:auto}
+@media screen{
+  .page{margin:26px auto;padding:34px 30px}
+  .reading-wrap{max-width:960px;margin:0 auto;padding:0 12px}
+  .body{columns:1}
+  .body p{font-size:16px;line-height:2.05}
+  .reading-nav{display:flex;justify-content:space-between;gap:12px;max-width:960px;margin:4px auto 30px;padding:0 12px;
+    font:13px/1.6 system-ui,sans-serif}
+  .reading-nav a{color:#7a4a22;text-decoration:none;font-weight:600}
+  .reading-nav a:hover{text-decoration:underline}
+  .reading-nav span{color:#999}
+}
+@media screen and (max-width:920px){
+  .page{width:auto;max-width:none;min-height:0;padding:26px 18px}
+  h1.headline{font-size:26px}
+  .brand{font-size:19px;letter-spacing:2px}
+}
+@media screen and (min-width:921px){
+  .body{columns:2;column-gap:26px;column-rule:1px solid var(--line)}
+  .body p{font-size:15px}
+}
+@media print{
+  .reading-top,.reading-nav{display:none}
+  .reading-wrap{max-width:none;margin:0;padding:0}
+  html,body{background:#fff !important}
+  .page{border:none;box-shadow:none}
+}
+</style>
+
+</head><body>
+<div class="reading-top">
+  <a href="../index.html">← 阅读站主页</a>
+  <span class="crumb">周立太档案馆 · 档案阅读</span>
+  <a class="sp" href="../reading-pdf/md-10.pdf">打印版 PDF ↗</a>
+</div>
+<div class="reading-wrap">
+
+<div class="page" id="p1">
+  <div class="masthead">
+    <div class="brand">周立太数字档案馆</div>
+    <div class="mast-right">媒体报道打印版 · 第 10/12 篇<br>在线阅读版 · 周立太档案馆</div>
+  </div>
+  <div class="edition"><span>档号 REPORT-0020</span><span>新京报 · 2010.01.26</span><span>2010·底层滚出来</span></div>
+  <h1 class="headline">周立太：底层滚出来的律师</h1>
+  <div class="reason">入选理由：《新京报》人物特稿，书稿《从底层滚出来》出版期的代表作</div>
+  <div class="body">
+<p>他不停地为农民工讨要伤残赔偿，也骂过逃费的农民工；他曾经不断地吸引眼球成为媒体关注的焦点，也曾山穷水尽想当和尚；他主业是帮助农民工维权，最近又代理重庆涉黑案——这就是重庆律师周立太。谈到代理重庆涉黑案被骂成&quot;狗头军师&quot;时，周立太说，&quot;如果我是狗头军师，那狗头军师太简单化了。&quot;</p>
+<p>去年 12 月 20 日，北京一家宾馆内，周立太撩起保暖内衣，晨光通过窗户，射在圆滚滚的肚子上。&quot;北京的天，狗日的，真冷。&quot;骂了北京的气，又骂了律师界的一些破事，周立太突然说：&quot;我想休息了。&quot;他说，假如不干律师，家里还有责任田。不过，头天晚上，周立太还在大谈在京设立律所的设想。</p>
+<h3>为农民工追讨赔偿出名</h3>
+<p>周立太的出名，与农民工分不开。1996 年，深圳龙岗区，4 月 30 日下午，开县籍农民工徐昌文、赵碧夫妻在下班途中被一辆香港货车碾死，现场勘测肇事司机负全责。司机押下 5 万元后，被警方放行回港。迟迟得不到后续赔偿，死者家属在开县找到周立太。当时的周立太默默无闻，一听 5 万可以买两条命，拍着胸脯接下案子，跟着家属去了深圳。</p>
+<p>然而，事情解决并非易事。肇事司机不来深圳。20 多天过去了，每天住宿、生活开销 100 元，普通农民难以承受。被逼无奈，周立太想了个招儿。他以家属名义给交警大队写了信，声明如果见不到肇事车司机，他们将到马路上拦截所有香港的货柜车。信中他说，如果法律解决不了，他们不会一等再等。第二天，司机主动派人协调，随后赔偿死者家属 13 万元。周立太还为死者争取到了工伤赔偿，每人分别获赔 10 万。</p>
+<p>该案胜诉，创造了中国因工伤亡获得双重赔偿的先例。这是周立太在深圳办成的第一桩案子。自此，他与深圳结缘，与农民工工伤索赔官司结缘。多年后，周立太在深圳设立了分所。</p>
+<p>周立太被众多农民工称为大哥。从 1997 年开始，因工致残的农民工，纷纷找上门来。一些人掏不起律师费，连回乡路费都出不起。对伤残打工者，周立太包吃、包住、包诉讼费，他承诺：打不赢官司，不收律师费，打赢获赔后才按比例收费。这样，最多时，与周立太同吃住的人有 50 多名，四室一厅被挤得水泄不通。有人说，周立太&quot;太仁慈&quot;。有人说，周立太是奔着高额律师费去的。不过，曾在周立太家吃住的付绪林却说，跟周立太混饭吃时，每天至少一顿一荤两素，米白，比工厂里好。</p>
+<p>作为一名律师，周立太大都在同农民工打交道，缺乏竞争对手的他，以此成名。农民工收取高额代理费，有媒体甚至指出，选择周立太，民工们是没有选择的选择。然而，就是这种没有技术含量的劳动，周立太一遍又一遍地重复着。&quot;你问我算不算行业垄断，我巴不得再出个&#x27;周立太&#x27;。&quot;周立太说他很孤独。</p>
+<h3>大骂不给律师费的农民工</h3>
+<p>农民工涉及的案件多为工伤索赔，这种官司程序复杂、成本高、耗时长。因此，律师一般不接。即使是这样，有的农民工还逃费。截至 2004 年，周立太律所共有 480 余人，在缴纳律师费前跑路，所欠代理费 500 余万元。第一次遇到这种事时，周立太&quot;如五雷轰顶&quot;。</p>
+<p>1996 年 8 月，深圳，当事人彭某工作中被机器轧断左上肢，厂方只愿赔 3.4 万。周立太提起诉讼，认为厂方应为彭某今后数十年间更换假肢埋单。胜诉后，彭某共获赔 17.2 万元。然而，就在胜诉当天，彭某跑了，欠下周立太 4 万元律师费。一周后，周立太辗转找到彭某，对方说：&quot;我不给，你又能将我怎么样？&quot;周立太事后反思，&quot;可怜之人，必有可恨之处&quot;。办案时，彭某衣食无着，周立太包下彭某食宿。</p>
+<p>一次，彭某嫖娼欠钱被扣身份证，周立太半夜替他赎了出来。1996 年岁末，彭某的案子即将开庭，周立太为此放弃了为父亲送终的机会。2006 年，周立太替自己打了一场名誉官司，被告人是彭某。官司赢了，周立太仍有痛的感觉。</p>
+<p>遇的多了，玩性大发的周立太挑了第 161 个胜诉跑路的当事人刘某，状告其，并欲追回律师费。161 谐音&quot;一路要&quot;，当事人在重庆，好找。2007 年 8 月，周立太再次遇到胜诉当事人未交律师费跑路的事。他气极了，于是在博客上撰文《又有一群&quot;狗日的&quot;跑了》。文末写道：对于像王天松等这样拿了钱就开溜的当事人，我只能说：真是他妈帮畜生！博文吸引了太多的眼球，不过大多责备周不该出言不逊。不过，也有不少人认为，周立太也是被逼急了。</p>
+<p>2009 年 12 月 19 日晚，面对中国青年政治学院数百名学子，周立太调侃说：&quot;来所里时，他喊你&#x27;爷&#x27;，赢了官司，你要喊他&#x27;爷&#x27;。&quot;周立太说，现在坚决不接两种农民工的官司，一种是跪着喊&quot;爷&quot;的，另一种是上访的。</p>
+<h3>隔三岔五成媒体焦点</h3>
+<p>周立太总能隔三岔五抛出一些吸引眼球的案子。2001 年，周立太接下了执业以来影响最大的案子。7 月 30 日，龙岗一家韩资工厂 56 名女工遭遇当众搜身，女工们感觉受到极大羞辱。通过报纸，她们知道了周立太。当这些女工找上门来时，周立太立马答应，接下案子。媒体的关注，使得案件出奇顺利。韩国驻华大使道歉，深圳市政府高度重视，全国总工会表示声援……开庭时，周立太说，一辈子也没见过那么多记者。</p>
+<p>2001 年，45 岁生日那天，周立太在重庆设立了以自己名字命名的律所。事务所接的第一个案子吸引了眼球。因认为某些红头文件侵犯了公民在养老保险上寻求司法救济的权利，周立太把重庆市政府告上了法庭。最终，重庆市政府纠正了上述红头文件。随后，周立太状告重庆公安局经侦大队，原因是警方插手催缴律所电话费。周立太认为对方越权，公安局最后被迫书面道歉。周立太买房子，银行按揭时强制捆绑保险。</p>
+<p>周立太状告这家银行，虽然败诉，但因传播效果奇好，千里之外的上海废止了相关捆绑方案。</p>
+<p>去年 10 月，重庆打黑后开始审理系列涉黑案，周立太担任涉黑团伙成员辩护律师，称涉黑疑犯也有人权。此言一出，被有些网友骂为黑老大的&quot;狗头军师&quot;。周立太参与的案件，大多都会成为媒体关注的焦点。很多人认为，周立太拥有出类拔萃的设定媒体议程的能力。不然，这个 50 多岁的人，也不会每年平均接受 40 多次采访。&quot;随便在哪家银行里都找不到周立太的存款，但随便在哪家媒体上都能找到周立太的新闻。&quot;周立太常如此自嘲。</p>
+<h3>&quot;堂吉诃德&quot;屡败屡战</h3>
+<p>一些政府部门，听到周立太三个字就头疼。这也难怪。他替伤残农民工状告深圳市社保局；他挑战过副市长的行政指示，并称&quot;错的就是错的，市长也不例外&quot;；他去过上海，控告政府部门&quot;户口歧视&quot;……这些案子通常热热闹闹开始，以周立太的惨败结束，但周立太说，明知是输，也要干。在深圳，他帮过一些人，因此也得罪了另一些人。2001 年底，深圳市龙岗区司法局突然责令其在当地停止执业，并没收律师资格证。</p>
+<p>政府部门认为，周立太虽有律师执照，但他是一名重庆律师，未办手续长期在深圳接案，逃避政府部门监管。另外，他还被指偷税、煽动当事人等。周立太说，他愿意当&quot;堂吉诃德&quot;。</p>
+<p>2002 年 6 月，周立太状告龙岗区司法局。结果仍是周立太惨败，但这个案子却为他赢得了同情。以至于他离开深圳时，引发当地谈论一个话题：走了周立太，谁来保护伤残农民工的合法权益？</p>
+<h3>底层滚出来的怕饿律师</h3>
+<p>在《南方都市报》记者陈文定眼里，周立太是从最底层滚出来的人。在传记《从底层滚出来》中，陈文定介绍，周立太读过小学二年级，却拿到了律师资格证。这种经历，常成为周在清华、哈佛等演讲时必提的&quot;开胃菜&quot;。</p>
+<p>周立太 7 岁上小学，四年中只读了二年级。1974 年，饿怕了的周立太当了兵。家里穷，没穿过内裤，参军体检时医生让他脱掉长裤，没想到里面啥也没穿。从那天起，周立太知道了世界上还有内裤。那一天，他穿上了第一条内裤，军绿色，&quot;穿上去绷得慌&quot;。1979 年退伍后，周立太返乡当了农民。回到老家，没有姑娘愿意嫁给他。1980 年，周立太去湖南打工，盘算着年底带个湘妹子回家成亲。</p>
+<p>不久，他看上了管理员的表妹，可人家对他没意思。后来，厂里有人为讨薪打了起来。周立太想：不打架，是不是就不能维权？从此，周立太开始自学法律。</p>
+<p>自学很苦。自信心也极受打击。1982 年，周立太给一知名律师写信请教问题。对方回信劝他&quot;安心放牛种田，比什么都好&quot;。不过，受到刺激的周立太发誓要超过这个律师。1986 年，中国第一次实行律师资格统一考试。由于没有年龄和学历限制，周立太超过分数线 12 分。直到现在，中餐晚餐必须有肉，少了就会抱怨。周立太说，这都是从小饿怕了。</p>
+<p>2004 年，数月发不出员工工资，律所里走了多名苦心栽培的律师，周立太决定出家。可是在庙里吃了两天素，第三天周立太就撑不住了。</p>
+<p>□ 本报记者 吴伟 北京报道</p>
+<h3>人物档案</h3>
+<p>周立太，1956 年 6 月 4 日，生于重庆开县五通乡一农民家庭，读过小学二年级，重庆立太律师事务所主任，中华全国律协行政法专业委员会专业委员，致公党党员。因多次为农民工打官司，被称为&quot;农民工律师&quot;。</p>
+  </div>
+  <aside class="limit"><b>使用说明</b><p>本文为档案馆藏媒体报道的数字化转写件（由原始 .wps/.docx 文档提取），非报纸版面复制品。著作权归原媒体及作者所有，展览使用须核对权利状态；正文内容以原始档案为准，未经事实复核。</p></aside>
+  <footer>
+    <div class="folio"><span>10 / 12</span><span>周立太数字档案馆 · 媒体报道打印集 · 2026-10</span></div>
+  </footer>
+</div>
+</div><!-- /reading-wrap -->
+<div class="reading-nav">
+  <a href="2010-01-25a.html">← 上一篇：评《从底层滚出来》：一线阳光照进</a>
+  <span>第 46 / 63 篇 · <a href="../index.html">回主页</a></span>
+  <a href="2010-02-06a.html">下一篇：民工律师周立太出书 痛骂母亲被斥 →</a>
+</div>
+</body></html>

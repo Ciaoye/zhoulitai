@@ -3,229 +3,570 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="周立太档案馆 · 档案阅读站：12 篇媒体报道与 11 篇周立太新浪博客亲笔文章在线全文阅读">
+<meta name="description" content="周立太档案馆 · 档案阅读：44 篇媒体报道、15 篇博客亲笔、4 篇公众号文章在线全文，2001–2026 按时间排开">
 <title>档案阅读 · 周立太档案馆</title>
-<style>
-  :root {
-    --bg: #141210; --panel: #1d1a17; --ink: #e8e2d8; --muted: #9a9188;
-    --accent: #b85a4e; --line: #33302b; --accent2: #c99a3f;
+<style>:root{--ink:#1c1a17;--paper:#f7f4ee;--card:#fffdf9;--line:#e2dcd0;--muted:#7a7468;--red:#a63d2f;--gold:#9a6b28}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:'Noto Serif SC','Source Han Serif SC','STSong','SimSun',serif;line-height:1.8}
+  .wrap{max-width:1160px;margin:0 auto;padding:52px 28px 90px}
+  .kicker{font-size:13px;letter-spacing:.4em;color:var(--muted)}
+  h1{font-size:clamp(30px,5vw,44px);font-weight:900;letter-spacing:.1em;margin:12px 0 8px}
+  .sub{font-size:15px;color:var(--muted);max-width:780px;margin-bottom:10px}
+  .legend{font-size:12.5px;color:var(--muted);margin:16px 0 30px}
+  .chip{display:inline-block;padding:1px 9px;border-radius:3px;font-size:11.5px;letter-spacing:.08em}
+  .chip.c-report{background:rgba(166,61,47,.13);color:var(--red)}
+  .chip.c-blog{background:rgba(154,107,40,.14);color:var(--gold)}
+  .chip.c-gzh{background:rgba(47,107,94,.13);color:#2f6b5e}
+  .layout{display:grid;grid-template-columns:150px 1fr;gap:0}
+  .rail{position:relative}
+  .rail .track{position:sticky;top:24px}
+  .rail .yearbtn{display:block;width:100%;text-align:right;padding:10px 18px 10px 0;border:0;background:none;cursor:pointer;
+    font-family:inherit;color:var(--muted);font-size:13px;letter-spacing:.06em;position:relative}
+  .rail .yearbtn b{display:block;font-size:21px;font-weight:900;color:var(--ink);letter-spacing:.04em}
+  .rail .yearbtn .cnt{font-size:11px;color:var(--muted)}
+  .rail .yearbtn::after{content:'';position:absolute;right:-1px;top:50%;width:9px;height:9px;border-radius:50%;
+    background:var(--paper);border:2px solid var(--line);transform:translate(50%,-50%);transition:.18s}
+  .rail .yearbtn.on::after{background:var(--red);border-color:var(--red)}
+  .rail .yearbtn.on b,.rail .yearbtn:hover b{color:var(--red)}
+  .rail::before{content:'';position:absolute;right:-1px;top:0;bottom:0;width:2px;background:var(--line)}
+  .stream{padding-left:34px}
+  .dsec{margin-bottom:44px;scroll-margin-top:18px}
+  .dsec .dhead{display:flex;align-items:baseline;gap:14px;margin:0 0 14px}
+  .dsec .dhead h2{font-size:26px;font-weight:900;letter-spacing:.08em;color:var(--ink)}
+  .dsec .dhead span{font-size:12.5px;color:var(--muted);letter-spacing:.12em}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:16px}
+  a.card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:18px 20px 15px;color:var(--ink);text-decoration:none;transition:transform .15s,box-shadow .15s;gap:6px}
+  a.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(60,50,30,.13)}
+  .card .date{font-size:12px;letter-spacing:.1em;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .card h2{font-size:17.5px;font-weight:900;line-height:1.5;letter-spacing:.02em}
+  .card .src{font-size:12px;color:var(--muted)}
+  .card .abstract{font-size:13px;color:#4c463c;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .card .go{font-size:12.5px;letter-spacing:.1em;color:var(--red);margin-top:6px}
+  .card .pdf{font-size:11px;color:var(--muted)}
+  footer{margin-top:56px;border-top:3px double var(--line);padding-top:18px;font-size:12.5px;color:var(--muted);line-height:2}
+  @media (max-width:760px){
+    .layout{grid-template-columns:1fr}
+    .rail{display:none}
+    .stream{padding-left:0}
+    .wrap{padding:36px 18px 60px}
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: var(--bg); color: var(--ink);
-    font: 15px/1.7 system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", serif;
-    min-height: 100vh;
-  }
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 54px 22px 40px; }
-  .eyebrow { font-size: 12px; letter-spacing: .22em; color: var(--muted); margin-bottom: 14px; }
-  h1 { font-size: 32px; font-weight: 700; letter-spacing: .04em; margin-bottom: 12px; }
-  .deck { color: var(--muted); max-width: 760px; margin-bottom: 8px; }
-  .legend { color: var(--muted); font-size: 12.5px; margin: 14px 0 26px; }
-  .legend .dot { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin: 0 5px 0 14px; vertical-align: 1px; }
-  h2.sec { font-size: 14px; letter-spacing: .18em; color: var(--muted); font-weight: 600;
-    margin: 30px 0 6px; display: flex; align-items: center; gap: 10px; }
-  h2.sec::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; margin-top: 12px; }
-  .card {
-    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
-    padding: 20px 20px 16px; text-decoration: none; color: inherit;
-    display: flex; flex-direction: column; gap: 7px;
-    transition: border-color .18s ease, transform .18s ease;
-  }
-  .card:hover { border-color: var(--accent); transform: translateY(-2px); }
-  .tag { align-self: flex-start; font-size: 11px; letter-spacing: .12em; font-weight: 600;
-    padding: 2px 8px; border-radius: 3px; }
-  .tag-md { background: rgba(184, 90, 78, .16); color: #d8917f; }
-  .tag-bk { background: rgba(201, 154, 63, .16); color: var(--accent2); }
-  .card h2 { font-size: 18px; line-height: 1.45; }
-  .src { font-size: 12.5px; color: var(--muted); }
-  .abstract { font-size: 13.5px; color: #b5aca1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-  .go { margin-top: 6px; font-size: 13px; color: var(--accent); font-weight: 600; }
-  footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 12.5px; padding-top: 18px; margin-top: 44px; line-height: 1.9; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <p class="eyebrow">周立太数字档案馆 · 档案阅读</p>
+    <div class="kicker">周立太数字档案馆 · 档案阅读</div>
     <h1>媒体报道与亲笔文章</h1>
-    <p class="deck">23 篇全文在线阅读：12 篇媒体报道（2001–2015）看外部视角如何记录周立太，11 篇新浪博客亲笔（2007–2016）听周立太自己讲述。按发表时间正序排列。</p>
-    <p class="legend">
-      <span class="dot" style="background:#d8917f"></span>媒体报道（外部视角）
-      <span class="dot" style="background:#c99a3f"></span>博客亲笔（周立太自述）
-      — 时间线另一端另有 <a href="../1/" style="color:var(--accent)">完整时间线</a>
-    </p>
+    <div class="sub">63 篇全文在线：44 篇媒体报道看外部视角如何记录周立太，15 篇新浪博客亲笔听周立太自己讲述，另有 4 篇近年公众号文章。2001 年到 2026 年，按时间排开。</div>
+    <div class="legend">
+      <span class="chip c-report">媒体报道</span>外部视角
+      <span class="chip c-blog">博客亲笔</span>周立太自述
+      <span class="chip c-gzh">公众号</span>2018 年以后
+       — 想看案件与制度的时间线，另有 <a href="../1/" style="color:var(--red)">完整时间线站</a>
+    </div>
   </header>
-
-  <h2 class="sec">按时间浏览</h2>
-  <div class="grid">
-      <a class="card" href="md-01.html">
-        <span class="tag tag-md">媒体报道 · 女工搜身案</span>
-        <h2>深圳女工被搜身案昨日开庭 今天进入法庭辩论</h2>
-        <p class="src">羊城晚报 · 2001.8.25 · 约 4294 字</p>
-        <p class="abstract">56 名女工被非法搜身案开庭：21 名证人车轮战，周立太以代理律师身份首次大规模进入公共视野。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="md-02.html">
-        <span class="tag tag-md">媒体报道 · 黑律师之争</span>
-        <h2>专为打工仔打官司而扬名周立太是“黑律师”？</h2>
-        <p class="src">南方都市报 · 2001.12.26 · 约 799 字</p>
-        <p class="abstract">深圳首次清理外地律师设点，周立太被责令停止执业，他宣布将起诉龙岗区司法局——“黑律师”之争的起点。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="md-03.html">
-        <span class="tag tag-md">媒体报道 · 央视专题</span>
-        <h2>社会记录：揭开民工律师的面纱</h2>
-        <p class="src">CCTV《社会记录》 · 2004.5.26 · 约 5038 字</p>
-        <p class="abstract">央视专题镜头下的周立太：在厨房接受采访、讲述状告民工的刘朝正案，民工律师的面纱被揭开。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="md-04.html">
-        <span class="tag tag-md">媒体报道 · 周立太难题</span>
-        <h2>前人造孽后人遭殃 如何破解“周立太难题”</h2>
-        <p class="src">中国经济时报 · 2004.7.8 · 约 1481 字</p>
-        <p class="abstract">8 年 2000 余件工伤案、创 158 万元赔偿之最之后，周立太开始改变“不赢不收费”的规则——“周立太难题”首次被系统提出。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="md-05.html">
-        <span class="tag tag-md">媒体报道 · 工会之争</span>
-        <h2>维权的窘境</h2>
-        <p class="src">中国青年报 · 2005.2.2 · 约 3713 字</p>
-        <p class="abstract">83 名工人状告工会案：周立太在重庆市总工会拍案而起，维权的窘境从当事人延伸到律师本人。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="md-06.html">
-        <span class="tag tag-md">媒体报道 · 失信困境</span>
-        <h2>“农民工律师”赢了官司败给失信</h2>
-        <p class="src">央视国际 · 2007.2.6 · 约 1411 字</p>
-        <p class="abstract">胜诉赔偿金被当事人卷走、欠款累计 500 万：帮农民工赢了官司的律师，败给了失信。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="md-07.html">
-        <span class="tag tag-md">媒体报道 · 封面长文</span>
-        <h2>债主”周立太</h2>
-        <p class="src">新民周刊 · 2007.11.28 · 约 9708 字</p>
-        <p class="abstract">从熊德明讨薪到周立太被欠债，一万二千字封面长文细写“债主周立太”的两难处境。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="md-09.html">
-        <span class="tag tag-md">媒体报道 · 封面长文</span>
-        <h2>草根律师团</h2>
-        <p class="src">新民周刊 · 2007.11.28 · 约 2266 字</p>
-        <p class="abstract">新民周刊封面报道：把周立太和他的“群居”律所放进草根律师群体谱系。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="md-08.html">
-        <span class="tag tag-md">媒体报道 · 南方周末访谈</span>
-        <h2>农民工维权为什么这样难——律师周立太访谈录</h2>
-        <p class="src">南方周末 · 2007.12.18 · 约 4674 字</p>
-        <p class="abstract">南方周末访谈录：周立太亲口讲维权为什么难，并提出赔款银行托管、修法等制度呼吁。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="md-10.html">
-        <span class="tag tag-md">媒体报道 · 底层滚出来</span>
-        <h2>周立太：底层滚出来的律师</h2>
-        <p class="src">新京报 · 2010.01.26 · 约 3627 字</p>
-        <p class="abstract">新京报人物特稿：从三峡贫农家庭到代理涉黑案，“底层滚出来的律师”的完整画像。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="md-11.html">
-        <span class="tag tag-md">媒体报道 · 转型</span>
-        <h2>律师周立太“转型”</h2>
-        <p class="src">时代周报 · 2012.10.19 · 约 3316 字</p>
-        <p class="abstract">注销深圳分所、退回重庆：时代周报记录周立太宣布“转型”，农民工维权叙事的转折点。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="md-12.html">
-        <span class="tag tag-md">媒体报道 · 近十年回望</span>
-        <h2>农民工维权律师周立太：曾被没收律师证</h2>
-        <p class="src">澎湃新闻 · 2015.5.1 · 约 3477 字</p>
-        <p class="abstract">重回龙岗三和村那栋四层楼房：澎湃新闻回望二十年维权路，从被没收律师证到 1.4 万件案件。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="bk-04.html">
-        <span class="tag tag-bk">亲笔 · 风波原帖</span>
-        <h2>又一群“狗日的”跑了</h2>
-        <p class="src">周立太新浪博客 · 2007.08.16 · 约 1177 字</p>
-        <p class="abstract">2007.8.16 风波原帖：王天松等 60 余人领款即散，7 万律师费化为泡影，一切争议的起点文本。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="bk-01.html">
-        <span class="tag tag-bk">亲笔 · 司法评论</span>
-        <h2>为何二审不如幺审？——形同虚设的二审</h2>
-        <p class="src">周立太新浪博客 · 2007.08.29 · 约 1564 字</p>
-        <p class="abstract">开博首月亲笔：批两审终审走过场——“二审不如幺审”，博客里少见的纯论说文。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="bk-07.html">
-        <span class="tag tag-bk">亲笔 · 风险代理</span>
-        <h2>风险代理惹的祸！</h2>
-        <p class="src">周立太新浪博客 · 2007.08.29 · 约 2629 字</p>
-        <p class="abstract">自己首创的风险代理如何反噬：三个真实案例算清 15% 背后的账。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="bk-02.html">
-        <span class="tag tag-bk">亲笔 · 回应争议</span>
-        <h2>致网友的信</h2>
-        <p class="src">周立太新浪博客 · 2007.09.01 · 约 269 字</p>
-        <p class="abstract">“狗日的跑了”风波后的第一封说明信：宣布连载 1996 年以来案件背后的故事。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="bk-03.html">
-        <span class="tag tag-bk">亲笔 · 案件故事</span>
-        <h2>老子若不是律师，今日想杀人</h2>
-        <p class="src">周立太新浪博客 · 2007.09.03 · 约 1087 字</p>
-        <p class="abstract">张礼洁案全程亲笔自述：从接案、办案到遭泼尿羞辱——“狗日的跑了”最完整的自述版本。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="bk-05.html">
-        <span class="tag tag-bk">亲笔 · 公开信</span>
-        <h2>周立太致网友公开信</h2>
-        <p class="src">周立太新浪博客 · 2007.09.20 · 约 1438 字</p>
-        <p class="abstract">风波一个月后的长篇公开信：逐条回应质疑，算清风险代理 15% 的账。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="bk-08.html">
-        <span class="tag tag-bk">亲笔 · 论坛演讲</span>
-        <h2>谁来为农民工维权？</h2>
-        <p class="src">周立太新浪博客 · 2007.11.25 · 约 3489 字</p>
-        <p class="abstract">论坛演讲全文：《从挣扎最终走过来的周立太，看中国劳工维权》，把维权史讲给公众听。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="bk-06.html">
-        <span class="tag tag-bk">亲笔 · 执业自史</span>
-        <h2>深圳、重庆、万州三地“说”</h2>
-        <p class="src">周立太新浪博客 · 2007.12.29 · 约 2594 字</p>
-        <p class="abstract">从 1996 年深圳首案写到三地执业史，夹叙夹议最“博客”的一篇个人执业自史。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="bk-09.html">
-        <span class="tag tag-bk">亲笔 · 周年回望</span>
-        <h2>话说十三年</h2>
-        <p class="src">周立太新浪博客 · 2014.06.04 · 约 437 字</p>
-        <p class="abstract">律所 13 岁生日亲笔：深圳拒批、开县受阻、落户渝中区的阴差阳错——“谁又能维护我们的权利？”</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="bk-10.html">
-        <span class="tag tag-bk">亲笔 · 同事名册</span>
-        <h2>不要忘记曾致力于民工维权的人们</h2>
-        <p class="src">周立太新浪博客 · 2014.06.04 · 约 828 字</p>
-        <p class="abstract">亲笔公布 18 年共事律师与工作人员全名单：“望大家不要忘记他们”，档案馆气质最浓的一篇。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
-      <a class="card" href="bk-11.html">
-        <span class="tag tag-bk">亲笔 · 20周年</span>
-        <h2>二十年前的今天</h2>
-        <p class="src">周立太新浪博客 · 2016.04.29 · 约 506 字</p>
-        <p class="abstract">民工维权 20 周年短文：本想写书、无暇整理，寥寥数语收束整条维权之路。</p>
-        <span class="go">阅读全文 →</span>
-      </a>
+  <div class="layout">
+    <nav class="rail" aria-label="年代导航">
+      <div class="track">
+<button class="yearbtn" data-target="d2001-2004" onclick="location.hash='d2001-2004'"><b>2001–2004</b><span class="cnt">8 篇 · 2001–2004</span></button>
+<button class="yearbtn" data-target="d2005-2007" onclick="location.hash='d2005-2007'"><b>2005–2007</b><span class="cnt">23 篇 · 2005–2007</span></button>
+<button class="yearbtn" data-target="d2008-2010" onclick="location.hash='d2008-2010'"><b>2008–2010</b><span class="cnt">17 篇 · 2008–2010</span></button>
+<button class="yearbtn" data-target="d2011-2014" onclick="location.hash='d2011-2014'"><b>2011–2014</b><span class="cnt">6 篇 · 2011–2014</span></button>
+<button class="yearbtn" data-target="d2015-2018" onclick="location.hash='d2015-2018'"><b>2015–2018</b><span class="cnt">7 篇 · 2015–2018</span></button>
+<button class="yearbtn" data-target="d2019-2026" onclick="location.hash='d2019-2026'"><b>2019–2026</b><span class="cnt">2 篇 · 2022–2026</span></button>
+      </div>
+    </nav>
+    <main class="stream">
+    <section class="dsec" id="d2001-2004">
+      <div class="dhead"><h2>2001–2004</h2><span>8 篇</span></div>
+      <div class="grid">
+        <a class="card" href="2001-08-25a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2001.08.25 <span class="pdf">附打印 PDF</span></span>
+          <h2>深圳女工被搜身案昨日开庭 今天进入法庭辩论</h2>
+          <span class="src">羊城晚报 · 档号 REPORT-0035</span>
+          <span class="abstract">56 名女工被非法搜身案开庭：21 名证人车轮战，周立太以代理律师身份首次大规模进入公共视野。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2001-08-26a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2001.08.26</span>
+          <h2>韩资厂非法搜身案追踪：女工代理律师提出调解</h2>
+          <span class="src">江南时报 · 档号 REPORT-0044</span>
+          <span class="abstract">搜身案庭审次日：周立太提出调解方案，56 名女工的尊严官司进入第二回合。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2001-12-26a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2001.12.26 <span class="pdf">附打印 PDF</span></span>
+          <h2>专为打工仔打官司而扬名 周立太是“黑律师”？</h2>
+          <span class="src">南方都市报 · 档号 REPORT-0006</span>
+          <span class="abstract">深圳首次清理外地律师设点，周立太被责令停止执业，他宣布将起诉龙岗区司法局——“黑律师”之争的起点。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2004-02-13a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2004.02.13</span>
+          <h2>新闻人物：周立太</h2>
+          <span class="src">CCTV《全球资讯榜》 · 档号 REPORT-0032</span>
+          <span class="abstract">清华研讨会当天，央视新闻栏目为这位“最穷的律师”画像：办理工人维权案 4600 多件、600 多次把相关部门告上法庭。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2004-04-13a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2004.04.13</span>
+          <h2>如果民工们赶走了周立太</h2>
+          <span class="src">南方都市报 · 档号 REPORT-0024</span>
+          <span class="abstract">十年砍柴专栏：起诉逃费民工的周立太若因此离开，受伤害的是整个民工维权事业——2004 年的制度之问。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2004-05-26a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2004.05.26 <span class="pdf">附打印 PDF</span></span>
+          <h2>社会记录：揭开民工律师的面纱</h2>
+          <span class="src">CCTV《社会记录》 · 档号 REPORT-0037</span>
+          <span class="abstract">央视专题镜头下的周立太：在厨房接受采访、讲述状告民工的刘朝正案，民工律师的面纱被揭开。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2004-07-08a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2004.07.08 <span class="pdf">附打印 PDF</span></span>
+          <h2>前人造孽后人遭殃 如何破解“周立太难题”</h2>
+          <span class="src">中国经济时报 · 档号 REPORT-0012</span>
+          <span class="abstract">8 年 2000 余件工伤案、创 158 万元赔偿之最之后，周立太开始改变“不赢不收费”的规则——“周立太难题”首次被系统提出。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2004-10-31a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2004.10.31</span>
+          <h2>“民工律师”周立太告市财政局违规收取滞纳金</h2>
+          <span class="src">重庆晨报 · 档号 REPORT-0004</span>
+          <span class="abstract">为 31.05 元路桥费滞纳金把财政局告上法庭：小标的大较真，周立太式公益诉讼的又一例。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+      </div>
+    </section>
+    <section class="dsec" id="d2005-2007">
+      <div class="dhead"><h2>2005–2007</h2><span>23 篇</span></div>
+      <div class="grid">
+        <a class="card" href="2005-01-07a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2005.01.07</span>
+          <h2>重庆 83 名工人状告市总工会 称其不履行法定职责</h2>
+          <span class="src">南方都市报 · 档号 REPORT-0043</span>
+          <span class="abstract">83 名工人状告工会案开庭前夜：“工会的职责到底是什么？”——维权困境从企业延伸到体制。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2005-02-02a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2005.02.02 <span class="pdf">附打印 PDF</span></span>
+          <h2>维权的窘境</h2>
+          <span class="src">中国青年报 · 档号 REPORT-0039</span>
+          <span class="abstract">83 名工人状告工会案：周立太在重庆市总工会拍案而起，维权的窘境从当事人延伸到律师本人。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-01-08a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2007.01.08</span>
+          <h2>“开瓶费”再起纷争 法院判决不同各界观点迥异</h2>
+          <span class="src">人民日报 · 档号 REPORT-0025</span>
+          <span class="abstract">消费者权利的公共讨论中也有周立太：开瓶费之争里，他以普通消费者身份发声。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-02-06a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2007.02.06 <span class="pdf">附打印 PDF</span></span>
+          <h2>“农民工律师”赢了官司败给失信</h2>
+          <span class="src">央视国际 · 档号 REPORT-0001</span>
+          <span class="abstract">胜诉赔偿金被当事人卷走、欠款累计 500 万：帮农民工赢了官司的律师，败给了失信。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-07-05a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2007.07.05</span>
+          <h2>社会能见度：“民工保护神”周立太的苦恼</h2>
+          <span class="src">凤凰卫视《社会能见度》 · 档号 REPORT-0036</span>
+          <span class="abstract">凤凰卫视节目文稿：镜头对准“民工保护神”的另一面——被自己帮助过的人背弃的苦恼。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-07-15a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2007.07.15</span>
+          <h2>“民工保护神”周立太的苦恼</h2>
+          <span class="src">凤凰网 · 档号 REPORT-0003</span>
+          <span class="abstract">凤凰网文字版：7000 多件工伤案背后的名誉与孤独，“保护神”为何把民工告上法庭。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-08-16a.html">
+          <span class="date"><span class="chip c-blog">博客亲笔</span>2007.08.16 <span class="pdf">附打印 PDF</span></span>
+          <h2>又一群“狗日的”跑了</h2>
+          <span class="src">周立太新浪博客 · 档号 BK-SUP-01</span>
+          <span class="abstract">2007.8.16 风波原帖：王天松等 60 余人领款即散，7 万律师费化为泡影，一切争议的起点文本。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-08-24a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2007.08.24</span>
+          <h2>维权律师撰文辱骂农民工 讨薪成功后不付费</h2>
+          <span class="src">新快报 · 档号 REPORT-0038</span>
+          <span class="abstract">风波发酵：媒体首次整版报道博客骂人事件，配博客原文截图——舆论场的第一次定调。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-08-26a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2007.08.26</span>
+          <h2>评论：民工律师开骂是一种另类社会表达</h2>
+          <span class="src">新快报 · 档号 REPORT-0042</span>
+          <span class="abstract">评论版的声音：开骂不只是失态，也是弱者维权者无处申诉时的另类表达。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-08-27a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2007.08.27</span>
+          <h2>律师与农民工：两个无辜者之间争不出是非</h2>
+          <span class="src">北京青年报 · 档号 REPORT-0026</span>
+          <span class="abstract">张天蔚评论：逃费与追讨背后，是两个无辜者被同一个制度困境推到了对立面。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-08-29a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2007.08.29</span>
+          <h2>为民工讨薪律师解释公开叫骂逃费人原因</h2>
+          <span class="src">东方律师 · 档号 REPORT-0007</span>
+          <span class="abstract">风波后首次面对面受访：一件有污渍的 T 恤、一双拖鞋，周立太解释为何公开叫骂。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-08-29a1.html">
+          <span class="date"><span class="chip c-blog">博客亲笔</span>2007.08.29 <span class="pdf">附打印 PDF</span></span>
+          <h2>为何二审不如幺审？——形同虚设的二审</h2>
+          <span class="src">周立太新浪博客 · 档号 BK-0107</span>
+          <span class="abstract">开博首月亲笔：批两审终审走过场——“二审不如幺审”，博客里少见的纯论说文。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-08-29a2.html">
+          <span class="date"><span class="chip c-blog">博客亲笔</span>2007.08.29 <span class="pdf">附打印 PDF</span></span>
+          <h2>风险代理惹的祸！</h2>
+          <span class="src">周立太新浪博客 · 档号 BK-0625</span>
+          <span class="abstract">自己首创的风险代理如何反噬：三个真实案例算清 15% 背后的账。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-08-30a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2007.08.30</span>
+          <h2>周立太困境：民工之过与“民工律师”之失</h2>
+          <span class="src">南方周末 · 档号 REPORT-0015</span>
+          <span class="abstract">南方周末的平衡报道：骂战双方各打五十大板，追问“保护神”神话的两面。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-09-01a.html">
+          <span class="date"><span class="chip c-blog">博客亲笔</span>2007.09.01 <span class="pdf">附打印 PDF</span></span>
+          <h2>致网友的信</h2>
+          <span class="src">周立太新浪博客 · 档号 BK-0536</span>
+          <span class="abstract">“狗日的跑了”风波后的第一封说明信：宣布连载 1996 年以来案件背后的故事。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-09-03a.html">
+          <span class="date"><span class="chip c-blog">博客亲笔</span>2007.09.03 <span class="pdf">附打印 PDF</span></span>
+          <h2>老子若不是律师，今日想杀人</h2>
+          <span class="src">周立太新浪博客 · 档号 BK-0529</span>
+          <span class="abstract">张礼洁案全程亲笔自述：从接案、办案到遭泼尿羞辱——“狗日的跑了”最完整的自述版本。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-09-20a.html">
+          <span class="date"><span class="chip c-blog">博客亲笔</span>2007.09.20 <span class="pdf">附打印 PDF</span></span>
+          <h2>周立太致网友公开信</h2>
+          <span class="src">周立太新浪博客 · 档号 BK-0265</span>
+          <span class="abstract">风波一个月后的长篇公开信：逐条回应质疑，算清风险代理 15% 的账。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-11-25a.html">
+          <span class="date"><span class="chip c-blog">博客亲笔</span>2007.11.25 <span class="pdf">附打印 PDF</span></span>
+          <h2>谁来为农民工维权？</h2>
+          <span class="src">周立太新浪博客 · 档号 BK-0576</span>
+          <span class="abstract">论坛演讲全文：《从挣扎最终走过来的周立太，看中国劳工维权》，把维权史讲给公众听。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-11-28a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2007.11.28</span>
+          <h2>“民工律师”周立太的困境</h2>
+          <span class="src">新民晚报 · 档号 REPORT-0005</span>
+          <span class="abstract">从博客风波切入：名誉、欠费、孤独——“民工律师”标签之下的真实处境。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-11-28a1.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2007.11.28 <span class="pdf">附打印 PDF</span></span>
+          <h2>债主周立太</h2>
+          <span class="src">新民周刊 · 档号 REPORT-0008</span>
+          <span class="abstract">从熊德明讨薪到周立太被欠债，一万二千字封面长文细写“债主周立太”的两难处境。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-11-28a2.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2007.11.28 <span class="pdf">附打印 PDF</span></span>
+          <h2>草根律师团</h2>
+          <span class="src">新民周刊 · 档号 REPORT-0040</span>
+          <span class="abstract">新民周刊封面报道：把周立太和他的“群居”律所放进草根律师群体谱系。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-12-18a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2007.12.18 <span class="pdf">附打印 PDF</span></span>
+          <h2>农民工维权为什么这样难——律师周立太访谈录</h2>
+          <span class="src">南方周末 · 档号 REPORT-0009</span>
+          <span class="abstract">南方周末访谈录：周立太亲口讲维权为什么难，并提出赔款银行托管、修法等制度呼吁。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2007-12-29a.html">
+          <span class="date"><span class="chip c-blog">博客亲笔</span>2007.12.29 <span class="pdf">附打印 PDF</span></span>
+          <h2>深圳、重庆、万州三地“说”</h2>
+          <span class="src">周立太新浪博客 · 档号 BK-0466</span>
+          <span class="abstract">从 1996 年深圳首案写到三地执业史，夹叙夹议最“博客”的一篇个人执业自史。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+      </div>
+    </section>
+    <section class="dsec" id="d2008-2010">
+      <div class="dhead"><h2>2008–2010</h2><span>17 篇</span></div>
+      <div class="grid">
+        <a class="card" href="2008-02-21a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2008.02.21</span>
+          <h2>珠三角劳工维权组织因无合法身份陷入困境</h2>
+          <span class="src">新京报 · 档号 REPORT-见目录</span>
+          <span class="abstract">博客转载的深度报道：民间劳工维权组织的合法身份困境，把周立太放进更大的维权生态。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2008-04-14a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2008.04.14</span>
+          <h2>律师事务所帮民工维权 遭多名男子围攻</h2>
+          <span class="src">重庆晨报 · 档号 REPORT-0027</span>
+          <span class="abstract">中华大厦 13 楼的办公室里，帮民工维权的律师遭多人围攻——维权者的安全也成问题。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2008-08-05a.html">
+          <span class="date"><span class="chip c-blog">博客亲笔</span>2008.08.05</span>
+          <h2>对这样的二审要当头棒喝</h2>
+          <span class="src">周立太新浪博客 · 档号 BK-见目录</span>
+          <span class="abstract">2008 年亲笔再批二审走过场：程序空转如何吃掉当事人的正义。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2008-09-07a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2008.09.07</span>
+          <h2>新华社专稿：“农民工律师”遭遇“失信”之痛</h2>
+          <span class="src">新华社 · 档号 REPORT-0031</span>
+          <span class="abstract">国家通讯社定调之作：法治建设 30 年语境下，7000 多件维权案与 500 万欠款的“失信之痛”。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2008-09-16a.html">
+          <span class="date"><span class="chip c-blog">博客亲笔</span>2008.09.16</span>
+          <h2>周立太就《佳人当道》侵权事宜发表声明</h2>
+          <span class="src">周立太新浪博客 · 档号 BK-见目录</span>
+          <span class="abstract">召集十余家媒体开新闻发布会：电视剧《佳人当道》被指以我为原型，宣布起诉。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2009-10-23a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2009.10.23</span>
+          <h2>周立太开博回应打黑运动化质疑 称骂他的人不是东西</h2>
+          <span class="src">华龙网 · 档号 REPORT-0016</span>
+          <span class="abstract">代理涉黑案辩护引发争议，周立太开博回应：“避免打黑扩大化、防止运动化”。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2009-12-07a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2009.12.07</span>
+          <h2>维权难 收律师费更难</h2>
+          <span class="src">广州日报 · 档号 BK-转载</span>
+          <span class="abstract">博客转载《广州日报》：维权难的另一面是收费难，报纸为周立太算了一笔账。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2009-12-23a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2009.12.23</span>
+          <h2>周立太：我永远都不可能成为下一个“李庄”</h2>
+          <span class="src">中国江苏网 · 档号 REPORT-0021</span>
+          <span class="abstract">李庄案风口上，涉黑案辩护律师周立太对媒体放话：我不可能成为下一个李庄。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2010-01-15a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2010.01.15</span>
+          <h2>来自社会最底层的抗争——评《从底层滚出来》</h2>
+          <span class="src">四川在线 · 档号 REPORT-0033</span>
+          <span class="abstract">书评：陈文定《从底层滚出来》记录的周立太，是“自古英雄多磨难”的当代版本。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2010-01-19a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2010.01.19</span>
+          <h2>周立太：为农民工打官司犹如炒股，我被套牢了！</h2>
+          <span class="src">中国青年报 · 档号 REPORT-0018</span>
+          <span class="abstract">出书周期的著名比喻：为农民工打官司犹如炒股，“我被套牢了”。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2010-01-24a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2010.01.24</span>
+          <h2>大骂不给律师费的农民工</h2>
+          <span class="src">新京报 · 档号 REPORT-0023</span>
+          <span class="abstract">新京报数据版：480 余人逃费的数据盘点——骂战背后的账本。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2010-01-24a1.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2010.01.24</span>
+          <h2>“堂吉诃德”屡败屡战</h2>
+          <span class="src">新京报 · 档号 REPORT-0002</span>
+          <span class="abstract">新京报书评版：把周立太比作挑战风车的堂吉诃德——一些部门听到他的名字就头疼。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2010-01-24a2.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2010.01.24</span>
+          <h2>周立太：底层滚出来的律师 代理重庆涉黑案被骂</h2>
+          <span class="src">中国新闻网 · 档号 REPORT-0019</span>
+          <span class="abstract">中国新闻网人物稿：从三峡贫农家庭到代理涉黑案，“底层滚出来的律师”的完整画像。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2010-01-25a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2010.01.25</span>
+          <h2>评《从底层滚出来》：一线阳光照进来</h2>
+          <span class="src">深圳新闻网 · 档号 REPORT-0041</span>
+          <span class="abstract">另一篇书评：30 年高速发展塑造了庞大底层，《从底层滚出来》是一线照进来的阳光。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2010-01-26a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2010.01.26 <span class="pdf">附打印 PDF</span></span>
+          <h2>周立太：底层滚出来的律师</h2>
+          <span class="src">新京报 · 档号 REPORT-0020</span>
+          <span class="abstract">新京报人物特稿：从三峡贫农家庭到代理涉黑案，“底层滚出来的律师”的完整画像。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2010-02-06a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2010.02.06</span>
+          <h2>民工律师周立太出书 痛骂母亲被斥不孝</h2>
+          <span class="src">羊城晚报 · 档号 REPORT-0034</span>
+          <span class="abstract">深圳签售会现场遭质疑：书中痛骂母亲的段落让他被斥“天下第一不孝”——争议的另一面。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2010-03-03a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2010.03.03</span>
+          <h2>名值千万的农民工律师周立太简介</h2>
+          <span class="src">搜狐嘉宾访谈 · 档号 REPORT-0013</span>
+          <span class="abstract">搜狐嘉宾访谈开场白：从没有维权概念到主动找律师，周立太见证农民工权利意识的十年。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+      </div>
+    </section>
+    <section class="dsec" id="d2011-2014">
+      <div class="dhead"><h2>2011–2014</h2><span>6 篇</span></div>
+      <div class="grid">
+        <a class="card" href="2011-04-12a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2011.04.12</span>
+          <h2>律师代理招生骗局案后未得报酬 起诉 51 名学生</h2>
+          <span class="src">京华时报 · 档号 REPORT-0028</span>
+          <span class="abstract">官司打赢、学生逃费：周立太把 51 名学生告上法庭——“逃费”叙事从农民工扩展到学生群体。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2011-05-08a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2011.05.08</span>
+          <h2>刘仰：周立太是个好律师</h2>
+          <span class="src">乌有之乡 · 档号 REPORT-0011</span>
+          <span class="abstract">评论人刘仰的声援：在打黑舆论风潮中，“周立太是个好律师”是一种逆流的判断。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2012-09-27a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2012.09.27</span>
+          <h2>“我将减少代理农民工维权案”——律师周立太之变</h2>
+          <span class="src">人民网 · 档号 REPORT-0030</span>
+          <span class="abstract">1.2 万件维权案之后的转身宣言：大幅度减少代理农民工维权案——转型叙事的官方媒体版本。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2012-10-19a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2012.10.19 <span class="pdf">附打印 PDF</span></span>
+          <h2>律师周立太“转型”</h2>
+          <span class="src">时代周报 · 档号 REPORT-0029</span>
+          <span class="abstract">注销深圳分所、退回重庆：时代周报记录周立太宣布“转型”，农民工维权叙事的转折点。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2014-06-04a1.html">
+          <span class="date"><span class="chip c-blog">博客亲笔</span>2014.06.04 <span class="pdf">附打印 PDF</span></span>
+          <h2>话说十三年</h2>
+          <span class="src">周立太新浪博客 · 档号 BK-0563</span>
+          <span class="abstract">律所 13 岁生日亲笔：深圳拒批、开县受阻、落户渝中区的阴差阳错——“谁又能维护我们的权利？”</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2014-06-04a2.html">
+          <span class="date"><span class="chip c-blog">博客亲笔</span>2014.06.04 <span class="pdf">附打印 PDF</span></span>
+          <h2>不要忘记曾致力于民工维权的人们</h2>
+          <span class="src">周立太新浪博客 · 档号 BK-0098</span>
+          <span class="abstract">亲笔公布 18 年共事律师与工作人员全名单：“望大家不要忘记他们”，档案馆气质最浓的一篇。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+      </div>
+    </section>
+    <section class="dsec" id="d2015-2018">
+      <div class="dhead"><h2>2015–2018</h2><span>7 篇</span></div>
+      <div class="grid">
+        <a class="card" href="2015-05-01a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2015.05.01 <span class="pdf">附打印 PDF</span></span>
+          <h2>农民工维权律师周立太：曾被没收律师证</h2>
+          <span class="src">澎湃新闻 · 档号 REPORT-0010</span>
+          <span class="abstract">重回龙岗三和村那栋四层楼房：澎湃新闻回望二十年维权路，从被没收律师证到 1.4 万件案件。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2016-04-25a.html">
+          <span class="date"><span class="chip c-report">媒体报道</span>2016.04.25</span>
+          <h2>周立太：讨薪是高龄农民工的“心绞痛”</h2>
+          <span class="src">民生周刊 · 档号 REPORT-0022</span>
+          <span class="abstract">“打工爷爷”现象：高龄农民工讨薪之难，是维权故事的当代延伸。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2016-04-29a.html">
+          <span class="date"><span class="chip c-blog">博客亲笔</span>2016.04.29 <span class="pdf">附打印 PDF</span></span>
+          <h2>二十年前的今天</h2>
+          <span class="src">周立太新浪博客 · 档号 BK-0118</span>
+          <span class="abstract">民工维权 20 周年短文：本想写书、无暇整理，寥寥数语收束整条维权之路。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2017-03-15a.html">
+          <span class="date"><span class="chip c-blog">博客亲笔</span>2017.03.15</span>
+          <h2>农民工律师周立太：我为何公开叫骂</h2>
+          <span class="src">周立太新浪博客 · 档号 BK-见目录</span>
+          <span class="abstract">风波十年后的自我复盘：我为何公开叫骂——从当年骂战到十年心路。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2018-01-18a.html">
+          <span class="date"><span class="chip c-blog">博客亲笔</span>2018.01.18</span>
+          <h2>话说司法改革</h2>
+          <span class="src">周立太新浪博客 · 档号 BK-见目录</span>
+          <span class="abstract">博客收笔之作：70 岁前的最后一篇博文，话说司法改革。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2018-03-20a.html">
+          <span class="date"><span class="chip c-gzh">公众号</span>2018.03.20</span>
+          <h2>周立太：要告，告才能进步！（全文）</h2>
+          <span class="src">公众号·周立太 · 档号 GZH-001</span>
+          <span class="abstract">长篇自述：从“文盲律师”在美国演讲到 5000 个牛皮纸袋档案——“告，才能进步”的完整人生叙事。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2018-06-01a.html">
+          <span class="date"><span class="chip c-gzh">公众号</span>2018.06.01</span>
+          <h2>周立太自传——话说从农民到律师</h2>
+          <span class="src">公众号·周立太 · 档号 GZH-002</span>
+          <span class="abstract">千字自传：小学二年级学历考过律师资格、被扣资格证也要代理农民告财政局——从农民到律师的一生。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+      </div>
+    </section>
+    <section class="dsec" id="d2019-2026">
+      <div class="dhead"><h2>2019–2026</h2><span>2 篇</span></div>
+      <div class="grid">
+        <a class="card" href="2022-11-10a.html">
+          <span class="date"><span class="chip c-gzh">公众号</span>2022.11.10</span>
+          <h2>周立太律师致浙江省、福建省省长的公开信</h2>
+          <span class="src">公众号·周立太 · 档号 GZH-004</span>
+          <span class="abstract">馆藏之外的新材料：为万州民工曾庆付死亡后的火化费，周立太同时致信两省省长。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+        <a class="card" href="2026-10-26a.html">
+          <span class="date"><span class="chip c-gzh">公众号</span>2026.10.26</span>
+          <h2>开挖律师富矿周立太</h2>
+          <span class="src">公众号·周立太 · 档号 GZH-003</span>
+          <span class="abstract">最新一篇：律师博物馆调研记——8000 多盒卷宗等待数字化，“一个周立太完成不了这座富矿的发掘”。</span>
+          <span class="go">阅读全文 →</span>
+        </a>
+      </div>
+    </section>
+    </main>
   </div>
-
   <footer>
-    <p>周立太数字档案馆 · 档案阅读站 — 著作权归原媒体、作者及周立太所有；本站为档案数字化转写件，正文以原始档案为准，未经事实复核。</p>
-    <p>档案编号可回溯：媒体报道 REPORT-xxxx / 博客 BK-xxxx（见各篇页脚），原始材料藏于周立太数字档案馆数据层。</p>
+    周立太数字档案馆 · 档案阅读站 — 著作权归原媒体、作者及周立太所有；本站为档案数字化转写件与公开网页补录，正文以原始档案为准，未经事实复核。<br>
+    档号可回溯（媒体报道 REPORT-xxxx / 博客 BK-xxxx / 公众号补录 GZH-xxx），原始材料藏于周立太数字档案馆数据层；12+11 篇打印版另附 PDF。
   </footer>
 </div>
+<script>
+(function(){
+  var btns = document.querySelectorAll('.yearbtn');
+  var secs = document.querySelectorAll('.dsec');
+  function mark(){
+    var cur = secs[0], top = 1e9;
+    secs.forEach(function(s){ var r = s.getBoundingClientRect(); if (r.top <= 120 && r.top < top) { top = r.top; cur = s; } });
+    btns.forEach(function(b){ b.classList.toggle('on', b.dataset.target === cur.id); });
+  }
+  window.addEventListener('scroll', mark, {passive:true}); mark();
+})();
+</script>
 </body>
 </html>
